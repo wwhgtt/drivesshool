@@ -1,6 +1,5 @@
 angular.module("YJA",[
-	"ngRoute",
-	"ui.router",
+	"ionic",
 	"controllers.YJA",
 	"services.common"
 ])
