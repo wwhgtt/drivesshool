@@ -1,6 +1,6 @@
-angular.module("controllers.YJA",[])
-.controller("YJA",function(
+angular.module("controllers.yja",[])
+.controller("yja",function(
 	$scope
 ){
-	console.log("$scope %o",$scope);
+	// console.log("$scope %o",$scope);
 })

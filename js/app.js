@@ -1,6 +1,9 @@
 angular.module("YJA",[
 	"ionic",
-	"controllers.YJA",
+	"controllers.yja",
+	"controllers.classTable",
+	"controllers.myself",
+	"controllers.message",
 	"services.common"
 ])
 .config(function(
@@ -9,11 +12,38 @@ angular.module("YJA",[
 	$urlRouterProvider
 ){   
 	$stateProvider
-		.state('YJA',{
-				url:"/YJA",
-				templateUrl:"template/menu.html",
-				controller:"YJA"
+		.state('yja',{
+			url:"/yja",
+			templateUrl:"template/menu.html",
+			controller:"yja"
 		})
-		$urlRouterProvider.otherwise("/YJA");
+		.state('yja.classTable',{
+            url:"/classTable",
+            views:{
+                'menuContent':{
+                    templateUrl:"template/classTable.html",
+                    controller:"classTable"
+                }
+            }
+        })
+        .state('yja.message',{
+            url:'/message',
+            views:{
+                'menuContent':{
+                    templateUrl:'template/message.html',
+                    controller:'message'
+                }
+            }
+        })
+        .state('yja.myself',{
+            url:'/myself',
+            views:{
+                'menuContent':{
+                    templateUrl:'template/myself.html',
+                    controller:'myself'
+                }
+            }
+        })
+		$urlRouterProvider.otherwise("/yja/classTable");
 		$locationProvider.html5Mode(true);
 }) 
