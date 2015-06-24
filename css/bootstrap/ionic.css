@@ -4146,11 +4146,16 @@ ion-tabs.tabs-color-active-dark .tab-item {
     display: none; }
 
 .tabs-item-hide > .tabs, .tabs.tabs-item-hide {
-  display: none; }
-
+  display: none;
+  }
+.tabs-icon-top{
+  background-color: #33cd5f; 
+  color: white;
+}
 .tabs-icon-top > .tabs .tab-item, .tabs-icon-top.tabs .tab-item, .tabs-icon-bottom > .tabs .tab-item, .tabs-icon-bottom.tabs .tab-item {
   font-size: 10px;
-  line-height: 14px; }
+  line-height: 14px;
+  font-weight: 500 }
 
 .tab-item .icon {
   display: block;
