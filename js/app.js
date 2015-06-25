@@ -5,6 +5,7 @@ angular.module("YJA",[
 	"controllers.myself",
 	"controllers.message",
     "controllers.login",
+    // "directives.calEndar",
 	"services.common"
 ])
 .config(function(
