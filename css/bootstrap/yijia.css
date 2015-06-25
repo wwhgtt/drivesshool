@@ -1,0 +1,19 @@
+.clear{
+	clear: both;
+}
+.has-subheader{
+	border-bottom: 1px dashed #808080;
+}
+.timeSpans span{
+	display: inline-block !important;
+	width: 13%;
+	text-align: center;
+	/*margin: 0px 0px 0px 0px*/
+}
+.timeSpans{
+	width: 90%;
+	margin:0 auto;
+}
+.title{
+	text-align: center !important;
+}

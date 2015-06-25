@@ -3,4 +3,5 @@ angular.module("controllers.classTable",[])
 	$scope
 ){
 	
+
 })
