@@ -4,6 +4,7 @@ angular.module("YJA",[
 	"controllers.classTable",
 	"controllers.myself",
 	"controllers.message",
+    "controllers.login",
 	"services.common"
 ])
 .config(function(
@@ -17,6 +18,11 @@ angular.module("YJA",[
 			templateUrl:"template/menu.html",
 			controller:"yja"
 		})
+        .state('login',{
+            url:"/login",
+            templateUrl:"login.html",
+            controller:"login"
+        })
 		.state('yja.classTable',{
             url:"/classTable",
             views:{
@@ -44,6 +50,6 @@ angular.module("YJA",[
                 }
             }
         })
-		$urlRouterProvider.otherwise("/yja/classTable");
+		$urlRouterProvider.otherwise("/login");
 		$locationProvider.html5Mode(true);
 }) 

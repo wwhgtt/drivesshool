@@ -1,1 +1,20 @@
 angular.module("services.common",[])
+//登录
+.service("$loginIn",function(
+	$http
+){
+	return{
+		loginIn:function(phone,password,callback){
+			$http.post(BASE_URL + "/basic/login",{
+				phone:phone,
+				password:password
+			})
+			.success(function(data){
+				if(callback)callback(null,data);
+			})
+			.error(function(error){
+				if(callback)callback(error);
+			})
+		}
+	}
+})

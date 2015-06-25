@@ -3,4 +3,5 @@ angular.module("controllers.yja",[])
 	$scope
 ){
 	// console.log("$scope %o",$scope);
+	
 })
