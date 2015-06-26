@@ -7,9 +7,13 @@
             <label class="item item-input">
                 <input type="password" placeholder="password" ng-model="login.password">
             </label>
-            <button class="button button-full button-balanced" ng-click="signIn()">
-                Submit
+            <button class="button button-full button-balanced nextStep" ng-click="signIn()">
+                登录
             </button>
         </div>
+        <p class="password pureColor"><a href="/password">忘记密码</a></p>
     </ion-content>
+    <div class="footerRegister">
+        <a href="/register"><button class="button button-balanced register">注册</button></a>
+    </div>
 </ion-view>

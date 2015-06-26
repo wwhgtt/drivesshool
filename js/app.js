@@ -5,7 +5,7 @@ angular.module("YJA",[
 	"controllers.myself",
 	"controllers.message",
     "controllers.login",
-    // "directives.calEndar",
+    "controllers.password",
 	"services.common"
 ])
 .config(function(
@@ -23,6 +23,16 @@ angular.module("YJA",[
             url:"/login",
             templateUrl:"login.html",
             controller:"login"
+        })
+        .state('password',{
+            url:"/password",
+            templateUrl:"password.html",
+            controller:"password"
+        })
+        .state('register',{
+            url:"/register",
+            templateUrl:"register.html",
+            controller:"password"
         })
 		.state('yja.classTable',{
             url:"/classTable",

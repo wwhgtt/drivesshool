@@ -17,3 +17,38 @@
 .title{
 	text-align: center !important;
 }
+.password{
+	width: 100%;
+	text-align: center;
+}
+.ion-chevron-left{
+	border:none;
+	/*background-color: white*/
+}
+.Message{
+	float: right;
+	width: 28%;
+}
+.phoneMessage{
+	float: left;
+	width: 70%;
+}
+.footerRegister{
+	position: absolute;
+	bottom: 10%;
+	width: 100%
+}
+.register{
+	width: 60%;
+	margin-left:20%;
+	border-radius: 10px;
+}
+.password strong{
+	color: #33cd5f
+}
+.nextStep{
+	border-radius: 10px
+}
+.pureColor a{
+	color: #33cd5f
+}
