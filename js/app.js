@@ -34,6 +34,11 @@ angular.module("YJA",[
             templateUrl:"register.html",
             controller:"password"
         })
+        .state('serviceComent',{
+            url:"/serviceComent",
+            templateUrl:"service.html",
+            // controller:"password"
+        })
 		.state('yja.classTable',{
             url:"/classTable",
             views:{

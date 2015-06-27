@@ -43,12 +43,18 @@
 	margin-left:20%;
 	border-radius: 10px;
 }
-.password strong{
-	color: #33cd5f
+.password strong a{
+	color: #33cd5f !important
 }
 .nextStep{
 	border-radius: 10px
 }
 .pureColor a{
 	color: #33cd5f
+}
+.serviceComent{
+	width: 100%;
+	text-align: center;;
+	font-size: 1.0em;
+	margin-top: 30px
 }
