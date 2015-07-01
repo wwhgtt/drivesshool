@@ -6,13 +6,20 @@
 }
 .timeSpans span{
 	display: inline-block !important;
-	width: 13%;
+	width: 14%;
 	text-align: center;
+	border-right: 1px solid #dcdcdc;
 	/*margin: 0px 0px 0px 0px*/
 }
 .timeSpans{
 	width: 90%;
-	margin:0 auto;
+	margin-right: 1%;
+	float: right;
+	background-color:#3CB371;
+	color: white;
+	border: 0px;
+	padding: 0px;
+	margin: 0
 }
 .title{
 	text-align: center !important;
@@ -54,7 +61,29 @@
 }
 .serviceComent{
 	width: 100%;
-	text-align: center;;
+	text-align: center;
 	font-size: 1.0em;
 	margin-top: 30px
+}
+.momentConatiner{
+	width: 100%;
+	border: 0px;
+	padding: 0px;
+	margin: 0;
+	background-color:#33cd5f;
+	color: white
+}
+.momentConatiner td{
+	display: inline-block !important;
+	text-align:center !important;
+	border-right:1px solid #C0C0C0;
+}
+.itemTime{
+	margin-top: -15px;
+}
+.fontTime{
+	vertical-align: middle;
+}
+.fontWeight{
+	color: #FFFF00 !important
 }
