@@ -37,4 +37,43 @@ angular.module("services.common",[])
 		}
 	}
 })
-//短信验证
+//寻找教练
+.service("$getCoach",function(
+	$http
+){
+	return{
+		getCoach:function(key,callback){
+			$http.get(BASE_URL + "/basic/coach/search",{
+				params:{
+					key:key
+				}
+			})
+			.success(function(data){
+				if(callback)callback(null,data);
+			})
+			.error(function(error){
+				if(callback)callback(error);
+			})
+		}
+	}
+})
+//查看教练详情
+.service("$getDetile",function(
+	$http
+){
+	return{
+		getDetile:function(coachId,callback){
+			$http.get(BASE_URL + "/basic/coach",{
+				params:{
+					coachId:coachId
+				}
+			})
+			.success(function(data){
+				if(callback)callback(null,data);
+			})
+			.error(function(error){
+				if(callback)callback(error);
+			})
+		}
+	}
+})

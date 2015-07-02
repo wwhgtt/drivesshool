@@ -87,3 +87,17 @@
 .fontWeight{
 	color: #FFFF00 !important
 }
+.coachSearch{
+	width:75%;
+	float: left;
+}
+.coachSubmit{
+	width:23%;
+	float: left;
+	margin-left: 1%;
+	letter-spacing:5px;
+}
+.coachItem{
+	width: 98%;
+	margin: 0 auto
+}

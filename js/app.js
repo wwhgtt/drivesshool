@@ -1,11 +1,13 @@
 angular.module("YJA",[
 	"ionic",
 	"controllers.yja",
-	"controllers.classTable",
+	"controllers.coachList",
 	"controllers.myself",
 	"controllers.message",
     "controllers.login",
     "controllers.password",
+    "controllers.coachItem",
+    "directives.coachList",
 	"services.common"
 ])
 .config(function(
@@ -39,12 +41,12 @@ angular.module("YJA",[
             templateUrl:"service.html",
             // controller:"password"
         })
-		.state('yja.classTable',{
-            url:"/classTable",
+		.state('yja.coachList',{
+            url:"/coachList",
             views:{
                 'menuContent':{
-                    templateUrl:"template/classTable.html",
-                    controller:"classTable"
+                    templateUrl:"template/coachList.html",
+                    controller:"coachList"
                 }
             }
         })

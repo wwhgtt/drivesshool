@@ -1,0 +1,16 @@
+<ion-view>
+	<ion-content >
+		<div class="list list-inset">
+			<label class="item item-input coachSearch" >
+			   <i class="icon ion-search placeholder-icon"></i>
+			   <input type="text" placeholder="Search" ng-model="coach.key">
+			</label>
+			<button class="button button-balanced coachSubmit" ng-click="search()">
+		      	搜索
+		    </button>
+		</div>
+		<div class="list" ng-show="coachShow">
+			<coach-list ng-repeat="(key,coach) in coachList" ></coach-list>
+		</div>
+	</ion-content>
+</ion-view>

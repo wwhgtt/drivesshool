@@ -14,7 +14,7 @@ angular.module("controllers.login",[])
 			}else if(result && result.success == true){
 				var emitInfo={name:result.name,role:result.role}
 				// $scope.$emit("login",emitInfo);
-				$location.path("/yja/classTable")
+				$location.path("/yja/coachList")
 			}else if(result && result.success == false){
 				var errorInfo=result.errorInfo;
 				alert(errorInfo);
