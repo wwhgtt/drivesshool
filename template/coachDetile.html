@@ -1,0 +1,16 @@
+<ion-view>
+	<div class="bar bar-subheader">
+		<a   href="/yja/coachList" >
+			<button class="button button-icon icon ion-chevron-left toList" data-pack="default" data-tags="arrow, left" style="height:20%"></button>
+		</a>
+	  	<h2 class="title">教练详情</h2>
+	</div>
+	<ion-content class="has-subheader">
+		<div class="item item-avatar coachItem" >
+			<img ng-src="{{coach.avator.large}}"></p>
+			<h2>{{coach.name}}</h2>
+			<p><strong style="color:red">{{coach.near}}</strong></p>
+			<p>{{coach.signature}}</p>
+		</div>
+	</ion-content>
+</ion-view>

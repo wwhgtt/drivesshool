@@ -6,7 +6,7 @@ angular.module("YJA",[
 	"controllers.message",
     "controllers.login",
     "controllers.password",
-    "controllers.coachItem",
+    "controllers.coachDetile",
     "directives.coachList",
 	"services.common"
 ])
@@ -47,6 +47,15 @@ angular.module("YJA",[
                 'menuContent':{
                     templateUrl:"template/coachList.html",
                     controller:"coachList"
+                }
+            }
+        })
+        .state('yja.coachDetile',{
+            url:"/coachDetile/:coachId",
+            views:{
+                'menuContent':{
+                    templateUrl:"template/coachDetile.html",
+                    controller:"coachDetile"
                 }
             }
         })
