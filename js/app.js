@@ -8,6 +8,7 @@ angular.module("YJA",[
     "controllers.password",
     "controllers.coachDetile",
     "directives.coachList",
+    "directives.lMap",
 	"services.common"
 ])
 .config(function(

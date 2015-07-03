@@ -77,3 +77,29 @@ angular.module("services.common",[])
 		}
 	}
 })
+//获取场地信息
+.service("$GetSiteInfo",function(
+	$http
+){
+	return {
+		getSiteInfo:function(long,lat,distance,callback){
+			long = parseFloat(long);
+			lat = parseFloat(lat);
+			distance=parseFloat(distance);
+			$http.get(BASE_URL + "/platform/operate/siteInfo/get",
+				{params:{
+					long:long,
+					lat:lat,
+					distance:distance
+				}		
+			})
+			//下面的内容是必须的   表示执行一个回调   如果没有这个回调的话controllerjs里面也就无法执行页面的跳转
+			.success(function(data){
+				if(callback)callback(null,data);  //这里的null表示err==null  表示没出错 
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
