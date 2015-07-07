@@ -7,6 +7,7 @@ angular.module("YJA",[
     "controllers.login",
     "controllers.password",
     "controllers.coachDetile",
+    "controllers.homePage",
     "directives.coachList",
     "directives.lMap",
 	"services.common"
@@ -66,6 +67,15 @@ angular.module("YJA",[
                 'menuContent':{
                     templateUrl:'template/message.html',
                     controller:'message'
+                }
+            }
+        })
+        .state('yja.homePage',{
+            url:'/homePage',
+            views:{
+                'menuContent':{
+                    templateUrl:'template/homePage.html',
+                    controller:'homePage'
                 }
             }
         })

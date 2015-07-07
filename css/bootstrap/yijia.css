@@ -34,11 +34,11 @@
 }
 .Message{
 	float: right;
-	width: 28%;
+	width: 35%;
 }
 .phoneMessage{
 	float: left;
-	width: 70%;
+	width: 60%;
 }
 .footerRegister{
 	position: absolute;
@@ -96,6 +96,7 @@
 	float: left;
 	margin-left: 1%;
 	letter-spacing:5px;
+	border-radius: 5px
 }
 .coachItem{
 	width: 98%;
@@ -114,4 +115,49 @@
 	height: 100%;
 	overflow: hidden;
 	margin:0
+}
+.slider-slide{
+	width: 100%;
+	height: 100%;
+	/*background-color: yellow*/
+}
+.box{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.box img{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+/*.ion-record{
+	display: none;
+}*/
+.slider{
+	height: 30%
+}
+.homeItem button{
+	display: inline-block;
+	width: 41%;
+	margin-left: 6%;
+	margin-top: 10%;
+	border-radius: 10px
+}
+.package{
+	letter-spacing: 5px;
+	text-align: center !important;
+}
+.homeList{
+	border: none !important;
+	width: 42.5%;
+	margin-left: 6%;
+	margin-top: 10%;
+	display: inline-block;
+}
+.listItem{
+	margin-left: 7%;
+}
+.special{
+	margin-top: 0px
 }

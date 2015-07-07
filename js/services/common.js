@@ -86,7 +86,7 @@ angular.module("services.common",[])
 			long = parseFloat(long);
 			lat = parseFloat(lat);
 			distance=parseFloat(distance);
-			$http.get(BASE_URL + "/platform/operate/siteInfo/get",
+			$http.get(BASE_URL + "/basic/search/site/byLocation",
 				{params:{
 					long:long,
 					lat:lat,

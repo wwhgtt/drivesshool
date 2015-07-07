@@ -14,10 +14,14 @@ angular.module("controllers.coachList",[])
 				if(result && result.coachList.length !== 0){
 					$scope.coachShow=true; 
 		 			$scope.coachList=result.coachList;
-				}else{
+				}else if(result && result.errorInfo){
+					var errorInfo=result.errorInfo;
 		 			$ionicPopup.alert({
-					    title: 'sorry,没有您要找的教练'
-					    // template: 'It might taste good'
+					    title: errorInfo
+					});
+		 		}else{
+		 			$ionicPopup.alert({
+					    title: 'sorry，没有您要找的教练'
 					});
 		 		}
 			};
