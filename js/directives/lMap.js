@@ -64,11 +64,11 @@ angular.module("directives.lMap",[])
 				        // 创建标注
 				        map.addOverlay(marker);
 						var opts = {
-						  width : 50,     // 信息窗口宽度
-						  height: 25,     // 信息窗口高度
-						  title : "场地信息", // 信息窗口标题
-						  enableMessage:false,//设置允许信息窗发送短息
-						  message:""
+							width : 50,     // 信息窗口宽度
+							height: 25,     // 信息窗口高度
+							title : "场地信息", // 信息窗口标题
+							enableMessage:false,//设置允许信息窗发送短息
+							message:""
 						}
 						var infoWindow = new BMap.InfoWindow(mapData.name, opts);  // 创建信息窗口对象 
 						marker.addEventListener("click", function(e){
