@@ -8,7 +8,9 @@ angular.module("YJA",[
     "controllers.password",
     "controllers.coachDetile",
     "controllers.homePage",
+    "controllers.shareCtro",
     "directives.coachList",
+    "directives.audioList",
     "directives.lMap",
 	"services.common"
 ])

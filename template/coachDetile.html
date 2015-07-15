@@ -4,13 +4,75 @@
 			<button class="button button-icon icon ion-chevron-left toList" data-pack="default" data-tags="arrow, left" style="height:20%"></button>
 		</a>
 	  	<h2 class="title">教练详情</h2>
+	  	<dic class="share" ng-controller="shareCtro">
+	  		<h2 id="shareDetile" class="button button-icon icon">分享</h2>
+	  		<ul class="shareDetileShow" ng-show="shareDetileShow">
+	  			<li class="shareWeixin">分享到微信</li>
+	  			<li class="shareTensent">分享到QQ</li>
+	  			<li class="shareFriends">分享给好友</li>
+	  		</ul>
+	  	</div>
 	</div>
-	<ion-content class="has-subheader">
+	<ion-content class="has-subheader" style="background-color:#f2f2f4">
+		<ion-slide-box on-slide-changed="slideHasChanged($index)" class="ionSideBox" >
+		  	<ion-slide ng-show="video_first">
+	    		<video width="100%" controls height="90%" src="{{coach.video_first_url}}" >
+					<!-- <source ></source> -->
+				</video>
+		  	</ion-slide>
+		  	<ion-slide ng-show="video_second">
+	    		<video width="100%" controls height="90%" src="{{coach.video_second_url}}">
+					<!-- <source ></source> -->
+				</video>
+		  	</ion-slide>
+		  	<ion-slide ng-show="video_third">
+	    		<video width="100%" controls height="90%"  src="{{coach.video_third_url}}" >
+					<!-- <source></source> -->
+				</video>
+		  	</ion-slide>
+		</ion-slide-box>
 		<div class="item item-avatar coachItem" >
-			<img ng-src="{{coach.avator.large}}"></p>
-			<h2>{{coach.name}}</h2>
-			<p><strong style="color:red">{{coach.near}}</strong></p>
-			<p>{{coach.signature}}</p>
+
+			<img ng-src="{{coach.avator.large}}" ></p>
+			<h2>{{coach.name}}</h2><img src="./img/agree.png" class="agreeMent" width="20" ng-show="agreeMent">
+			
+			<audio-list ng-show="audioShow" class="audioShow"><img src="./img/语音.png" id="audioShowNow">
+				<audio ng-src="{{coach.voice.url}}" id="Media"></audio></img>
+			</audio-list>
+			<div class="clear"></div>
+			<p style="float:left" ng-show="coachBirth"><strong >{{coach.birth}}岁</strong></p>
+			<p style="float:left;" ng-show="coachLisenceDate"><strong >{{coach.coachLisenceDate}}年教龄</strong></p>
+		</div>
+		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;" >
+			<span>教练介绍</span><span style="padding-left:5%;"><strong>{{coach.signature}}</strong></span>
+		</div>
+		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;margin-top:20px" >
+			<span>教学模式</span><span style="padding-left:5%;"><strong>{{coach.teachType}}</strong></span>
+		</div>
+		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;" >
+			<span style="letter-spacing:28px">学校</span><span ><strong>{{coach.driveSchool.name}}</strong></span>
+		</div>
+		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;" >
+			<span style="letter-spacing:28px">车型</span><span ><strong>{{coach.coachCar}}</strong></span>
+		</div>
+		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;" >
+			<span>练车场地</span><span style="padding-left:5%;"><strong>{{coach.site.name}}</strong></span>
+		</div>
+		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;" >
+			<span>教学特点</span><span style="padding-left:5%;"><strong>{{coach.coachTrait}}</strong></span>
+		</div>
+		<div class="item item-avatar coachItem coachIntroduce coachImage" style="margin-top:20px;padding-left:5%;" >
+			<p style="letter-spacing:28px;line-height:66px;float:left ">图片</p>
+			<span >
+				<img ng-src="{{imageLIst_first}}" width="18%" height="66" />
+			</span>
+			<span >
+				<img ng-src="{{imageLIst_second}}" width="18%" height="66" style="margin-left:10px;" />
+			</span>
+			<span  >
+				<img ng-src="{{imageLIst_third}}"  width="18%" height="66" style="margin-left:10px;"/>
+			</span>
+			<img src="./img/more.png"  width="15"   style="margin-top:19px;float:right;"/>
 		</div>
 	</ion-content>
 </ion-view>
