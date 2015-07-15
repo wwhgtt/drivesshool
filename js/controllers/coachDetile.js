@@ -6,6 +6,13 @@ angular.module("controllers.coachDetile",[])
 	$getDetile,
 	$sce
 ){
+	$(".shareDetileShow").css("display","none");
+	$("#shareDetile").click(function(){
+		$(".shareDetileShow").css("display","block");
+		$(".has-subheader").click(function(){
+			$(".shareDetileShow").css("display","none");
+		})
+	})
 	var coachId=$state.params.coachId;
 	$getDetile.getDetile(coachId,function(err,result){
 		if (err){
@@ -58,13 +65,19 @@ angular.module("controllers.coachDetile",[])
 				if (result.coach.background) {
 					var background=result.coach.background;
 					if (background[0]) {
+						$scope.imageLIst_firstURL = true;
 						$scope.imageLIst_first=background[0].url;
 					};
 					if (background[1]) {
+						$scope.imageLIst_secondURL = true;
 						$scope.imageLIst_second=background[1].url;
 					};
 					if (background[2]) {
+						$scope.imageLIst_thirdURL = true;
 						$scope.imageLIst_third=background[2].url;
+					};
+					if (background[3]) {
+						$scope.imageLIst_forthURL = true;
 					};
 				};
 				if($scope.coach.voice && $scope.coach.voice.length){

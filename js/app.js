@@ -8,8 +8,10 @@ angular.module("YJA",[
     "controllers.password",
     "controllers.coachDetile",
     "controllers.homePage",
+    "controllers.getHospitalSite",
     "controllers.shareCtro",
     "directives.coachList",
+    "directives.getMap",
     "directives.audioList",
     "directives.lMap",
 	"services.common"
@@ -69,6 +71,15 @@ angular.module("YJA",[
                 'menuContent':{
                     templateUrl:'template/message.html',
                     controller:'message'
+                }
+            }
+        })
+        .state('yja.getHospitalSite',{
+            url:'/getHospitalSite',
+            views:{
+                'menuContent':{
+                    templateUrl:'template/getHospitalSite.html',
+                    controller:'getHospitalSite'
                 }
             }
         })

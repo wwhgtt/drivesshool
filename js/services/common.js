@@ -103,3 +103,24 @@ angular.module("services.common",[])
 		}
 	}
 })
+//获取医院信息
+.service("$GetHospital",function(
+	$http
+){
+	return {
+		GetHospital:function(cityId,callback){
+			$http.get(BASE_URL + "/basic/search/hospital",
+				{params:{
+					cityId:cityId
+				}		
+			})
+			//下面的内容是必须的   表示执行一个回调   如果没有这个回调的话controllerjs里面也就无法执行页面的跳转
+			.success(function(data){
+				if(callback)callback(null,data);  //这里的null表示err==null  表示没出错 
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
