@@ -124,3 +124,23 @@ angular.module("services.common",[])
 		}
 	}
 })
+//获取签名
+.service("$getSignal",function(
+	$http
+){
+	return {
+		getSignal:function(url,callback){
+			$http.get(BASE_URL + "/basic/wx/signature",
+				{params:{
+					url:url
+				}		
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})

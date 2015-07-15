@@ -5,7 +5,6 @@ angular.module("YJA",[
 	"controllers.myself",
 	"controllers.message",
     "controllers.login",
-    "controllers.password",
     "controllers.coachDetile",
     "controllers.homePage",
     "controllers.getHospitalSite",
@@ -31,16 +30,6 @@ angular.module("YJA",[
             url:"/login",
             templateUrl:"login.html",
             controller:"login"
-        })
-        .state('password',{
-            url:"/password",
-            templateUrl:"password.html",
-            controller:"password"
-        })
-        .state('register',{
-            url:"/register",
-            templateUrl:"register.html",
-            controller:"password"
         })
         .state('serviceComent',{
             url:"/serviceComent",
