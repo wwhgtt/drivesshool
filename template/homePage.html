@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view >
 	<ion-content>
 		<ion-slide-box on-slide-changed="slideHasChanged($index)" >
 		  	<ion-slide>
@@ -11,15 +11,7 @@
 		    	<div class="box"><img src="./img/pagethree.jpg"></div>
 		  	</ion-slide>
 		</ion-slide-box>
-		<div class="homeItem">
-			<button class="button button-balanced">
-			  	学车流程
-			</button>
-			<button class="button button-balanced package">
-			  	套餐
-			</button>
-		</div>
-		<div class="list ">
+		<!-- <div class="list ">
 		    <a class="item item-icon-left homeList " href="#">
 			    <i class="icon ion-ios-paper"></i>
 			    报名准备
@@ -39,6 +31,33 @@
 			    体检医院
 			</a>
 
+		</div> -->
+		<div class="imageLink">
+			<a href="#">
+				<img src="./img/学车流程.png">
+				<h4>学车流程</h4>
+			</a>
+			<a href="#">
+				<img src="./img/报名准备.png">
+				<h4>报名准备</h4>
+			</a>
+			<a href="/yja/getHospitalSite">
+				<img src="./img/体检医院.png">
+				<h4>体检医院</h4>
+			</a>
+			<a href="#">
+				<img src="./img/课程套餐.png">
+				<h4>课程套餐</h4>
+			</a>
+		</div>
+		<div class="marginSide"></div>
+		<div class="coachPlace">
+			<button class="button button-full button-balanced" style="margin-top:35px">
+			 	练车场
+			</button>
+			<button class="button button-full  button-assertive searchCoach">
+				找教练
+			</button>
 		</div>
 	</ion-content>
 </ion-view>

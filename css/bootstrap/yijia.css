@@ -205,3 +205,35 @@
 .myColor a:visited{
 	color: white !important;
 }
+.myColor{
+	background-color: #42c2ff !important;
+}
+.imageLink a{
+	display: inline-block;
+	font-size: 0.5em;
+	width: 24%;
+	margin:0px;
+	padding: 0px;
+	border: none;
+	text-align: center;
+	text-decoration: none;
+}
+.imageLink {
+	margin-top: 20px
+}
+.imageLink a img{
+	width:80%;
+	margin: 0 auto; 
+}
+.marginSide{
+	height: 20px;
+	background-color:#f4f4f4
+}
+.coachPlace button {
+	width: 60%;
+	margin: 0 auto ;
+	border-radius: 5px
+}
+.searchCoach{
+	margin-top: 30px !important
+}
