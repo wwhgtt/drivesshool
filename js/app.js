@@ -2,7 +2,6 @@ angular.module("YJA",[
 	"ionic",
 	"controllers.yja",
 	"controllers.coachList",
-	"controllers.myself",
 	"controllers.message",
     "controllers.coachDetile",
     "controllers.homePage",
@@ -75,15 +74,6 @@ angular.module("YJA",[
                 }
             }
         })
-        .state('yja.myself',{
-            url:'/myself',
-            views:{
-                'menuContent':{
-                    templateUrl:'template/myself.html',
-                    controller:'myself'
-                }
-            }
-        })
-		$urlRouterProvider.otherwise("/homePage");
+		$urlRouterProvider.otherwise("/yja/homePage");
 		$locationProvider.html5Mode(true);
 }) 
