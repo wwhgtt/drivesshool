@@ -4,7 +4,6 @@ angular.module("YJA",[
 	"controllers.coachList",
 	"controllers.myself",
 	"controllers.message",
-    "controllers.login",
     "controllers.coachDetile",
     "controllers.homePage",
     "controllers.getHospitalSite",
@@ -26,11 +25,6 @@ angular.module("YJA",[
 			templateUrl:"template/menu.html",
 			controller:"yja"
 		})
-        .state('login',{
-            url:"/login",
-            templateUrl:"login.html",
-            controller:"login"
-        })
         .state('serviceComent',{
             url:"/serviceComent",
             templateUrl:"service.html",
@@ -90,6 +84,6 @@ angular.module("YJA",[
                 }
             }
         })
-		$urlRouterProvider.otherwise("/login");
+		$urlRouterProvider.otherwise("/homePage");
 		$locationProvider.html5Mode(true);
 }) 

@@ -23,10 +23,8 @@ angular.module("controllers.coachDetile",[])
 				if($scope.coach.video && $scope.coach.video.length){
 					var video=$scope.coach.video;
 					if(video[0]){
-						console.log(video[0].url)
 						$scope.video_first = true;
 						$scope.coach.video_first_url=$sce.trustAsResourceUrl(video[0].url);
-						console.log($scope.coach.video_first_url)
 					}
 					if(video[1]){
 						$scope.video_second = true;

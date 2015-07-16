@@ -42,10 +42,12 @@ angular.module("services.common",[])
 	$http
 ){
 	return{
-		getCoach:function(key,callback){
-			$http.get(BASE_URL + "/basic/coach/search",{
+		getCoach:function(key,lat,long,callback){
+			$http.get(BASE_URL + "/basic/search/coach/byKey",{
 				params:{
-					key:key
+					key:key,
+					lat:lat,
+					long:long
 				}
 			})
 			.success(function(data){
