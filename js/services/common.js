@@ -43,6 +43,10 @@ angular.module("services.common",[])
 ){
 	return{
 		getCoach:function(key,lat,long,callback){
+			if(lat == null && long == null){
+				lat="30.665534";
+				long="104.071791"
+			}
 			$http.get(BASE_URL + "/basic/search/coach/byKey",{
 				params:{
 					key:key,

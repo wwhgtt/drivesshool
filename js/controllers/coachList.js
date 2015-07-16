@@ -18,7 +18,7 @@ angular.module("controllers.coachList",[])
 						nonceStr=result.result.noncestr;
 						signature=result.result.signature;
 					wx.config({
-					    debug: false, // 开启调试模式
+					    debug: true, // 开启调试模式
 					    appId: 'wx678c9951b011eabe', // 必填，公众号的唯一标识
 					    timestamp:timestamp , // 必填，生成签名的时间戳
 					    nonceStr: nonceStr, // 必填，生成签名的随机串
@@ -38,7 +38,7 @@ angular.module("controllers.coachList",[])
 								if (err) {
 									alert("sorry,访问出错");
 								}else{
-									if(result && result.coachList== Array){
+									if(result && result.coachList.length !== 0){
 										$scope.coachShow=true; 
 							 			$scope.coachList=result.coachList;
 									}else if(result && result.errorInfo){

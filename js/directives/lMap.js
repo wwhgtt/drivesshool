@@ -44,8 +44,8 @@ angular.module("directives.lMap",[])
 					    title: 'sorry,获取失败'
 						});
 				 	}else{
-				 		if(result && result.constructor==Array){ 
-				 			$scope.mapData = result;
+				 		if(result && result.success==true){ 
+				 			$scope.mapData = result.siteList;
 						}else if(result && result.errorInfo){
 							var errorInfo=result.errorInfo;
 				 			$ionicPopup.alert({
@@ -66,7 +66,7 @@ angular.module("directives.lMap",[])
 						var opts = {
 							width : 50,     // 信息窗口宽度
 							height: 25,     // 信息窗口高度
-							title : "场地信息", // 信息窗口标题
+							title : mapData.address, // 信息窗口标题
 							enableMessage:false,//设置允许信息窗发送短息
 							message:""
 						}
