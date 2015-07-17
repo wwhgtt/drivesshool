@@ -3,7 +3,8 @@ angular.module("controllers.coachList",[])
 	$scope,
 	$getCoach,
 	$ionicPopup,
-	$getSignal
+	$getSignal,
+	$getArea
 ){
 	$scope.coach={key:"",lat:"",long:""};
 	$scope.search=function(){
@@ -70,5 +71,17 @@ angular.module("controllers.coachList",[])
 		})
 		
 	}
-	
+	//筛选条件
+	var cityId=1930;
+	$getArea.getArea(cityId,function(err,result){
+		if(err){
+			$ionicPopup.alert({
+			    title: 'sorry，系统出错'
+			});
+		}else if(result && result.areaList.length !== 0){
+			$scope.areaList=result.areaList;
+		}else{
+			//处理没有区域的情况
+		}
+	})
 })

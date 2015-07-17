@@ -6,15 +6,18 @@ angular.module("controllers.coachDetile",[])
 	$getDetile,
 	$sce
 ){
+	// alert("error");
 	$(".shareDetileShow").css("display","none");
 	$("#shareDetile").click(function(){
 		$(".shareDetileShow").css("display","block");
-		$(".has-subheader").click(function(){
-			$(".shareDetileShow").css("display","none");
-		})
+		// $(".has-subheader").click(function(){
+		// 	$(".shareDetileShow").css("display","none");
+		// })
 	})
 	var coachId=$state.params.coachId;
+	// alert("error");
 	$getDetile.getDetile(coachId,function(err,result){
+		// alert("error");
 		if (err){
 			alert("sorry,访问出错");
 		}else{

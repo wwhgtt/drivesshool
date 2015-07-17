@@ -69,7 +69,7 @@ angular.module("services.common",[])
 ){
 	return{
 		getDetile:function(coachId,callback){
-			$http.get(BASE_URL + "/basic/coach",{
+			$http.get(BASE_URL + "/basic/search/coach/byId",{
 				params:{
 					coachId:coachId
 				}
@@ -139,6 +139,26 @@ angular.module("services.common",[])
 			$http.get(BASE_URL + "/basic/wx/signature",
 				{params:{
 					url:url
+				}		
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
+//获取区域
+.service("$getArea",function(
+	$http
+){
+	return {
+		getArea:function(cityId,callback){
+			$http.get(BASE_URL + "/basic/search/coach/area",
+				{params:{
+					cityId:cityId
 				}		
 			})
 			.success(function(data){

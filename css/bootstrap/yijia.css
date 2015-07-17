@@ -235,5 +235,34 @@
 	border-radius: 5px
 }
 .searchCoach{
-	margin-top: 30px !important
+	margin-top: 10px !important
+}
+.coachImageList{
+	display: block;
+	width: 40%;
+	height: 25%;
+	float: left;
+	margin-left: 8%;
+	margin-top: 25px
+}
+.coachBack{
+	position: absolute;
+	top: -20%;
+}
+.filterCoach span{
+	display: inline-block;
+	width: 32%;
+	border-right: 1px solid #cccccc;
+	text-align: center;
+}
+#filterModel{
+	border-right: none
+}
+.filterCoach span select{
+	border: none;
+	height:40px;
+	line-height: 40px;
+}
+.filterCoach span select option{
+	width: 10px
 }

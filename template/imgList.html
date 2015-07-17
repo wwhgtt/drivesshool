@@ -1,0 +1,11 @@
+<ion-view>
+	<div class="bar bar-subheader" style="border:1px solid #cccccc ">
+		<a  ng-href="/yja/coachDetile/{{coachId}}" >
+			<button class="button button-icon icon ion-chevron-left toList" data-pack="default" data-tags="arrow, left" style="height:20%"></button>
+		</a>
+	  	<h2 class="title">教学图像展示</h2>
+	</div>
+	<ion-content class="has-subheader">
+		<img-list ng-repeat="(key,image) in imageList" ></img-list>
+	</ion-content>
+</ion-view>

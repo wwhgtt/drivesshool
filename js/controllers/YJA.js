@@ -3,5 +3,4 @@ angular.module("controllers.yja",[])
 	$scope
 ){
 	
-	
 })

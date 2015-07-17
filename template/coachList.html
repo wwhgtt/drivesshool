@@ -3,14 +3,36 @@
 		<div class="list list-inset">
 			<label class="item item-input coachSearch" >
 			   <i class="icon ion-search placeholder-icon"></i>
-			   <input type="text" placeholder="Search" ng-model="coach.key" class="coachInput">
+			   <input type="text" placeholder="输入教练名字" ng-model="coach.key" class="coachInput">
 			</label>
 			<button class="button button-balanced coachSubmit" ng-click="search()">
 		      	搜索
 		    </button>
 		</div>
 		<div class="list" ng-show="coachShow">
-			<coach-list ng-repeat="(key,coach) in coachList" ></coach-list>
+			<coach-list ng-repeat="(key,coach) in coachList"></coach-list>
+		</div>
+		<div class="filterCoach">
+			<span>
+				<select ng-model="filterArea" ng-options="area.name for area in areaList" >
+					<option value="">全部区域</option>
+					<option value="{{area.name}}"></option>
+				</select>
+			</span>
+			<span>
+				<select ng-model="filterNone" >
+					<option value="default">默认排序</option>
+					<option value="distance">距离最近</option>
+					<option value="view">查看最多</option>
+					<option value="comment">评价最高</option>
+				</select>
+			</span>
+			<span id="filterModel">
+				<select ng-model="filterModel" >
+					<option value="0">一人一车</option>
+					<option value="1">一人多车</option>
+				</select>
+			</span>
 		</div>
 	</ion-content>
 </ion-view>

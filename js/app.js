@@ -5,10 +5,12 @@ angular.module("YJA",[
 	"controllers.message",
     "controllers.coachDetile",
     "controllers.homePage",
+    "controllers.imgList",
     "controllers.getHospitalSite",
     "controllers.shareCtro",
     "directives.coachList",
     "directives.getMap",
+    "directives.imgList",
     "directives.audioList",
     "directives.lMap",
 	"services.common"
@@ -24,11 +26,6 @@ angular.module("YJA",[
 			templateUrl:"template/menu.html",
 			controller:"yja"
 		})
-        .state('serviceComent',{
-            url:"/serviceComent",
-            templateUrl:"service.html",
-            // controller:"password"
-        })
 		.state('yja.coachList',{
             url:"/coachList",
             views:{
@@ -71,6 +68,15 @@ angular.module("YJA",[
                 'menuContent':{
                     templateUrl:'template/homePage.html',
                     controller:'homePage'
+                }
+            }
+        })
+        .state('yja.imgList',{
+            url:'/imgList/:coachId',
+            views:{
+                'menuContent':{
+                    templateUrl:'template/imgList.html',
+                    controller:'imgList'
                 }
             }
         })
