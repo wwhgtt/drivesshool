@@ -170,3 +170,30 @@ angular.module("services.common",[])
 		}
 	}
 })
+//筛选教练
+.service("$fifterCoach",function(
+	$http
+){
+	return {
+		fifterCoach:function(areaId,cityId,index,lat,long,sort,teachType,top,callback){
+			$http.get(BASE_URL + "/basic/search/coach/filter",
+				{params:{
+					cityId:cityId,
+					areaId:areaId,
+					index:index,
+					lat:lat,
+					long:long,
+					sort:sort,
+					teachType:teachType,
+					top:top
+				}		
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})

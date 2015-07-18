@@ -1,6 +1,9 @@
 .clear{
 	clear: both;
 }
+a{
+	text-decoration: none;
+}
 .has-subheader{
 	border-bottom: 1px dashed #808080;
 }

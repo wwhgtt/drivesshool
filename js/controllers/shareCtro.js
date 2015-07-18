@@ -28,66 +28,6 @@ angular.module("controllers.shareCtro",["controllers.coachDetile"])
 						"onMenuShareQZone" 
 			    	] 
 				});
-				// var shareWeixin=document.getElementById("shareWeixin"),
-				// 	shareTensent=document.getElementById("shareTensent"),
-				// 	shareFriends=document.getElementById("shareFriends");
-				// 	console.log(shareWeixin)
-				// shareWeixin.addEventListener("click",function(){
-				// 	alert(shareWeixin);
-				// 	wx.onMenuShareTimeline({
-				// 	    title: '我推荐的教练', // 分享标题
-				// 	    link: url, // 分享链接
-				// 	    imgUrl: '', // 分享图标
-				// 	    success: function () { 
-				// 	        $ionicPopup.alert({
-				// 			    title: '分享成功'
-				// 			});
-				// 	    },
-				// 	    cancel: function () { 
-				// 	       $ionicPopup.alert({
-				// 			    title: 'sorry,分享失败请稍后重试'
-				// 			});
-				// 	    }
-				// 	});
-				// })
-				// shareTensent.addEventListener("click",function(){
-				// 	wx.onMenuShareQQ({
-				// 	    title: '我推荐的教练', // 分享标题
-				// 	    desc: '这个教练不错哦', // 分享描述
-				// 	    link: url, // 分享链接
-				// 	    imgUrl: '', // 分享图标
-				// 	    success: function () { 
-				// 	       $ionicPopup.alert({
-				// 			    title: '分享成功'
-				// 			});
-				// 	    },
-				// 	    cancel: function () { 
-				// 	       $ionicPopup.alert({
-				// 			    title: 'sorry,分享失败请稍后重试'
-				// 			});
-				// 	    }
-				// 	});
-				// })
-				// shareFriends.addEventListener("click",function(){
-				// 	wx.onMenuShareAppMessage({
-				// 	    title: '我推荐的教练', // 分享标题
-				// 	    desc: '这个教练不错哦', // 分享描述
-				// 	    link: url, // 分享链接
-				// 	    imgUrl: '', // 分享图标
-				// 	    type: '', // 分享类型,music、video或link，不填默认为link
-				// 	    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-				// 	    success: function () { 
-				// 	         $ionicPopup.alert({
-				// 			    title: '分享成功'
-				// 			});
-				// 	    },
-				// 	    cancel: function () { 
-				// 	        $ionicPopup.alert({
-				// 			    title: 'sorry,分享失败请稍后重试'
-				// 			});
-				// 	    }
-				// 	});
-				// })
 			}else if(result && result.errorInfo ){
 				var errorInfo=result.errorInfo;
 	 			$ionicPopup.alert({
