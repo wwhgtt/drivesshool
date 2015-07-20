@@ -7,7 +7,6 @@ angular.module("YJA",[
     "controllers.homePage",
     "controllers.imgList",
     "controllers.getHospitalSite",
-    "controllers.shareCtro",
     "directives.coachList",
     "directives.getMap",
     "directives.imgList",

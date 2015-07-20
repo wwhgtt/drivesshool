@@ -9,70 +9,103 @@ angular.module("controllers.coachList",[])
 	$fifterCoach
 ){
 
-	$scope.coach={key:"",lat:"",long:"",filterArea:"",filterNone:"",filterModel:""};
+	$scope.coach={key:"",lat:"",long:"",filterArea:"",filterNone:"",filterModel:"",url:""};
+	var sUserAgent = navigator.userAgent.toLowerCase();
+	if(sUserAgent.indexOf("ipad") !== -1 ||sUserAgent.indexOf("iphone") !== -1){
+		$scope.coach.url = "http://wx.lja.so/";
+	}else{
+		$scope.coach.url=location.href.split("#")[0];
+	}
+	var url=$scope.coach.url;
+	// alert(url);
+	$getSignal.getSignal(url,function(err,result){
+		if (err){
+			$ionicPopup.alert({
+			    title: "sorry,系统报错"
+			});
+		}else{
+			if(result && result.success == true ){
+				var timestamp=result.result.timestamp,
+					nonceStr=result.result.noncestr;
+					signature=result.result.signature;
+				wx.config({
+				    debug: false, 
+				    appId: 'wx678c9951b011eabe', 
+				    timestamp:timestamp, 
+				    nonceStr: nonceStr,
+				    signature:signature,
+				    jsApiList: ["getLocation"] 
+				});
+				wx.getLocation({
+				    type: 'wgs84',
+				    success: function (res) {
+				        $scope.coach.lat = res.latitude; 
+				        $scope.coach.long = res.longitude; 
+				        var speed = res.speed; 
+				        var accuracy = res.accuracy; 
+				    },
+				    error:function(){
+				    	$ionicPopup.alert({
+						    title: "sorry,系统报错"
+						});
+				    }
+				});
+			}else if(result && result.errorInfo ){
+				var errorInfo=result.errorInfo;
+	 			$ionicPopup.alert({
+				    title: errorInfo
+				});
+	 		}
+		};
+	})
 	$scope.search=function(){
 		var key=$scope.coach.key;
-		var url=location.href.split("#")[0];
-		$getSignal.getSignal(url,function(err,result){
-			if (err) {
-				alert("sorry,访问出错");
-			}else{
-				if(result && result.success == true ){
-					var timestamp=result.result.timestamp,
-						nonceStr=result.result.noncestr;
-						signature=result.result.signature;
-					wx.config({
-					    debug: false, // 开启调试模式
-					    appId: 'wx678c9951b011eabe', // 必填，公众号的唯一标识
-					    timestamp:timestamp , // 必填，生成签名的时间戳
-					    nonceStr: nonceStr, // 必填，生成签名的随机串
-					    signature:signature,// 必填，签名，见附录1
-					    jsApiList: ["getLocation"] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+		var lat=$scope.coach.lat,
+			long=$scope.coach.long;
+		if(lat=="" || long==""){
+			lat="30.665534";
+			long="104.071791";
+			$getCoach.getCoach(key,lat,long,function(err,result){
+				if (err) {
+					$ionicPopup.alert({
+					    title: "sorry,系统报错"
 					});
-					wx.getLocation({
-					    type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
-					    success: function (res) {
-					        $scope.coach.lat = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-					        $scope.coach.long = res.longitude; // 经度，浮点数，范围为180 ~ -180。
-					        var speed = res.speed; // 速度，以米/每秒计
-					        var accuracy = res.accuracy; // 位置精度
-					        var lat=$scope.coach.lat,
-								long=$scope.coach.long;
-							$getCoach.getCoach(key,lat,long,function(err,result){
-								if (err) {
-									alert("sorry,访问出错");
-								}else{
-									if(result && result.coachList.length !== 0){
-										$scope.coachShow=true; 
-							 			$scope.coachList=result.coachList;
-									}else if(result && result.errorInfo){
-										var errorInfo=result.errorInfo;
-							 			$ionicPopup.alert({
-										    title: errorInfo
-										});
-							 		}else{
-							 			$ionicPopup.alert({
-										    title: 'sorry，没有您要找的教练'
-										});
-							 		}
-								};
-							})
-					    },
-					    error:function(){
-					    	$ionicPopup.alert({
-							    title: "sorry,系统报错"
-							});
-					    }
+				}else{
+					if(result && result.coachList.length !== 0){
+						$scope.coachShow=true; 
+			 			$scope.coachList=result.coachList;
+					}else if(result && result.errorInfo){
+						var errorInfo=result.errorInfo;
+			 			$ionicPopup.alert({
+						    title: errorInfo
+						});
+			 		}else{
+			 		
+			 		}
+				};
+			})
+		}else{
+			$getCoach.getCoach(key,lat,long,function(err,result){
+				// alert(lat);
+				if (err) {
+					$ionicPopup.alert({
+					    title: "sorry,系统报错"
 					});
-				}else if(result && result.errorInfo ){
-					var errorInfo=result.errorInfo;
-		 			$ionicPopup.alert({
-					    title: errorInfo
-					});
-		 		}
-			};
-		})
-		
+				}else{
+					if(result && result.coachList.length !== 0){
+						$scope.coachShow=true; 
+			 			$scope.coachList=result.coachList;
+					}else if(result && result.errorInfo){
+						var errorInfo=result.errorInfo;
+			 			$ionicPopup.alert({
+						    title: errorInfo
+						});
+			 		}else{
+
+			 		}
+				};
+			})
+		}
 	}
 	//筛选条件
 	var cityId=1930;
@@ -99,6 +132,10 @@ angular.module("controllers.coachList",[])
 	var index=0;
 	var lat=$scope.coach.lat;
 	var long=$scope.coach.long;
+	if(lat==""||long==""){
+		lat="30.665534";
+		long="104.071791";
+	}
 	$scope.$watchCollection("coach.filterArea",function(newValue,oldValue,$scope){
 		if(newValue == oldValue){
 			$fifterCoach.fifterCoach(areaId,cityId,index,lat,long,sort,teachType,top,function(err,result){
@@ -110,9 +147,6 @@ angular.module("controllers.coachList",[])
 					$scope.coachShow = true;
 					$scope.coachList=result.coachList;
 				}else{
-					$ionicPopup.alert({
-					    title: 'sorry，没有您要找的教练'
-					});
 					$scope.coachShow = false;
 				}
 			})
@@ -127,9 +161,6 @@ angular.module("controllers.coachList",[])
 					$scope.coachShow = true;
 					$scope.coachList=result.coachList;
 				}else{
-					$ionicPopup.alert({
-					    title: 'sorry，没有您要找的教练'
-					});
 					$scope.coachShow = false;
 				}
 			})
@@ -148,9 +179,6 @@ angular.module("controllers.coachList",[])
 					$scope.coachShow = true;
 					$scope.coachList=result.coachList;
 				}else{
-					$ionicPopup.alert({
-					    title: 'sorry，没有您要找的教练'
-					});
 					$scope.coachShow = false;
 				}
 			})
@@ -168,21 +196,18 @@ angular.module("controllers.coachList",[])
 					$scope.coachShow = true;
 					$scope.coachList=result.coachList;
 				}else{
-					$ionicPopup.alert({
-					    title: 'sorry，没有您要找的教练'
-					});
 					$scope.coachShow = false;
 				}
 			})
 		}
 	})
 	//加载更多教练
-	$scope.loadMore = function() {
+	$scope.loadMore = function(index){
 	    $http.get('/basic/search/coach/filter',{
 	    	params:{
 	    		areaId:areaId,
 	    		cityId:cityId,
-	    		index:index+'1',
+	    		index:index,
 	    		lat:lat,
 	    		long:long,
 	    		sort:sort,
@@ -196,6 +221,7 @@ angular.module("controllers.coachList",[])
 	    });
 	  };
 	  $scope.$on('$stateChangeSuccess', function(){
-	        $scope.loadMore();
+	  		index=index+1;
+	        $scope.loadMore(index);
 	  });
 })
