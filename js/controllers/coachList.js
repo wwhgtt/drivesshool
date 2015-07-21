@@ -9,7 +9,7 @@ angular.module("controllers.coachList",[])
 	$fifterCoach
 ){
 
-	$scope.coach={key:"",lat:"",long:"",filterArea:"",filterNone:"",filterModel:"",url:""};
+	$scope.coach={key:"",lat:"",long:"",filterArea:"",filterNone:"",filterModel:"",url:"",avator:""};
 	var sUserAgent = navigator.userAgent.toLowerCase();
 	if(sUserAgent.indexOf("ipad") !== -1 ||sUserAgent.indexOf("iphone") !== -1){
 		$scope.coach.url = "http://wx.lja.so/";
@@ -105,6 +105,13 @@ angular.module("controllers.coachList",[])
 			 		}
 				};
 			})
+		}
+	}
+	$scope.checkCoachAvator = function(coach){
+		if(coach.avator && coach.avator.large){
+			return coach.avator.large;
+		}else{
+			return "http://7xjnv4.com2.z0.glb.qiniucdn.com/default_avator.png_large";
 		}
 	}
 	//筛选条件

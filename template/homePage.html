@@ -1,6 +1,6 @@
 <ion-view >
 	<ion-content>
-		<ion-slide-box on-slide-changed="slideHasChanged($index)" >
+		<ion-slide-box on-slide-changed="slideHasChanged($index)" style="height:40%">
 		  	<ion-slide>
 		    	<div class="box "><img src="./img/pageone.jpg"></div>
 		  	</ion-slide>
@@ -11,36 +11,26 @@
 		    	<div class="box"><img src="./img/pagethree.jpg"></div>
 		  	</ion-slide>
 		</ion-slide-box>
-		<div class="imageLink">
-			<a href="#">
-				<img src="./img/学车流程.png">
-				<h4>学车流程</h4>
-			</a>
-			<a href="#">
-				<img src="./img/报名准备.png">
-				<h4>报名准备</h4>
-			</a>
-			<a href="/yja/getHospitalSite">
-				<img src="./img/体检医院.png">
-				<h4>体检医院</h4>
-			</a>
-			<a href="#">
-				<img src="./img/课程套餐.png">
-				<h4>课程套餐</h4>
-			</a>
-		</div>
-		<div class="marginSide"></div>
 		<div class="coachPlace">
+			<a href="/yja/getHospitalSite" style="margin-top:300px" >
+				<button class="button button-full  button-positive searchCoach"  style="margin-top:40px;background-color:#ff7f6a">
+					<img src="./img/体检医院icons.png" height="41" style="margin-top:13px;margin-right:40px">
+					体检医院
+				</button>
+			</a>
 			<a href="/yja/message">
-				<button class="button button-full button-balanced" style="margin-top:35px">
+				<button class="button button-full button-balanced" style="margin-top:30px;background-color:#fed597" >
+					<img src="./img/练车场地icons.png" height="41" style="margin-top:13px;margin-right:40px">
 			 		练车场
 				</button>
 			</a>
 			<a href="/yja/coachList">
-				<button class="button button-full  button-assertive searchCoach">
+				<button class="button button-full  button-assertive searchCoach" style="margin-top:30px;background-color:#55d9db">
+					<img src="./img/找教练icons.png" height="41" style="margin-top:13px;margin-right:40px">
 					找教练
 				</button>
 			</a>
+			k
 		</div>
 	</ion-content>
 </ion-view>

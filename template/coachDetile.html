@@ -5,23 +5,26 @@
 	<ion-content class="has-subheader" style="background-color:#f2f2f4">
 		<ion-slide-box on-slide-changed="slideHasChanged($index)" class="ionSideBox" >
 		  	<ion-slide ng-show="video_first">
-	    		<video width="100%" controls height="90%" src="{{coach.video_first_url}}">
+	    		<embed  width="100%"  type="application/x-shockwave-flash" height="90%" src="{{coach.video_first_url}}"
+	    		allowscriptaccess="always"  allowfullscreen="true">
 					<!-- <source ></source> -->
-				</video>
+				</embed >
 		  	</ion-slide>
 		  	<ion-slide ng-show="video_second">
-	    		<video width="100%" controls height="90%" src="{{coach.video_second_url}}">
+	    		<embed  width="100%"  type="application/x-shockwave-flash" height="90%" src="{{coach.video_second_url}}"
+	    		allowscriptaccess="always"  allowfullscreen="true">
 					<!-- <source ></source> -->
-				</video>
+				</embed >
 		  	</ion-slide>
 		  	<ion-slide ng-show="video_third">
-	    		<video width="100%" controls height="90%"  src="{{coach.video_third_url}}" >
+	    		<embed  width="100%"  type="application/x-shockwave-flash" height="90%"  src="{{coach.video_third_url}}" 
+	    		allowscriptaccess="always"  allowfullscreen="true">
 					<!-- <source></source> -->
-				</video>
+				</embed >
 		  	</ion-slide>
 		</ion-slide-box>
 		<div class="item item-avatar coachItem" >
-			<img ng-src="{{coach.avator.large}}" ></p>
+			<img ng-src="{{coach.avator}}" ></p>
 			<h2>{{coach.name}}</h2><img src="./img/agree.png" class="agreeMent" width="20" ng-show="agreeMent">
 			
 			<audio-list ng-show="audioShow" class="audioShow"><img src="./img/语音.png" id="audioShowNow">

@@ -6,11 +6,12 @@ angular.module("controllers.coachDetile",[])
 	$getDetile,
 	$sce
 ){
-	$(".shareDetileShow").css("display","none");
-	$("#shareDetile").click(function(){
-		$(".shareDetileShow").css("display","block");
-	})
+	// $(".shareDetileShow").css("display","none");
+	// $("#shareDetile").click(function(){
+	// 	$(".shareDetileShow").css("display","block");
+	// })
 	var coachId=$state.params.coachId;
+	$scope.coach={avator:""};
 	$getDetile.getDetile(coachId,function(err,result){
 		if (err){
 			alert("sorry,访问出错");
@@ -31,6 +32,11 @@ angular.module("controllers.coachDetile",[])
 						$scope.video_third = true;
 						$scope.coach.video_third_url=$sce.trustAsResourceUrl(video[2].url);
 					}
+				}
+				if (result.coach.avator){
+					$scope.coach.avator= result.coach.avator.large;
+				}else{
+					$scope.coach.avator="http://7xjnv4.com2.z0.glb.qiniucdn.com/default_avator.png_large"
 				}
 				$scope.videoList=$scope.coach.video;
 				if (result.coach.applyCoachState == "agree") {

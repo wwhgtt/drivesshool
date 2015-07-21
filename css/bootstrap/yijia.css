@@ -233,12 +233,13 @@ a{
 	background-color:#f4f4f4
 }
 .coachPlace button {
-	width: 60%;
+	width: 80%;
 	margin: 0 auto ;
-	border-radius: 5px
-}
-.searchCoach{
-	margin-top: 10px !important
+	border-radius: 30px;
+	height: 67px;
+	line-height: 67px;
+	font-size: 18px;
+	border: none
 }
 .coachImageList{
 	display: block;
@@ -255,7 +256,6 @@ a{
 .filterCoach span{
 	display: inline-block;
 	width: 32%;
-	border-right: 1px solid #cccccc;
 	text-align: center;
 }
 #filterModel{
@@ -268,4 +268,12 @@ a{
 }
 .filterCoach span select option{
 	width: 10px
+}
+#coachMoreImg{
+	float: right;
+	margin-top: -16px;
+}
+.searchItems{
+	height: 50px;
+	line-height: 50px;
 }
