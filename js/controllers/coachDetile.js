@@ -6,10 +6,6 @@ angular.module("controllers.coachDetile",[])
 	$getDetile,
 	$sce
 ){
-	// $(".shareDetileShow").css("display","none");
-	// $("#shareDetile").click(function(){
-	// 	$(".shareDetileShow").css("display","block");
-	// })
 	var coachId=$state.params.coachId;
 	$scope.coach={avator:""};
 	$getDetile.getDetile(coachId,function(err,result){
@@ -19,18 +15,28 @@ angular.module("controllers.coachDetile",[])
 			if(result && result.success == true){
 				$scope.coach=result.coach;
 				if($scope.coach.video && $scope.coach.video.length){
+					$scope.ionSideBox=true;
 					var video=$scope.coach.video;
 					if(video[0]){
 						$scope.video_first = true;
 						$scope.coach.video_first_url=$sce.trustAsResourceUrl(video[0].url);
+						$scope.belongFirst=true;
+						$scope.bvideoBelongFirst='http://7xk5at.com2.z0.glb.qiniucdn.com/development/'+
+							$scope.coach._id+'_'+video[0].index+'_small';
 					}
 					if(video[1]){
 						$scope.video_second = true;
 						$scope.coach.video_second_url=$sce.trustAsResourceUrl(video[1].url);
+						$scope.belongSecond=true;
+						$scope.bvideoBelongSecond='http://7xk5at.com2.z0.glb.qiniucdn.com/development/'+
+							$scope.coach._id+'_'+video[1].index+'_small';
 					}
 					if(video[2]){
 						$scope.video_third = true;
 						$scope.coach.video_third_url=$sce.trustAsResourceUrl(video[2].url);
+						$scope.belongThird=true;
+						$scope.bvideoBelongThird='http://7xk5at.com2.z0.glb.qiniucdn.com/development/'+
+							$scope.coach._id+'_'+video[2].index+'_small';
 					}
 				}
 				if (result.coach.avator){
@@ -63,7 +69,12 @@ angular.module("controllers.coachDetile",[])
 				}else{
 					$scope.coach.teachType ="一车一人";
 				}
+				if (result.coach.phone){
+					$scope.coachPhone=true;
+					$scope.coach.phone= result.coach.phone;
+				}
 				if (result.coach.background) {
+					$scope.coachImage=true;
 					var background=result.coach.background;
 					if (background[0]) {
 						$scope.imageLIst_firstURL = true;
@@ -95,5 +106,4 @@ angular.module("controllers.coachDetile",[])
 		};
 	})
 	//分享功能
-
 })

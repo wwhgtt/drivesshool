@@ -6,9 +6,13 @@ angular.module("YJA",[
     "controllers.coachDetile",
     "controllers.homePage",
     "controllers.imgList",
+    "controllers.siteCoach",
     "controllers.getHospitalSite",
     "directives.coachList",
     "directives.getMap",
+    "directives.belongFirst",
+    "directives.belongSecond",
+    "directives.belongThird",
     "directives.imgList",
     "directives.audioList",
     "directives.lMap",
@@ -58,6 +62,16 @@ angular.module("YJA",[
                 'menuContent':{
                     templateUrl:'template/getHospitalSite.html',
                     controller:'getHospitalSite'
+                }
+            }
+        })
+        ///yja/siteCoach/
+        .state('yja.siteCoach',{
+            url:'/siteCoach/:siteId',
+            views:{
+                'menuContent':{
+                    templateUrl:'template/siteCoach.html',
+                    controller:'siteCoach'
                 }
             }
         })

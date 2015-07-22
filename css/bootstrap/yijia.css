@@ -183,7 +183,7 @@ a{
 }
 .audioShow{
 	float: right;
-	margin-top: 13px
+	margin-top: -32px
 }
 #shareDetile{
 	float: right;
@@ -276,4 +276,17 @@ a{
 .searchItems{
 	height: 50px;
 	line-height: 50px;
+}
+.belongFirst{
+	width: 100%;
+	height: 90%;
+}
+.myPause{
+	float: right;
+	margin-right: 43%;
+	background-color:rgb(128, 192, 254);
+	color: white;
+	margin-top: -7%;
+	border-radius: 10px;
+	display: none
 }

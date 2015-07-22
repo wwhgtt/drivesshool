@@ -122,6 +122,7 @@ angular.module("controllers.coachList",[])
 			    title: 'sorry，系统出错'
 			});
 		}else if(result && result.areaList.length !== 0){
+			$scope.coachTotalCount=result.coachTotalCount;
 			$scope.areaList=result.areaList;
 			console.log($scope.areaList)
 		}else{
@@ -134,7 +135,7 @@ angular.module("controllers.coachList",[])
 	var sort=$scope.coach.filterNone;
 	$scope.coach.filterArea="999999";
 	var areaId=$scope.coach.filterArea;
-	$scope.coach.filterModel="1";
+	$scope.coach.filterModel="";
 	var teachType=$scope.coach.filterModel;
 	var index=0;
 	var lat=$scope.coach.lat;
@@ -143,70 +144,19 @@ angular.module("controllers.coachList",[])
 		lat="30.665534";
 		long="104.071791";
 	}
-	$scope.$watchCollection("coach.filterArea",function(newValue,oldValue,$scope){
-		if(newValue == oldValue){
-			$fifterCoach.fifterCoach(areaId,cityId,index,lat,long,sort,teachType,top,function(err,result){
-				if(err){
-					$ionicPopup.alert({
-					    title: 'sorry，系统出错'
-					});
-				}else if(result && result.coachList.length !== 0){
-					$scope.coachShow = true;
-					$scope.coachList=result.coachList;
-				}else{
-					$scope.coachShow = false;
-				}
-			})
-		}else{
-			var areaId=newValue;
-			$fifterCoach.fifterCoach(areaId,cityId,index,lat,long,sort,teachType,top,function(err,result){
-				if(err){
-					$ionicPopup.alert({
-					    title: 'sorry，系统出错'
-					});
-				}else if(result && result.coachList.length !== 0){
-					$scope.coachShow = true;
-					$scope.coachList=result.coachList;
-				}else{
-					$scope.coachShow = false;
-				}
-			})
-		}
-		
-	})
-	$scope.$watchCollection("coach.filterNone",function(newValue,oldValue,$scope){
-		if(newValue !== oldValue){
-			var sort=newValue;
-			$fifterCoach.fifterCoach(areaId,cityId,index,lat,long,sort,teachType,top,function(err,result){
-				if(err){
-					$ionicPopup.alert({
-					    title: 'sorry，系统出错'
-					});
-				}else if(result && result.coachList.length !== 0){
-					$scope.coachShow = true;
-					$scope.coachList=result.coachList;
-				}else{
-					$scope.coachShow = false;
-				}
-			})
-		}
-	})
-	$scope.$watchCollection("coach.filterModel",function(newValue,oldValue,$scope){
-		if(newValue !== oldValue){
-			var teachType=newValue;
-			$fifterCoach.fifterCoach(areaId,cityId,index,lat,long,sort,teachType,top,function(err,result){
-				if(err){
-					$ionicPopup.alert({
-					    title: 'sorry，系统出错'
-					});
-				}else if(result && result.coachList.length !== 0){
-					$scope.coachShow = true;
-					$scope.coachList=result.coachList;
-				}else{
-					$scope.coachShow = false;
-				}
-			})
-		}
+	$scope.$watchCollection("coach",function(newValue,oldValue,$scope){
+		$fifterCoach.fifterCoach(newValue.filterArea,cityId,index,lat,long,newValue.filterNone,newValue.filterModel,top,function(err,result){
+			if(err){
+				$ionicPopup.alert({
+				    title: 'sorry，系统出错'
+				});
+			}else if(result && result.coachList.length !== 0){
+				$scope.coachShow = true;
+				$scope.coachList=result.coachList;
+			}else{
+				$scope.coachShow = false;
+			}
+		})
 	})
 	//加载更多教练
 	$scope.loadMore = function(index){
@@ -228,7 +178,7 @@ angular.module("controllers.coachList",[])
 	    });
 	  };
 	  $scope.$on('$stateChangeSuccess', function(){
-	  		index=index+1;
+	  		// index=index+1;
 	        $scope.loadMore(index);
 	  });
 })

@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view title="益驾学车-找教练">
 	<ion-content >
 		<div class="list list-inset">
 			<label class="item item-input coachSearch" >
@@ -12,8 +12,8 @@
 		<div class="filterCoach">
 			<span>
 				<select ng-model="coach.filterArea">
-					<option value="999999">全部区域</option>
-					<option ng-repeat="area in areaList" value="{{area.id}}">{{area.name}}</option>
+					<option value="999999">全部区域{{coachTotalCount}}人</option>
+					<option ng-repeat="area in areaList" value="{{area.id}}"><span>{{area.name}}</span><span style="padding-left:5px">{{area.coachCount}}人</span></option>
 				</select>
 			</span>
 			<span>
@@ -26,6 +26,7 @@
 			</span>
 			<span id="filterModel">
 				<select ng-model="coach.filterModel" >
+					<option value="">默认类型</option>
 					<option value="0">一人一车</option>
 					<option value="1">一人多车</option>
 				</select>

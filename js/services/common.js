@@ -197,3 +197,24 @@ angular.module("services.common",[])
 		}
 	}
 })
+
+//根据场地ID获取教练
+.service("$getCoachBySiteId",function(
+	$http
+){
+	return {
+		getCoachBySiteId:function(siteId,callback){
+			$http.get(BASE_URL + "/basic/search/coach/bySiteId",
+				{params:{
+					siteId:siteId
+				}		
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
