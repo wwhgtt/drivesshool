@@ -17,7 +17,7 @@ angular.module("directives.lMap",[])
 			map.enableScrollWheelZoom(true);
 	        //获取地图中心点并显示出返回的数据
 	        map.addEventListener("load", showInfo);
-	        map.addEventListener("dragend", showInfo);
+	        // map.addEventListener("dragend", showInfo);
 	        function showInfo(e){
 				map.clearOverlays();
 				var center = map.getCenter();
@@ -32,7 +32,7 @@ angular.module("directives.lMap",[])
 				var finall=(changdu-changduone);
 				var finallone=(gaodu-gaoduone);
 				var resultone=Math.sqrt(Math.pow(finall,2)+Math.pow(finallone,2));
-				var distance=resultone/2;
+				var distance=10;
 	            $scope.siteInfo={longList:longList,latList:latList,distance:distance};
 	            $scope.mapData = [];
 	            var long=$scope.siteInfo.longList,
@@ -55,27 +55,27 @@ angular.module("directives.lMap",[])
 				 	}
 				})
 			}
-			$scope.$watchCollection("mapData",function(newMapData){
-				for(var index in newMapData){
+			$scope.$watchCollection("mapData",function(newValue){
+				// localStorage.setItem("oldValue",oldValue);
+				for(var index in newValue){
 					(function(){
-						var mapData = newMapData[index];
+						var mapData = newValue[index];
 						marker = new BMap.Marker(new BMap.Point(mapData.location[0],mapData.location[1]));
 				        // 创建标注
 				        map.addOverlay(marker);
 						var opts = {
 							width : 50,     
 							height: 25,   
-							title : mapData.address, 
+							title :"", 
 							enableMessage:false,
 							message:""
 						}
 						var content=
-							"<div>"+
+							"<div class='borderDiv'>"+
 							"<p class='mapDataName'>"+mapData.name+"</p>"+"</br>"
-							+"<p class='mapDataAddress'>"+mapData.address+"</p>"+"<a href='/yja/siteCoach/"+mapData._id+"'>"+
-							"<button class='button button-balanced siteCoachs' >"+"查看场地教练"+"</button>"+"</a>"+
+							+"<p class='mapDataAddress'>"+mapData.address+"</p>"+
 							"</div>";
-						var infoWindow = new BMap.InfoWindow(content);
+						var infoWindow = new BMap.InfoWindow(content,opts);
 						marker.addEventListener("click", function(e){
 							this.openInfoWindow(infoWindow);
 							e.domEvent.stopPropagation();
