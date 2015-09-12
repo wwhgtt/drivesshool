@@ -62,7 +62,7 @@ angular.module("controllers.coachList",[])
 		var key=$scope.coach.key;
 		var lat=$scope.coach.lat,
 			long=$scope.coach.long;
-		if(lat=="" || long==""){
+		if(lat=="" || long=="" || lat==undefined || long== undefined){
 			lat="30.665534";
 			long="104.071791";
 			$getCoach.getCoach(key,lat,long,function(err,result){
