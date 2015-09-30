@@ -32,7 +32,7 @@ angular.module("directives.lMap",[])
 				var finall=(changdu-changduone);
 				var finallone=(gaodu-gaoduone);
 				var resultone=Math.sqrt(Math.pow(finall,2)+Math.pow(finallone,2));
-				var distance=10;
+				var distance=100000000;
 	            $scope.siteInfo={longList:longList,latList:latList,distance:distance};
 	            $scope.mapData = [];
 	            var long=$scope.siteInfo.longList,
@@ -60,7 +60,7 @@ angular.module("directives.lMap",[])
 				for(var index in newValue){
 					(function(){
 						var mapData = newValue[index];
-						marker = new BMap.Marker(new BMap.Point(mapData.location[0],mapData.location[1]));
+						marker = new BMap.Marker(new BMap.Point(mapData.location.x,mapData.location.y));
 				        // 创建标注
 				        map.addOverlay(marker);
 						var opts = {
