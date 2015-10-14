@@ -104,7 +104,8 @@ a{
 .coachItem{
 	width: 98%;
 	margin: 0 auto;
-	border: 1px solid #f2f2f4
+	border: 1px solid #f2f2f4;
+	height: 80px;
 }
 .linkStyle{
 	float: right;
@@ -253,6 +254,9 @@ a{
 	position: absolute;
 	top: -20%;
 }
+.filterCoach{
+	margin-left: 2%
+}
 .filterCoach span{
 	display: inline-block;
 	width: 32%;
@@ -265,13 +269,16 @@ a{
 	border: none;
 	height:40px;
 	line-height: 40px;
+	width: 100%
 }
 .filterCoach span select option{
 	width: 10px
 }
 #coachMoreImg{
 	float: right;
-	margin-top: -16px;
+	margin-top:-16px;
+	height: 18px;
+	/*right: 20px;*/
 }
 .searchItems{
 	height: 50px;
@@ -304,4 +311,213 @@ a{
 }
 .BMap_top{
 	border: none
+}
+.footerr{
+	height: 60px;
+	width: 100%;
+	background-color:#DCDCDC;
+	opacity: 0.8;
+	position: fixed;
+	bottom: 0px;
+}
+.footButton{
+	height: 50px;
+	position: fixed;
+	bottom: 5px;
+	width: 85%;
+	left: 7.5%;
+	color: white;
+	background-color: #11c1f3;
+	border-radius: 5px;
+	border: none;
+	font-size: 20px;
+}
+.header{
+	height: 40px;
+	line-height: 40px;
+	width: 100%;
+	background-color: #58c4ff
+}
+.header p{
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: white;
+}
+.mainPhone{
+	width: 95%;
+	margin-left: 2.5%;
+	background-color: white;
+	height: 120px;
+	margin-top: 3%;
+	/*padding-left: 5%;*/
+	padding-top: 20px
+}
+.mainTop{
+	width: 90%;
+	/*margin-left: 5%;*/
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #f1f1f1;
+	padding-top: 1px;
+	padding-left: 5%
+}
+.error{
+	color: red;
+	width: 90%;
+	text-align: center;
+	visibility: hidden;
+	margin-top: 4px;
+	display: block;
+}
+.errorInfo{
+	color: red;
+	width: 90%;
+	text-align: center;
+	visibility: hidden;
+	margin-top: 4px;
+	display: block;
+}
+.mainBottom{
+	margin-top: 5px;
+	width: 90%;
+	/*margin-left: 5%;*/
+	height: 40px;
+	line-height: 40px;
+	border-bottom: 1px solid #f1f1f1;
+	padding-left: 5%
+}
+.phone{
+	height: 38px;
+	line-height: 38px;
+	width: 60%;
+	border: none;
+	float: left;
+}
+.identify{
+	border: none;
+	width: 100%;
+	height: 40px;
+	line-height: 40px;
+	margin-bottom: 10px
+}
+.agreeMentTemp{
+	height: 30px;
+	font-size: 0.8em;
+	width: 100%;
+	text-align: center;
+	margin-top:150px;
+}
+.goButton{
+	width: 80%;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background-color: #58c4ff;
+	color: white;
+	margin-left: 10%;
+	border-radius: 5px;
+	margin-top: 5px
+}
+.submitPhone{
+	width: 35%;
+	margin-left: 2%;
+	height: 26px;
+	margin-top: 6px;
+	font-size: 14px;
+	border: 1px solid #5ac4ff;
+	background-color: white;
+	float: left;
+}
+.userImageTemp{
+	width: 60%;
+	margin-left: 20%;
+	margin-top: 5%;
+	margin-bottom: 10%
+}
+.bindCoachTemp{
+	width:6em;
+	height: 30px;
+	color: white;
+	background-color: #58c4ff;
+	border: none;
+	border-radius: 5px;
+}
+.bindCoachTempItem{
+	width:6em;
+	height: 30px;
+	color: white;
+	background-color: #58c4ff;
+	border: none;
+	border-radius: 5px;
+	float: right;margin-right: 1em;
+	margin-top: 1.5em
+}
+.userInfoName{
+	height: 30px;
+	line-height: 30px;
+	border: none;
+}
+.infoForm{
+	width:90%;
+	margin-left: 5%;
+	margin-top:10%;
+}
+.fixedName{
+	width: 50%;
+	height: 40px;
+	line-height: 40px;
+	background-color: #58c4ff;
+	color: white;
+	margin-left: 25%;
+	border: none;
+	margin-top: 30px;
+	border-radius: 5px;
+}
+.orderPartMent{
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px
+}
+.orderPartMent table{
+	width: 100%;
+}
+.orderPartMent table td{
+	text-align: center;
+	border: 1px solid #58c4ff;
+	height: 50px;
+	line-height: 50px
+}
+.dateModelWeek{
+	/*float: right;
+	margin-right: 10px;*/
+}
+.dateModel{
+	margin-left: 10px
+}
+.orderSuccess{
+	background-color:  #58c4ff;
+	color: white;
+	font-size: 0.5em
+}
+.restSuccess{
+	background-color:#F08080;
+	color: white;
+	font-size: 0.5em
+}
+.sendSuccess{
+	background-color: #90EE90;
+	color: white;
+	font-size: 0.5em
+}
+.thirdSuccess{
+	background-color:  #9ACD32;
+	color: white;
+	font-size: 0.5em
+}
+.haveSuccess{
+	background-color:  #778899;
+	/*color: white;*/
+	font-size: 0.5em
 }

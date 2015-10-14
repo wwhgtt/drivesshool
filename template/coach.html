@@ -1,8 +1,8 @@
-<a class="item item-avatar coachItem"  ng-href="/yja/coachDetile/{{coach._id}}">
-	<img ng-src="{{checkCoachAvator(coach)}}"></p>
-	<h2>{{coach.name}}</h2> 
-	<div class="clear"></div>
-	<p><strong style="color:red">{{coach.near}}</strong></p>
-	<img src="./img/more.png" id="coachMoreImg" />
-	<p>{{coach.signature}}</p>
+<a class="item item-avatar coachItem"  ng-href="/yja/coachDetile/{{coach.id}}">
+	<img ng-src="{{checkCoachAvator(coach)}}" style="margin-top:0px;"></p>
+	<h2 >{{coach.name}}</h2> 
+	<!-- <div class="clear"></div> -->
+	<p ><i style="color:#00BFFF;margin-left:1em">{{coach.phone}}</i></p>
+	<!-- <img src="./img/more.png" id="coachMoreImg" /> -->
+	<p >{{coach.site.name}}</p>
 </a>

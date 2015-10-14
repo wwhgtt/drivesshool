@@ -1,0 +1,19 @@
+<ion-view title="助驾帮-登录">
+	<ion-content>
+		<div class="container">
+			<div class="header">
+				<p>登录</p>
+			</div>
+			<div class="mainPhone">
+				<div class="mainTop">
+					<input type="text" placeholder="手机号" class="phone" ng-model="loginTempItem.phone" style="width:100%">
+				</div>
+				<div class="mainBottom" style="margin-top:25px">
+					<input type="password" placeholder="请输入6-15位密码"  class="identify" ng-model="loginTempItem.password">
+				</div>
+			</div>
+			<p class="agreeMentTemp" style="margin-top:20px"> 点击登录即代表同意助驾帮服务协议</p>
+			<div class="goButton" ng-click="loginIn()">登录</div>
+		</div>
+	</ion-content>
+</ion-view>

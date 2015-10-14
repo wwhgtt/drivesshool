@@ -4,14 +4,25 @@ angular.module("YJA",[
 	"controllers.coachList",
 	"controllers.message",
     "controllers.coachDetile",
-    "controllers.homePage",
     "controllers.imgList",
     "controllers.siteCoach",
     "controllers.getHospitalSite",
+    "controllers.reloadr",
+    "controllers.register",
+    "controllers.loginTemp",
+    "controllers.orderTemp",
+    "controllers.person",
+    "controllers.judgeMent",
+    "controllers.orderMuch",
+    "controllers.code",
+    "controllers.fixName",
     "directives.coachList",
     "directives.getMap",
+    "directives.todayOrder",
+    "directives.orderMuch",
     "directives.belongFirst",
     "directives.belongSecond",
+    "directives.orderList",
     "directives.belongThird",
     "directives.imgList",
     "directives.audioList",
@@ -35,6 +46,15 @@ angular.module("YJA",[
                 'menuContent':{
                     templateUrl:"template/coachList.html",
                     controller:"coachList"
+                }
+            }
+        })
+        .state('yja.reload',{
+            url:"/reload",
+            views:{
+                'menuContent':{
+                    templateUrl:"template/reload.html",
+                    controller:"reloadr"
                 }
             }
         })
@@ -75,15 +95,6 @@ angular.module("YJA",[
                 }
             }
         })
-        .state('yja.homePage',{
-            url:'/homePage',
-            views:{
-                'menuContent':{
-                    templateUrl:'template/homePage.html',
-                    controller:'homePage'
-                }
-            }
-        })
         .state('yja.imgList',{
             url:'/imgList/:coachId',
             views:{
@@ -93,6 +104,78 @@ angular.module("YJA",[
                 }
             }
         })
-		$urlRouterProvider.otherwise("/yja/homePage");
+        .state('yja.register',{
+            url:'/register',
+            views:{
+                'menuContent':{
+                    templateUrl:'template/register.html',
+                    controller:'register'
+                }
+            }
+        })
+         .state('yja.login',{
+            url:'/login',
+            views:{
+                'menuContent':{
+                    templateUrl:'template/login.html',
+                    controller:'loginTemp'
+                }
+            }
+        })
+        .state('yja.order',{
+            url:'/order',
+            views:{
+                'menuContent':{
+                    templateUrl:'template/orderTemp.html',
+                    controller:'orderTemp'
+                }
+            }
+        })
+        .state('yja.person',{
+            url:'/person',
+            views:{
+                'menuContent':{
+                    templateUrl:'template/person.html',
+                    controller:'person'
+                }
+            }
+        })
+        .state('yja.fixName',{
+            url:'/fixName',
+            views:{
+                'menuContent':{
+                    templateUrl:'template/fixName.html',
+                    controller:'fixName'
+                }
+            }
+        })
+        .state('yja.code',{
+            url:'/code',
+            views:{
+                'menuContent':{
+                    templateUrl:'template/code.html',
+                    controller:'code'
+                }
+            }
+        })
+        .state('yja.judgeMent',{
+            url:'/judgeMent',
+            views:{
+                'menuContent':{
+                    templateUrl:'template/judgeMent.html',
+                    controller:'judgeMent'
+                }
+            }
+        })
+        .state('yja.orderMuch',{
+            url:'/orderMuch',
+            views:{
+                'menuContent':{
+                    templateUrl:'template/orderMuch.html',
+                    controller:'orderMuch'
+                }
+            }
+        })
+		// $urlRouterProvider.otherwise("/yja/homePage");
 		$locationProvider.html5Mode(true);
 }) 

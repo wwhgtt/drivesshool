@@ -1,0 +1,16 @@
+<span class="dateModel">{{order.date}}</span>
+<span class="dateModelWeek">{{order.weekDay}}</span>
+<div class="clear"></div>
+<div class="orderPartMent"><!-- 日期排版 -->
+	<table>
+		<tr>
+			<td ng-repeat="(keyEle,orderEle) in order.Morning" ng-class="{orderSuccess : orderEle.content == '我的预约',restSuccess : orderEle.content == '教练休息',sendSuccess : orderEle.content == '送考',thirdSuccess : orderEle.content == '科目三可约',haveSuccess : orderEle.content == '已约'}" ng-click="forOrder(order,orderEle)"><span ng-hide="orderEle.content == '我的预约' || orderEle.content == '教练休息' || orderEle.content == '送考'|| orderEle.content == '科目三可约'|| orderEle.content == '已约'">{{orderEle.time}}</span><span>{{orderEle.content}}</span><span style="display:none">{{orderEle.id}}</span><br><span>{{orderEle.max }}</span><br><span>{{orderEle.count }}</span></td>
+		</tr>
+		<tr>
+			<td ng-repeat="(keyEle,orderEle) in order.Afternoon" ng-class="{orderSuccess : orderEle.content == '我的预约',restSuccess : orderEle.content == '教练休息',sendSuccess : orderEle.content == '送考',thirdSuccess : orderEle.content == '科目三可约',haveSuccess : orderEle.content == '已约'}" ng-click="forOrder(order,orderEle)"><span ng-hide="orderEle.content == '我的预约' || orderEle.content == '教练休息' || orderEle.content == '送考'|| orderEle.content == '科目三可约'|| orderEle.content == '已约'">{{orderEle.time}}</span><span>{{orderEle.content}}</span><span style="display:none">{{orderEle.id}}</span><br><span>{{orderEle.max }}</span><br><span>{{orderEle.count }}</span></td>
+		</tr>
+		<tr>
+			<td ng-repeat="(keyEle,orderEle) in order.Evening" ng-class="{orderSuccess : orderEle.content == '我的预约',restSuccess : orderEle.content == '教练休息',sendSuccess : orderEle.content == '送考',thirdSuccess : orderEle.content == '科目三可约',haveSuccess : orderEle.content == '已约'}" ng-click="forOrder(order,orderEle)"><span ng-hide="orderEle.content == '我的预约' || orderEle.content == '教练休息' || orderEle.content == '送考'|| orderEle.content == '科目三可约'|| orderEle.content == '已约'">{{orderEle.time}}</span><span>{{orderEle.content}}</span><span style="display:none">{{orderEle.id}}</span><br><span>{{orderEle.max}}</span><br><span>{{orderEle.count }}</span></td>
+		</tr>
+	</table>
+</div>

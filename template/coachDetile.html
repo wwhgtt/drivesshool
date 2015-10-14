@@ -1,6 +1,6 @@
 <ion-view title="益驾学车-教练详情">
-	<ion-content  style="background-color:#f2f2f4">
-		<ion-slide-box on-slide-changed="slideHasChanged($index)" class="ionSideBox" >
+	<ion-content  style="background-color:#f2f2f4;margin-bottom:60px">
+		<!-- <ion-slide-box on-slide-changed="slideHasChanged($index)" class="ionSideBox" >
 		  	<ion-slide ng-show="video_first" belong-first>
 	    		<video width="100%"  type="video" controls height="90%" id="please"
 	    		 style="display:none" src="{{coach.video_first_url}}" >
@@ -20,49 +20,48 @@
 				<img ng-src="{{bvideoBelongThird}}" ng-show="belongThird">
 				<button class="button myPause" >暂停</button>
 		  	</ion-slide>
-		</ion-slide-box>
-		<div class="item item-avatar coachItem" >
+		</ion-slide-box> -->
+		<div class="item item-avatar coachItem">
 			<img ng-src="{{coach.avator}}" ></p>
 			<h2>{{coach.name}}</h2><img src="./img/agree.png" class="agreeMent" width="20" ng-show="agreeMent">
-			<div class="clear"></div>
+			<!-- <div class="clear"></div>
 			<p style="float:left" ng-show="coachBirth"><strong >{{coach.birth}}岁</strong></p>
-			<p style="float:left;margin-left:5px" ng-show="coachLisenceDate"><strong >{{coach.coachLisenceDate}}年教龄</strong></p>
+			<p style="float:left;margin-left:5px" ng-show="coachLisenceDate"><strong >{{coach.coachLisenceDate}}年教龄</strong></p> -->
 			<div class="clear"></div>
-			<a ng-href="tel:{{coach.phone}}" style="float:left;color:#80c0fe" ng-show="coachPhone">电话<strong style="margin-left:5px">{{coach.phone}}</strong> </a>
-			<audio-list ng-show="audioShow" class="audioShow"><img src="./img/语音.png" id="audioShowNow">
+			<a ng-href="tel:{{coach.phone}}" style="float:left;color:#80c0fe;margin-top:5px" ng-show="coachPhone">电话:<strong style="margin-left:5px">{{coach.phone}}</strong> </a>
+			<!-- <audio-list ng-show="audioShow" class="audioShow"><img src="./img/语音.png" id="audioShowNow">
 				<audio ng-src="{{coach.voice.url}}" id="Media"></audio></img>
-			</audio-list>
+			</audio-list> -->
 		</div>
 		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;" >
-			<span>教练介绍</span><span style="padding-left:5%;"><strong>{{coach.signature}}</strong></span>
+			<span>教练介绍</span><span style="padding-left:24px;"><strong>{{coach.signature}}</strong></span>
+		</div>
+		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;" >
+			<span style="letter-spacing:28px;">年龄</span><span ><strong>{{coach.birth}}岁</strong></span>
 		</div>
 		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;margin-top:20px" >
-			<span>教学模式</span><span style="padding-left:5%;"><strong>{{coach.teachType}}</strong></span>
+			<span style="letter-spacing:28px">教龄</span><span ><strong>{{coach.coachLisenceDate}}年</strong></span>
 		</div>
 		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;" >
+			<span>教学模式</span><span style="padding-left:24px;"><strong>{{coach.teachType}}</strong></span>
+		</div>
+		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;" >
+			<span>教学特点</span><span style="padding-left:24px;"><strong>{{coach.coachTrait}}</strong></span>
+		</div>
+		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;margin-top:20px" >
 			<span style="letter-spacing:28px">学校</span><span ><strong>{{coach.driveSchool.name}}</strong></span>
 		</div>
 		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;" >
 			<span style="letter-spacing:28px">车型</span><span ><strong>{{coach.coachCar}}</strong></span>
 		</div>
 		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;" >
-			<span>练车场地</span><span style="padding-left:5%;"><strong>{{coach.site.name}}</strong></span>
+			<span>练车场地</span><span style="padding-left:24px;"><strong>{{coach.site.name}}</strong></span>
 		</div>
 		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;" >
-			<span>教学特点</span><span style="padding-left:5%;"><strong>{{coach.coachTrait}}</strong></span>
-		</div>
-		<div class="item item-avatar coachItem coachIntroduce coachImage" style="margin-top:20px;padding-left:5%;" ng-show="coachImage" >
-			<p style="letter-spacing:28px;line-height:66px;float:left ">图片</p>
-			<span ng-show="imageLIst_firstURL" >
-				<img ng-src="{{imageLIst_first}}" width="18%" height="66" />
-			</span>
-			<span ng-show="imageLIst_secondURL" >
-				<img ng-src="{{imageLIst_second}}" width="18%" height="66" style="margin-left:10px;" />
-			</span>
-			<span ng-show="imageLIst_thirdURL" >
-				<img ng-src="{{imageLIst_third}}"  width="18%" height="66" style="margin-left:10px;"/>
-			</span>
-			<a ng-href="/yja/imgList/{{coach._id}}"><img src="./img/more.png"  width="15"   style="margin-top:19px;float:right;" ng-show="imageLIst_forthURL"/></a>
+			<span>场地位置</span><span style="padding-left:24px;"><strong>{{coach.site.tip}}</strong></span>
 		</div>
 	</ion-content>
+	<div class="footerr">
+	</div>
+	<button class="footButton" ng-click="bindCoach()">绑定教练</button>
 </ion-view>

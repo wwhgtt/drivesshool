@@ -218,3 +218,206 @@ angular.module("services.common",[])
 		}
 	}
 })
+//绑定教练
+.service("$bindCoach",function(
+	$http
+){
+	return {
+		bindCoach:function(coachId,callback){
+			$http.post(BASE_URL + "/basic/coach/bind",{
+				coachId:coachId
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
+//登录验证码
+.service("$loginCode",function(
+	$http
+){
+	return {
+		loginCode:function(phoneNumber,callback){
+			$http.get(BASE_URL + "/basic/register/code",{
+				params:{
+					phone:phoneNumber
+				}
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
+//注册
+.service("$register",function(
+	$http
+){
+	return {
+		register:function(code,password,extra,callback){
+			$http.post(BASE_URL + "/basic/register/addUser",{
+				code:code,
+				pwd:password,
+				extra:extra
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
+//登录
+.service("$onBroad",function(
+	$http
+){
+	return {
+		onBroad:function(phone,password,callback){
+			$http.post(BASE_URL + "/basic/login",{
+				phone:phone,
+				password:password
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
+//绑定微信号
+.service("$bindWx",function(
+	$http
+){
+	return {
+		bindWx:function(codeMax,callback){
+			$http.put(BASE_URL + "/basic/user/wxBind",{
+				code:codeMax
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
+
+.service("$reload",function(
+	$http
+){
+	return {
+		reload:function(callback){
+			$http.get(BASE_URL + "/basic/user/reload",{
+				
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
+.service("$profile",function(
+	$http
+){
+	return {
+		profile:function(name,callback){
+			$http.post(BASE_URL + "/basic/user/profile",{
+				name:name
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
+
+.service("$wxLogin",function(
+	$http
+){
+	return {
+		wxLogin:function(codeMax,callback){
+			$http.post(BASE_URL + "/basic/register/wxLogin",{
+				code:codeMax
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
+//预约
+.service("$orderTime",function(
+	$http
+){
+	return {
+		orderTime:function(date,time,callback){
+			$http.post(BASE_URL + "/student/order/",{
+				date:date,
+				time:time
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
+.service("$byDayCount",function(
+	$http
+){
+	return {
+		byDayCount:function(count,callback){
+			$http.get(BASE_URL + "/student/orderCommon/byDayCount",{
+				params:{
+					count:count
+				}
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
+.service("$orderDelete",function(
+	$http
+){
+	return {
+		orderDelete:function(id,callback){
+			$http.delete(BASE_URL + "/student/order/"+id,{
+				
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})

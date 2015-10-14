@@ -1,0 +1,31 @@
+<ion-view title="助驾帮-登录">
+	<ion-content>
+		<div class="container">
+			<div class="header">
+				<p>注册</p>
+			</div>
+			<div class="mainPhone">
+				<div class="mainTop">
+					<input type="text" placeholder="手机号" class="phone" ng-model="login.phone">
+					<button class="submitPhone" ng-click="getIdentify()">获取验证码</button>
+				</div>
+				<small class="error">请输入正确的手机号</small>
+				<div class="mainBottom">
+					<input type="text" placeholder="验证码"  class="identify" ng-model="login.identify">
+				</div>
+				<div class="mainBottom" style="margin-top:5px">
+					<input type="text" placeholder="请输入姓名"  class="identify" ng-model="extra.name">
+				</div>
+				<div class="mainBottom" style="margin-top:5px">
+					<input type="password" placeholder="请输入6-15位密码"  class="identify" ng-model="login.password">
+				</div>
+				<div class="mainBottom" style="margin-top:5px">
+					<input type="password" placeholder="请再次输入密码"  class="identify" ng-model="login.identifyPassword">
+				</div>
+			</div>
+			<p class="agreeMentTemp"> 点击注册即代表同意助驾帮服务协议</p>
+			<div class="goButton" ng-click="register()">注册</div>
+			<div class="goButton" ng-click="forCallback()" style="position:fixed;bottom:10px;left:0%">已有账号直接登录</div>
+		</div>
+	</ion-content>
+</ion-view>
