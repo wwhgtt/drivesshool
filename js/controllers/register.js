@@ -4,6 +4,7 @@ angular.module("controllers.register",[])
 	$loginCode,
 	$ionicPopup,
 	$register,
+	$searchPhone,
 	$window
 ){
 	// console.log("$scope",$scope)
@@ -16,35 +17,50 @@ angular.module("controllers.register",[])
 			return false;
 		}else{
 			$(".error").css("visibility","hidden");
-			function jump(countDown) {
-                window.setTimeout(function(){
-                    countDown--;
-                    if(countDown > 0){
-                    	$(".submitPhone").attr("disabled","true");
-                        $(".submitPhone").html(countDown +'秒后'+ '重发');
-                        jump(countDown);
-                    }else{
-                        $(".submitPhone").html('发送验证码');
-                        $(".submitPhone").removeAttr("disabled");
-                    }
-                },1000);
-            }
-            jump(60);
-            $loginCode.loginCode(phoneNumber,function(err,result){
-            	if(err){
+			$searchPhone.searchPhone(phoneNumber,function(err,result){
+				if(err){
             		$ionicPopup.alert({
 					    title: 'sorry，系统出错'
 					});
             	}else{
             		if(result && result.success == true){
-
-            		}else{
             			$ionicPopup.alert({
-						    title: '发送失败'
+						    title: '该号码已注册,请登录'
 						});
+						$window.location.href="/yja/login?callback="+callback;
+            		}else{
+            			function jump(countDown) {
+			                window.setTimeout(function(){
+			                    countDown--;
+			                    if(countDown > 0){
+			                    	$(".submitPhone").attr("disabled","true");
+			                        $(".submitPhone").html(countDown +'秒后'+ '重发');
+			                        jump(countDown);
+			                    }else{
+			                        $(".submitPhone").html('发送验证码');
+			                        $(".submitPhone").removeAttr("disabled");
+			                    }
+			                },1000);
+			            }
+			            jump(60);
+			            $loginCode.loginCode(phoneNumber,function(err,result){
+			            	if(err){
+			            		$ionicPopup.alert({
+								    title: 'sorry，系统出错'
+								});
+			            	}else{
+			            		if(result && result.success == true){
+
+			            		}else{
+			            			$ionicPopup.alert({
+									    title: '发送失败'
+									});
+			            		}
+			            	}
+			            })
             		}
             	}
-            })
+			})
 		}
 	}
 	var getQueryStr=function(callback){

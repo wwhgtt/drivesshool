@@ -46,7 +46,7 @@ angular.module("controllers.code",[])
 				if(result && result.success == true){
 					//表明可以用微信帐号登录  可以开始预约了
 					// alert("IN");
-					$window.location.href="/yja/judgeMent?callback="+callback;
+					$window.location.href=callback;
 				}else if(result && result.success == false){ //code只能用一次
 					// alert(callback);
 					$window.location.href="/yja/register?callback="+callback;
@@ -63,7 +63,7 @@ angular.module("controllers.code",[])
 				// alert(callback);
 				if(result && result.success == true){
 					//绑定成功
-					$window.location.href="/yja/judgeMent?callback="+callback;
+					$window.location.href=callback;
 				}else if(result && result.success == false){ //code只能用一次
 					// alert("callback")
 					$ionicPopup.alert({

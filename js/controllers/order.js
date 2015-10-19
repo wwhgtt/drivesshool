@@ -3,26 +3,41 @@ angular.module("controllers.orderTemp",[])
 	$scope,
 	$ionicPopup,
 	$bindWx,
-	$onBroad,
+	$reload,
 	$byDayCount,
 	$orderTime,
 	$orderDelete,
+	$onBroad,
 	$window
 ){
 	$scope.user={id:""};
-	$onBroad.onBroad("13888880111","qqqqqq",function(err,result){
+	// $onBroad.onBroad("13888880111","qqqqqq",function(err,result){
+	// 	if(err){
+	// 		alert("eror")
+	// 	}else{
+	// 		if (result && result.success == true) {
+	// 			$scope.user.id=result.userInfo.id;
+	// 		}else{
+	// 			alert("UNKNOW")
+	// 		}
+	// 	}
+	// })
+	$reload.reload(function(err,result){
 		if(err){
 			alert("eror")
 		}else{
 			if (result && result.success == true) {
 				$scope.user.id=result.userInfo.id;
-				console.log($scope.user.id);
 			}else{
-				alert("UNKNOW")
+				if (result && result.errorInfo){
+					var errorInfo=result.errorInfo;
+					$ionicPopup.alert({
+						title:errorInfo
+					})
+				} 
 			}
 		}
 	})
-	window.userID=122;
 	var count=7;
 	$scope.getWeekDay = function(date){
 		switch(date){
@@ -60,8 +75,8 @@ angular.module("controllers.orderTemp",[])
 	
 	for(var current=0;current < count; current++){
 		var morningArr = [{time:"8:00"},{time:"9:00"},{time:"10:00"},{time:"11:00"}];
-		var afternoonArr = [{time:"13:00"},{time:"14:00"},{time:"15:00"},{time:"16:00"}];
-		var eveningArr = [{time:"17:00"},{time:"19:00"},{time:"20:00"}];
+		var afternoonArr = [{time:"13:00"},{time:"14:00"},{time:"15:00"},{time:"16:00"},{time:"17:00"}];
+		var eveningArr = [{time:"19:00"},{time:"20:00"}];
 		var orderTemp = {};
 		var currentDay = moment().add(current,'days');
 		var currentDayStr = currentDay.format("YYYY-MM-DD");
@@ -88,6 +103,7 @@ angular.module("controllers.orderTemp",[])
 					var poster=order.poster;
 					var mold=order.mold;
 					var count=order.count;
+					var type=order.type;
 					var max=order.max;
 					var studentId=order.studentId;
 					var timePieceTemp=order.timePiece;
@@ -112,20 +128,25 @@ angular.module("controllers.orderTemp",[])
 								}else if(poster == "coach" && mold == "subject3"){
 									var orderEle = orderTemp[timePieceTemp][index2];
 									orderEle.max = "可约"+max+"人";
-									orderEle.count = "已约"+count+"人";
+									orderEle.count = count;
 									orderEle.id = orderId;
 									orderEle.content = "科目三可约";
 								}else{
-									var orderEle = orderTemp[timePieceTemp][index2];
-									// console.log(orderEle)
-									if(orderEle.time == timeStr){
-										if(poster == "student" && window.userID !== studentId){
-											orderEle.id = orderId;
-											orderEle.content = "已约";
-										}else if(poster == "student" && window.userID == studentId){
-											orderEle.content = "我的预约";
-											orderEle.id = orderId;
-										}
+									if(poster == "student" && type == "subject3"  && $scope.user.id == studentId){
+										var orderEle = orderTemp[timePieceTemp][index2];
+										orderEle.contentItem = "我的预约";
+										orderEle.id = orderId;
+									}else{
+										var orderEle = orderTemp[timePieceTemp][index2];
+										if(orderEle.time == timeStr){
+											if(poster == "student" && $scope.user.id !== studentId){
+												orderEle.id = orderId;
+												orderEle.content = "已约";
+											}else if(poster == "student" && $scope.user.id == studentId){
+												orderEle.contentItem = "我的预约";
+												orderEle.id = orderId;
+											}
+										}	
 									}
 								}
 							}
@@ -139,7 +160,8 @@ angular.module("controllers.orderTemp",[])
 	})
 	$scope.forOrder=function(order,orderEle){
 		var content=orderEle.content;
-		if(content !== "我的预约" && content !== "教练休息" && content !== "送考"){
+		var contentItem=orderEle.contentItem;
+		if(contentItem !== "我的预约" && content !== "教练休息" && content !== "送考"){
 			var dateTemp=order.date;
 			var dateCurrent=moment().format("YYYY-MM-DD");
 			var date=moment(dateTemp).diff(dateCurrent,"days");
@@ -167,8 +189,8 @@ angular.module("controllers.orderTemp",[])
 								var orderID=result.order.id;
 								var timePiece=result.order.timePiece;
 								var time=result.order.time;
+								var type=result.order.type;
 								var timeArray=$scope.orderList[date][timePiece];
-								console.log(timeArray)
 								for(index in timeArray){
 									var timeTemp=timeArray[index].time+"";
 									var timeItem=timeTemp.substr(0,2);
@@ -178,10 +200,19 @@ angular.module("controllers.orderTemp",[])
 									}else{
 										timeStr=timeItem;
 									}
-									if(time == timeStr){
-										$scope.orderList[date][timePiece][index].content = "我的预约";
+									if(type == "subject3"){
+										$scope.orderList[date][timePiece][index].contentItem = "我的预约";
 										$scope.orderList[date][timePiece][index].id=orderID;
+										if(type == "subject3"){
+											$scope.orderList[date][timePiece][index].count=$scope.orderList[date][timePiece][index].count+1;
+										}
 										break;
+									}else{
+										if(time == timeStr){
+											$scope.orderList[date][timePiece][index].contentItem = "我的预约";
+											$scope.orderList[date][timePiece][index].id=orderID;
+											break;
+										}
 									}
 								}
 								// $window.location.reload();
@@ -197,7 +228,7 @@ angular.module("controllers.orderTemp",[])
 					//拒绝了约课
 				}
 			})
-		}else if(content == "我的预约"){
+		}else if(contentItem == "我的预约"){
 			var confirm=$ionicPopup.confirm({
 				title:"您要取消预约该时段吗?"
 			})
@@ -215,7 +246,10 @@ angular.module("controllers.orderTemp",[])
 								$ionicPopup.alert({
 									title:"取消预约成功"
 								});
-								orderEle.content="";
+								if(content == "科目三可约"){
+									orderEle.count=orderEle.count-1;
+								}
+								orderEle.contentItem="";
 							}else if(result && result.errorInfo){
 								var errorInfo=result.errorInfo;
 								$ionicPopup.alert({
@@ -229,31 +263,3 @@ angular.module("controllers.orderTemp",[])
 		}
 	}
 })
-// for(var index in $scope.orderList){
-// 						var orderTemp = $scope.orderList[index];
-// 						if(orderTemp.date == date && time == null || time == "" || time == undefined && poster == "coach" ){
-// 							for(var index2 in orderTemp[timePiece]){
-// 								var orderEle = orderTemp[timePiece][index2];
-// 								if(poster == "coach" && mold == "sendExam"){
-// 									orderEle.content = "送考"; //预约需要time，date
-// 									orderEle.id = orderId;
-// 								}else if(poster == "coach" && mold == "rest"){
-// 									orderEle.id = orderId;
-// 									orderEle.content = "教练休息";
-// 								}else if(poster == "coach" && mold == "subject3"){
-// 									orderEle.id = orderId;
-// 									orderEle.content = "科目三可约";
-// 								}else{
-// 									if(orderEle.time == timeStr){
-// 										if(poster == "student" && window.userID !== studentId){
-// 											orderEle.id = orderId;
-// 											orderEle.content = "已约";
-// 										}else if(poster == "student" && window.userID == studentId){
-// 											orderEle.content = "我的预约";
-// 											orderEle.id = orderId;
-// 										}
-// 									}
-// 								} 
-// 							}
-// 						}
-// 					}

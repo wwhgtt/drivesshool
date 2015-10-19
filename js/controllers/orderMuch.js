@@ -3,26 +3,39 @@ angular.module("controllers.orderMuch",[])
 	$scope,
 	$ionicPopup,
 	$bindWx,
-	$onBroad,
+	$reload,
 	$byDayCount,
 	$orderTime,
 	$orderDelete,
+	$onBroad,
 	$window
 ){
 	$scope.user={id:""};
-	$onBroad.onBroad("13888880005","qqqqqq",function(err,result){
+	// $onBroad.onBroad("13888880003","qqqqqq",function(err,result){
+	// 	if(err){
+	// 		alert("eror")
+	// 	}else{
+	// 		if (result && result.success == true) {
+	// 			$scope.user.id=result.userInfo.id;
+	// 		}else{
+	// 			alert("UNKNOW")
+	// 		}
+	// 	}
+	// })
+	$reload.reload(function(err,result){
 		if(err){
 			alert("eror")
 		}else{
 			if (result && result.success == true) {
 				$scope.user.id=result.userInfo.id;
-				console.log($scope.user.id);
-			}else{
-				alert("UNKNOW")
+			}else if (result && result.success == false){
+				var errorInfo=result.errorInfo;
+				$ionicPopup.alert({
+					title:errorInfo
+				})
 			}
 		}
 	})
-	window.userID=16;
 	var count=7;
 	$scope.getWeekDay = function(date){
 		switch(date){
@@ -107,11 +120,11 @@ angular.module("controllers.orderMuch",[])
 										orderEle.id = orderId;
 										orderEle.content = "科目三可约";
 									}else{
-										if(poster == "student" && window.userID !== studentId){
+										if(poster == "student" && $scope.user.id !== studentId){
 											var orderEle = orderTemp["today"][index2];
 											orderEle.id = orderId;
-											orderEle.count = "已约"+count+"人";
-										}else if(poster == "student" && window.userID == studentId){
+											orderEle.count = count;
+										}else if(poster == "student" && $scope.user.id == studentId){
 											var orderEle = orderTemp["today"][index2];
 											orderEle.contentItem = "我的预约";
 											orderEle.id = orderId;
@@ -122,8 +135,11 @@ angular.module("controllers.orderMuch",[])
 						}
 					}
 				})
-			}else{
-				alert("UNKNOW")
+			}else if (result && result.success == false){
+				var errorInfo=result.errorInfo;
+				$ionicPopup.alert({
+					title:errorInfo
+				})
 			}
 		}
 	})

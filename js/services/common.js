@@ -421,3 +421,22 @@ angular.module("services.common",[])
 		}
 	}
 })
+.service("$searchPhone",function(
+	$http
+){
+	return {
+		searchPhone:function(phoneNumber,callback){
+			$http.get(BASE_URL + "/basic/register/checkPhone",{
+				params:{
+					phone:phoneNumber
+				}
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})

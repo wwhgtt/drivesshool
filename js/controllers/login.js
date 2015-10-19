@@ -18,7 +18,6 @@ angular.module("controllers.loginTemp",[])
 	}
 	var callbackEncode=getQueryStr("callback");
 	var callback=decodeURIComponent(callbackEncode);
-	alert(callback);
 	$scope.loginTempItem={phone:"",password:""};
 	$scope.loginIn=function(){
 		var phone=$scope.loginTempItem.phone;
