@@ -32,7 +32,11 @@ angular.module("controllers.loginTemp",[])
 					if(result && result.success == true){
 						var userInfo=result.userInfo;
 						if(userInfo.openId !== null && userInfo.openId !== "" && userInfo.openId !== undefined){
-							$window.location.href=callback;
+							if(callback.indexOf("order") !== -1){
+								$window.location.href="/yja/judgeMent?callback="+callback;
+							}else{
+								$window.location.href=callback;
+							}
 						}else{
 							$window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx49a9db1095de4f65&redirect_uri=http%3a%2f%2fparty.idrv.com.cn%2fyja%2fcode&response_type=code&scope=snsapi_userinfo&state=wxBind_._"+callback+"#wechat_redirect";
 						}

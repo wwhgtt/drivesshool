@@ -31,7 +31,6 @@ angular.module("controllers.coachList",[])
 		$scope.coach.url=location.href.split("#")[0];
 	}
 	var url=$scope.coach.url;
-	alert(url)
 	$getSignal.getSignal(url,function(err,result){
 		if (err){
 			$ionicPopup.alert({
@@ -43,7 +42,7 @@ angular.module("controllers.coachList",[])
 					nonceStr=result.result.noncestr;
 					signature=result.result.signature;
 				wx.config({
-				    debug: true, 
+				    debug: false, 
 				    appId: 'wx49a9db1095de4f65', 
 				    timestamp:timestamp, 
 				    nonceStr: nonceStr,
@@ -110,7 +109,6 @@ angular.module("controllers.coachList",[])
 							$scope.zuobiao={lat:lat,long:long};
 							$scope.$broadcast('zuobiao',$scope.zuobiao);
 							$fifterCoach.fifterCoach(filterArea,cityId,index,lat,long,sort,teachType,top,function(err,result){
-								alert("1234")
 								if(err){
 									$ionicPopup.alert({
 									    title: 'sorry，系统出错'
@@ -122,7 +120,6 @@ angular.module("controllers.coachList",[])
 									$scope.coachShow = false;
 								}
 							})
-							alert("3456")
 					    },
 					    cancel:function(){
 					    	$ionicPopup.alert({

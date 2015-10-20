@@ -14,12 +14,12 @@ angular.module("controllers.judgeMent",[])
 			if(result && result.success == true){
 				var userInfo=result.userInfo;
 				var coachInfo = userInfo.coach;
-				var teachType=userInfo.coach.teachType;
+				var teachType=coachInfo.teachType;
 				var role=userInfo.role;
 				if(role == "student"){
 					if(teachType == 0){
 						$window.location.href="/yja/order";
-					}else{
+					}else if(teachType == 1){
 						$window.location.href="/yja/orderMuch";
 					}
 					

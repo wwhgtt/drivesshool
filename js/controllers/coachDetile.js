@@ -12,7 +12,9 @@ angular.module("controllers.coachDetile",[])
 	$scope.coach={avator:""};
 	$getDetile.getDetile(coachId,function(err,result){
 		if (err){
-			alert("sorry,访问出错");
+			$ionicPopup.alert({
+				title:"sorry,访问出错"
+			});
 		}else{
 			if(result && result.success == true){
 				$scope.coach=result.coach;

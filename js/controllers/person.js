@@ -30,7 +30,6 @@ angular.module("controllers.person",[])
 		}
 	})
 	$scope.changeUrl=function(){
-		alert("url")
 		$window.location.href="/yja/coachList";
 	}
 })

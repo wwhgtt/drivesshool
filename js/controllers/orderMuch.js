@@ -27,7 +27,7 @@ angular.module("controllers.orderMuch",[])
 			alert("eror")
 		}else{
 			if (result && result.success == true) {
-				$scope.user.id=result.userInfo.id;
+				$scope.user.id=result.userInfo.id+"";
 			}else if (result && result.success == false){
 				var errorInfo=result.errorInfo;
 				$ionicPopup.alert({
@@ -97,7 +97,7 @@ angular.module("controllers.orderMuch",[])
 					var mold=order.mold;
 					var count=order.count;
 					var max=order.max;
-					var studentId=order.studentId;
+					var studentId=order.studentId+"";
 					var timePieceTemp=order.timePiece;
 					for(var index in $scope.orderList){
 						var orderTemp = $scope.orderList[index];
@@ -123,7 +123,13 @@ angular.module("controllers.orderMuch",[])
 										if(poster == "student" && $scope.user.id !== studentId){
 											var orderEle = orderTemp["today"][index2];
 											orderEle.id = orderId;
-											orderEle.count = count;
+											if(count !== null && count !== "" && count !== undefined){
+												orderEle.count = count;
+											}
+											if(max !== null && max !== "" && max !== undefined){
+												orderEle.max = "可约"+max+"人";
+											}
+											orderEle.contentItem = "已约";
 										}else if(poster == "student" && $scope.user.id == studentId){
 											var orderEle = orderTemp["today"][index2];
 											orderEle.contentItem = "我的预约";

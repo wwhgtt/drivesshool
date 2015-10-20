@@ -141,7 +141,7 @@ angular.module("controllers.orderTemp",[])
 										if(orderEle.time == timeStr){
 											if(poster == "student" && $scope.user.id !== studentId){
 												orderEle.id = orderId;
-												orderEle.content = "已约";
+												orderEle.contentItem = "已约";
 											}else if(poster == "student" && $scope.user.id == studentId){
 												orderEle.contentItem = "我的预约";
 												orderEle.id = orderId;
@@ -153,15 +153,18 @@ angular.module("controllers.orderTemp",[])
 						}
 					}
 				})
-			}else{
-				alert("UNKNOW")
+			}else if(result && result.errorInfo){
+				var errorInfo=result.errorInfo;
+				$ionicPopup.alert({
+					title:errorInfo
+				})
 			}
 		}
 	})
 	$scope.forOrder=function(order,orderEle){
 		var content=orderEle.content;
 		var contentItem=orderEle.contentItem;
-		if(contentItem !== "我的预约" && content !== "教练休息" && content !== "送考"){
+		if(contentItem !== "我的预约" && content !== "教练休息" && contentItem !== "送考"){
 			var dateTemp=order.date;
 			var dateCurrent=moment().format("YYYY-MM-DD");
 			var date=moment(dateTemp).diff(dateCurrent,"days");
