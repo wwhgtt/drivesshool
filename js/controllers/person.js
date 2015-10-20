@@ -23,9 +23,19 @@ angular.module("controllers.person",[])
 				}
 			}else if(result && result.errorInfo){
 				var errorInfo=result.errorInfo;
-				$ionicPopup.alert({
-					title:errorInfo
-				})
+				if(errorInfo == "是学员身份，但找不到绑定的教练"){
+					$ionicPopup.confirm({
+						title:"您是学员身份，但未绑定教练，现在去绑定教练吗"
+					}).then(function(result){
+						if(result == true){
+							$window.location.href="/yja/coachList";
+						}
+					})
+				}else{
+					$ionicPopup.alert({
+						title:errorInfo
+					})
+				}
 			}
 		}
 	})

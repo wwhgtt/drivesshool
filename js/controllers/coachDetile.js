@@ -6,10 +6,11 @@ angular.module("controllers.coachDetile",[])
 	$getDetile,
 	$sce,
 	$bindCoach,
-	$window
+	$window,
+	$getSignal
 ){
 	var coachId=$state.params.coachId;
-	$scope.coach={avator:""};
+	$scope.coach={avator:"",url:""};
 	$getDetile.getDetile(coachId,function(err,result){
 		if (err){
 			$ionicPopup.alert({
@@ -21,7 +22,7 @@ angular.module("controllers.coachDetile",[])
 				if (result.coach.avator){
 					$scope.coach.avator= result.coach.avator.large;
 				}else{
-					$scope.coach.avator="http://7xjnv4.com2.z0.glb.qiniucdn.com/default_avator.png_large"
+					$scope.coach.avator="http://7xjnv4.com2.z0.glb.qiniucdn.com/default_avator.png_large";
 				}
 				// $scope.videoList=$scope.coach.video;
 				if (result.coach.applyCoachState == "agree") {
@@ -86,48 +87,72 @@ angular.module("controllers.coachDetile",[])
 			}
 		})
 	}
+	var sUserAgent = navigator.userAgent.toLowerCase();
+	if(sUserAgent.indexOf("ipad") !== -1 ||sUserAgent.indexOf("iphone") !== -1){
+		$scope.coach.url = location.href.split("#")[0];
+	}else{
+		$scope.coach.url=location.href.split("#")[0];
+	}
+	var url=$scope.coach.url;
+	$getSignal.getSignal(url,function(err,result){
+		if (err){
+			$ionicPopup.alert({
+			    title: "sorry,系统报错"
+			});
+		}else{
+			if(result && result.success == true ){
+				var timestamp=result.result.timestamp,
+					nonceStr=result.result.noncestr;
+					signature=result.result.signature;
+				var avator=$scope.coach.avator;
+				if(!avator){
+
+				}else{
+					avator="http://7xjnv4.com2.z0.glb.qiniucdn.com/default_avator.png_large";
+				}
+				wx.config({
+				    debug: false, 
+				    appId: 'wx49a9db1095de4f65', 
+				    timestamp:timestamp, 
+				    nonceStr: nonceStr,
+				    signature:signature,
+				    jsApiList: [
+				    	"onMenuShareTimeline",
+				    	"onMenuShareAppMessage"
+				    ] 
+				});
+				wx.ready(function(){
+					wx.onMenuShareTimeline({
+				        title: '强烈推荐我的教练', // 分享标题
+					    link: 'http://party.idrv.com.cn/coachDetaile?id='+coachId, // 分享链接
+					    imgUrl: avator, // 分享图标
+				        success: function () { 
+				            $window.location.href="/yja/person";
+				        },
+				        cancel: function () { 
+				            // 用户取消分享后执行的回调函数
+				        }
+				    });
+				    wx.onMenuShareAppMessage({
+				        title: '强烈推荐我的教练', // 分享标题
+					    link: 'http://party.idrv.com.cn/coachDetaile?id='+coachId, // 分享链接
+					    imgUrl: avator, // 分享图标
+				        type: '', // 分享类型,music、video或link，不填默认为link
+				        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+				        success: function (){ 
+				            $window.location.href="/yja/person";
+				        },
+				        cancel: function (){ 
+				            // 用户取消分享后执行的回调函数
+				        }
+				    });
+				})
+			}else if(result && result.errorInfo){
+				var errorInfo=result.errorInfo;
+	 			$ionicPopup.alert({
+				    title: errorInfo
+				});
+	 		}
+		};
+	})
 })
-// if($scope.coach.video && $scope.coach.video.length){
-				// 	$scope.ionSideBox=true;
-				// 	var video=$scope.coach.video;
-				// 	if(video[0]){
-				// 		$scope.video_first = true;
-				// 		$scope.coach.video_first_url=$sce.trustAsResourceUrl(video[0].url);
-				// 		$scope.belongFirst=true;
-				// 		$scope.bvideoBelongFirst='http://7xk5at.com2.z0.glb.qiniucdn.com/development/'+
-				// 			$scope.coach._id+'_'+video[0].index+'_small';
-				// 	}
-				// 	if(video[1]){
-				// 		$scope.video_second = true;
-				// 		$scope.coach.video_second_url=$sce.trustAsResourceUrl(video[1].url);
-				// 		$scope.belongSecond=true;
-				// 		$scope.bvideoBelongSecond='http://7xk5at.com2.z0.glb.qiniucdn.com/development/'+
-				// 			$scope.coach._id+'_'+video[1].index+'_small';
-				// 	}
-				// 	if(video[2]){
-				// 		$scope.video_third = true;
-				// 		$scope.coach.video_third_url=$sce.trustAsResourceUrl(video[2].url);
-				// 		$scope.belongThird=true;
-				// 		$scope.bvideoBelongThird='http://7xk5at.com2.z0.glb.qiniucdn.com/development/'+
-				// 			$scope.coach._id+'_'+video[2].index+'_small';
-				// 	}
-				// }
-// if (result.coach.background) {
-				// 	$scope.coachImage=true;
-				// 	var background=result.coach.background;
-				// 	if (background[0]) {
-				// 		$scope.imageLIst_firstURL = true;
-				// 		$scope.imageLIst_first=background[0].url;
-				// 	};
-				// 	if (background[1]) {
-				// 		$scope.imageLIst_secondURL = true;
-				// 		$scope.imageLIst_second=background[1].url;
-				// 	};
-				// 	if (background[2]) {
-				// 		$scope.imageLIst_thirdURL = true;
-				// 		$scope.imageLIst_third=background[2].url;
-				// 	};
-				// 	if (background[3]) {
-				// 		$scope.imageLIst_forthURL = true;
-				// 	};
-				// };

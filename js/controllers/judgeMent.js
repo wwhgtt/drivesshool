@@ -3,7 +3,8 @@ angular.module("controllers.judgeMent",[])
 	$scope,
 	$reload,
 	$ionicPopup,
-	$window
+	$window,
+	$onBroad
 ){
 	$reload.reload(function(err,result){
 		if(err){
@@ -39,10 +40,20 @@ angular.module("controllers.judgeMent",[])
 					})
 				}
 			}else if(result && result.success == false){
-				var errorInfo= result.errorInfo;
-				$ionicPopup.alert({
-					title:errorInfo
-				})
+				var errorInfo=result.errorInfo;
+				if(errorInfo == "是学员身份，但找不到绑定的教练"){
+					$ionicPopup.confirm({
+						title:"您是学员身份，但未绑定教练，现在去绑定教练吗"
+					}).then(function(result){
+						if(result == true){
+							$window.location.href="/yja/coachList";
+						}
+					})
+				}else{
+					$ionicPopup.alert({
+						title:errorInfo
+					})
+				}
 			}
 		}
 	})
