@@ -22,21 +22,6 @@ angular.module("controllers.orderMuch",[])
 	// 		}
 	// 	}
 	// })
-	$reload.reload(function(err,result){
-		if(err){
-			alert("eror")
-		}else{
-			if (result && result.success == true) {
-				$scope.user.id=result.userInfo.id+"";
-			}else if (result && result.success == false){
-				var errorInfo=result.errorInfo;
-				$ionicPopup.alert({
-					title:errorInfo
-				})
-			}
-		}
-	})
-	var count=7;
 	$scope.getWeekDay = function(date){
 		switch(date){
 			case 1:
@@ -69,7 +54,8 @@ angular.module("controllers.orderMuch",[])
 				break;
 		}
 	}
-	$scope.orderList = []
+	$scope.orderList = [];
+	var count=7;
 	for(var current=0;current < count; current++){
 		var todayArr = [{timeTemp:"Morning",time:"8:00~12:00"},{timeTemp:"Afternoon",time:"13:00~18:00"},{timeTemp:"Evening",time:"19:00~21:00"}];
 		var orderTemp = {};
@@ -81,63 +67,77 @@ angular.module("controllers.orderMuch",[])
 		$scope.orderList.push(orderTemp);
 	}
 	console.log("orderList",$scope.orderList);
-	$byDayCount.byDayCount(count,function(err,result){
+	$reload.reload(function(err,result){
 		if(err){
-			$ionicPopup.alert({
-				title:"sorry,系统出错"
-			})
+			alert("eror")
 		}else{
-			if(result && result.success == true){
-				var orderList=result.orderList;
-				orderList.forEach(function(order,index){
-					var date=order.date;
-					var time=order.time;
-					var orderId=order.id;
-					var poster=order.poster;
-					var mold=order.mold;
-					var count=order.count;
-					var max=order.max;
-					var studentId=order.studentId+"";
-					var timePieceTemp=order.timePiece;
-					for(var index in $scope.orderList){
-						var orderTemp = $scope.orderList[index];
-						if(orderTemp.date == date){
-							for(var index2 in orderTemp.today){
-								var timeTemp=orderTemp["today"][index2].timeTemp;
-								if(timeTemp == timePieceTemp){
-									if(poster == "coach" && mold == "sendExam" ){
-										var orderEle = orderTemp["today"][index2];
-										orderEle.content = "送考"; //预约需要time，date
-										orderEle.id = orderId;
-									}else if(poster == "coach" && mold == "rest" ){
-										var orderEle = orderTemp["today"][index2];
-										orderEle.id = orderId;
-										orderEle.content = "教练休息";
-									}else if(poster == "coach" && mold == "subject3"){
-										var orderEle = orderTemp["today"][index2];
-										orderEle.max = "可约"+max+"人";
-										orderEle.count = count;
-										orderEle.id = orderId;
-										orderEle.content = "科目三可约";
-									}else{
-										if(poster == "student" && $scope.user.id !== studentId){
-											var orderEle = orderTemp["today"][index2];
-											orderEle.id = orderId;
-											if(count !== null && count !== "" && count !== undefined){
-												orderEle.count = count;
+			if (result && result.success == true) {
+				$scope.user.id=result.userInfo.id+"";
+				$byDayCount.byDayCount(count,function(err,result){
+					if(err){
+						$ionicPopup.alert({
+							title:"sorry,系统出错"
+						})
+					}else{
+						if(result && result.success == true){
+							var orderList=result.orderList;
+							orderList.forEach(function(order,index){
+								var date=order.date;
+								var time=order.time;
+								var orderId=order.id;
+								var poster=order.poster;
+								var mold=order.mold;
+								var count=order.count;
+								var max=order.max;
+								var type=order.type;
+								var studentId=order.studentId+"";
+								var timePieceTemp=order.timePiece;
+								for(var index in $scope.orderList){
+									var orderTemp = $scope.orderList[index];
+									if(orderTemp.date == date){
+										for(var index2 in orderTemp.today){
+											var timeTemp=orderTemp["today"][index2].timeTemp;
+											if(timeTemp == timePieceTemp){
+												if(poster == "coach" && mold == "sendExam" ){
+													var orderEle = orderTemp["today"][index2];
+													orderEle.content = "送考"; //预约需要time，date
+													orderEle.id = orderId;
+												}else if(poster == "coach" && mold == "rest" ){
+													var orderEle = orderTemp["today"][index2];
+													orderEle.id = orderId;
+													orderEle.content = "教练休息";
+												}else if(poster == "coach" && mold == "subject3"){
+													var orderEle = orderTemp["today"][index2];
+													orderEle.max = "可约"+max+"人";
+													orderEle.count = count;
+													orderEle.id = orderId;
+													orderEle.content = "科目三可约";
+												}else{
+													if(poster == "student" && $scope.user.id !== studentId){
+														var orderEle = orderTemp["today"][index2];
+														// orderEle.id = orderId;
+														if(type == "sunject3"){
+															//do nothing
+														}else if(type == "record"){
+															orderEle.content="已约"+count+"人";
+															orderEle.count=count;
+														}
+													}else if(poster == "student" && $scope.user.id == studentId){
+														var orderEle = orderTemp["today"][index2];
+														orderEle.contentItem = "我的预约";
+														orderEle.id = orderId;
+													}
+												}
 											}
-											if(max !== null && max !== "" && max !== undefined){
-												orderEle.max = "可约"+max+"人";
-											}
-											orderEle.contentItem = "已约";
-										}else if(poster == "student" && $scope.user.id == studentId){
-											var orderEle = orderTemp["today"][index2];
-											orderEle.contentItem = "我的预约";
-											orderEle.id = orderId;
 										}
 									}
 								}
-							}
+							})
+						}else if (result && result.success == false){
+							var errorInfo=result.errorInfo;
+							$ionicPopup.alert({
+								title:errorInfo
+							})
 						}
 					}
 				})
@@ -189,9 +189,9 @@ angular.module("controllers.orderMuch",[])
 									if(timePiece == timeTemp){
 										$scope.orderList[date]["today"][index].contentItem = "我的预约";
 										$scope.orderList[date]["today"][index].id=orderID;
-										if(type == "subject3"){
-											$scope.orderList[date]["today"][index].count=$scope.orderList[date]["today"][index].count+1;
-										}
+										// if(type == "subject3"){
+										$scope.orderList[date]["today"][index].count=$scope.orderList[date]["today"][index].count+1;
+										// }
 										break;
 									}
 								}
@@ -231,6 +231,8 @@ angular.module("controllers.orderMuch",[])
 									var date=moment(dateTemp).diff(dateCurrent,"days");
 									var timePiece=orderEle.timeTemp;
 									orderEle.count=orderEle.count-1;
+								}else{
+									orderEle.content="";
 								}
 								orderEle.contentItem="";
 							}else if(result && result.errorInfo){

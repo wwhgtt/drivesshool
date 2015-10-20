@@ -22,23 +22,6 @@ angular.module("controllers.orderTemp",[])
 	// 		}
 	// 	}
 	// })
-	$reload.reload(function(err,result){
-		if(err){
-			alert("eror")
-		}else{
-			if (result && result.success == true) {
-				$scope.user.id=result.userInfo.id;
-			}else{
-				if (result && result.errorInfo){
-					var errorInfo=result.errorInfo;
-					$ionicPopup.alert({
-						title:errorInfo
-					})
-				} 
-			}
-		}
-	})
-	var count=7;
 	$scope.getWeekDay = function(date){
 		switch(date){
 			case 1:
@@ -71,8 +54,8 @@ angular.module("controllers.orderTemp",[])
 				break;
 		}
 	}
-	$scope.orderList = []
-	
+	$scope.orderList = [];
+	var count=7;
 	for(var current=0;current < count; current++){
 		var morningArr = [{time:"8:00"},{time:"9:00"},{time:"10:00"},{time:"11:00"}];
 		var afternoonArr = [{time:"13:00"},{time:"14:00"},{time:"15:00"},{time:"16:00"},{time:"17:00"}];
@@ -88,79 +71,95 @@ angular.module("controllers.orderTemp",[])
 		$scope.orderList.push(orderTemp);
 	}
 	console.log("orderList",$scope.orderList);
-
-	$byDayCount.byDayCount(count,function(err,result){
+	$reload.reload(function(err,result){
 		if(err){
-			$ionicPopup.alert({title:"sorry,系统出错"})
+			alert("sorry,系统出错")
 		}else{
 			if (result && result.success == true) {
-				var orderList=result.orderList;
-				orderList.forEach(function(order,index){
-					//for循环，到$scope.orderList里去找对应的date和time的数据
-					var date=order.date;
-					var time=order.time;
-					var orderId=order.id;
-					var poster=order.poster;
-					var mold=order.mold;
-					var count=order.count;
-					var type=order.type;
-					var max=order.max;
-					var studentId=order.studentId;
-					var timePieceTemp=order.timePiece;
-					var timePiece = "";
-					if(time < 12)timePiece = "Morning";
-					else if(time < 17)timePiece = "Afternoon";
-					else if(time < 21)timePiece = "Evening";
-					var timeStr = time + ":00";
-					for(var index in $scope.orderList){
-						var orderTemp = $scope.orderList[index];
-						//相当于orderTemp== order
-						if(orderTemp.date == date){
-							for(var index2 in orderTemp[timePieceTemp]){
-								if(poster == "coach" && mold == "sendExam" ){
-									var orderEle = orderTemp[timePieceTemp][index2];
-									orderEle.content = "送考"; //预约需要time，date
-									orderEle.id = orderId;
-								}else if(poster == "coach" && mold == "rest" ){
-									var orderEle = orderTemp[timePieceTemp][index2];
-									orderEle.id = orderId;
-									orderEle.content = "教练休息";
-								}else if(poster == "coach" && mold == "subject3"){
-									var orderEle = orderTemp[timePieceTemp][index2];
-									orderEle.max = "可约"+max+"人";
-									orderEle.count = count;
-									orderEle.id = orderId;
-									orderEle.content = "科目三可约";
-								}else{
-									if(poster == "student" && type == "subject3"  && $scope.user.id == studentId){
-										var orderEle = orderTemp[timePieceTemp][index2];
-										orderEle.contentItem = "我的预约";
-										orderEle.id = orderId;
-									}else{
-										var orderEle = orderTemp[timePieceTemp][index2];
-										if(orderEle.time == timeStr){
-											if(poster == "student" && $scope.user.id !== studentId){
+				$scope.user.id=result.userInfo.id;
+				$byDayCount.byDayCount(count,function(err,result){
+					if(err){
+						$ionicPopup.alert({title:"sorry,系统出错"})
+					}else{
+						if (result && result.success == true) {
+							var orderList=result.orderList;
+							orderList.forEach(function(order,index){
+								//for循环，到$scope.orderList里去找对应的date和time的数据
+								var date=order.date;
+								var time=order.time;
+								var orderId=order.id;
+								var poster=order.poster;
+								var mold=order.mold;
+								var count=order.count;
+								var type=order.type;
+								var max=order.max;
+								var studentId=order.studentId;
+								var timePieceTemp=order.timePiece;
+								var timePiece = "";
+								if(time < 12)timePiece = "Morning";
+								else if(time < 17)timePiece = "Afternoon";
+								else if(time < 21)timePiece = "Evening";
+								var timeStr = time + ":00";
+								for(var index in $scope.orderList){
+									var orderTemp = $scope.orderList[index];
+									//相当于orderTemp== order
+									if(orderTemp.date == date){
+										for(var index2 in orderTemp[timePieceTemp]){
+											if(poster == "coach" && mold == "sendExam" ){
+												var orderEle = orderTemp[timePieceTemp][index2];
+												orderEle.content = "送考"; //预约需要time，date
 												orderEle.id = orderId;
-												orderEle.contentItem = "已约";
-											}else if(poster == "student" && $scope.user.id == studentId){
-												orderEle.contentItem = "我的预约";
+											}else if(poster == "coach" && mold == "rest" ){
+												var orderEle = orderTemp[timePieceTemp][index2];
 												orderEle.id = orderId;
+												orderEle.content = "教练休息";
+											}else if(poster == "coach" && mold == "subject3"){
+												var orderEle = orderTemp[timePieceTemp][index2];
+												orderEle.max = "可约"+max+"人";
+												orderEle.count = count;
+												orderEle.id = orderId;
+												orderEle.content = "科目三可约";
+											}else{
+												if(poster == "student" && type == "subject3"  && $scope.user.id == studentId){
+													var orderEle = orderTemp[timePieceTemp][index2];
+													orderEle.contentItem = "我的预约";
+													orderEle.id = orderId;
+												}else{
+													var orderEle = orderTemp[timePieceTemp][index2];
+													if(orderEle.time == timeStr){
+														if(poster == "student" && $scope.user.id !== studentId){
+															orderEle.id = orderId;
+															orderEle.contentItem = "已约";
+														}else if(poster == "student" && $scope.user.id == studentId){
+															orderEle.contentItem = "我的预约";
+															orderEle.id = orderId;
+														}
+													}	
+												}
 											}
-										}	
+										}
 									}
 								}
-							}
+							})
+						}else if(result && result.errorInfo){
+							var errorInfo=result.errorInfo;
+							$ionicPopup.alert({
+								title:errorInfo
+							})
 						}
 					}
 				})
-			}else if(result && result.errorInfo){
-				var errorInfo=result.errorInfo;
-				$ionicPopup.alert({
-					title:errorInfo
-				})
+			}else{
+				if (result && result.errorInfo){
+					var errorInfo=result.errorInfo;
+					$ionicPopup.alert({
+						title:errorInfo
+					})
+				} 
 			}
 		}
 	})
+	
 	$scope.forOrder=function(order,orderEle){
 		var content=orderEle.content;
 		var contentItem=orderEle.contentItem;
