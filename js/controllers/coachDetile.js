@@ -76,8 +76,11 @@ angular.module("controllers.coachDetile",[])
 				if(result && result.success == true){
 					$ionicPopup.alert({
 					    title: "申请成功,请等待教练同意"
-					});
-					$window.location.href="/yja/person";
+					}).then(function(result){
+						if(result == true){
+							$window.location.href="/yja/person";
+						}
+					})
 				}else if(result && result.success == false){
 					var errorInfo=result.errorInfo;
 					$ionicPopup.alert({

@@ -105,7 +105,7 @@ angular.module("controllers.orderTemp",[])
 									//相当于orderTemp== order
 									if(orderTemp.date == date){
 										for(var index2 in orderTemp[timePieceTemp]){
-											if(poster == "coach" && mold == "sendExam" ){
+											if(poster == "coach" && mold == "sendExam"){
 												var orderEle = orderTemp[timePieceTemp][index2];
 												orderEle.content = "送考"; //预约需要time，date
 												orderEle.id = orderId;
@@ -122,16 +122,16 @@ angular.module("controllers.orderTemp",[])
 											}else{
 												if(poster == "student" && type == "subject3"  && $scope.user.id == studentId){
 													var orderEle = orderTemp[timePieceTemp][index2];
-													orderEle.contentItem = "我的预约";
+													orderEle.contentItem = "已预约";
 													orderEle.id = orderId;
 												}else{
 													var orderEle = orderTemp[timePieceTemp][index2];
 													if(orderEle.time == timeStr){
 														if(poster == "student" && $scope.user.id !== studentId){
 															orderEle.id = orderId;
-															orderEle.contentItem = "已约";
+															orderEle.contentItem = "不可约";
 														}else if(poster == "student" && $scope.user.id == studentId){
-															orderEle.contentItem = "我的预约";
+															orderEle.contentItem = "已预约";
 															orderEle.id = orderId;
 														}
 													}	
@@ -163,7 +163,7 @@ angular.module("controllers.orderTemp",[])
 	$scope.forOrder=function(order,orderEle){
 		var content=orderEle.content;
 		var contentItem=orderEle.contentItem;
-		if(contentItem !== "我的预约" && content !== "教练休息" && contentItem !== "送考"){
+		if(contentItem !== "已预约" && content !== "教练休息" && contentItem !== "送考" && contentItem !== "不可约"){
 			var dateTemp=order.date;
 			var dateCurrent=moment().format("YYYY-MM-DD");
 			var date=moment(dateTemp).diff(dateCurrent,"days");
@@ -203,15 +203,13 @@ angular.module("controllers.orderTemp",[])
 										timeStr=timeItem;
 									}
 									if(type == "subject3"){
-										$scope.orderList[date][timePiece][index].contentItem = "我的预约";
+										$scope.orderList[date][timePiece][index].contentItem = "已预约";
 										$scope.orderList[date][timePiece][index].id=orderID;
-										if(type == "subject3"){
-											$scope.orderList[date][timePiece][index].count=$scope.orderList[date][timePiece][index].count+1;
-										}
+										$scope.orderList[date][timePiece][index].count=$scope.orderList[date][timePiece][index].count+1;
 										break;
 									}else{
 										if(time == timeStr){
-											$scope.orderList[date][timePiece][index].contentItem = "我的预约";
+											$scope.orderList[date][timePiece][index].contentItem = "已预约";
 											$scope.orderList[date][timePiece][index].id=orderID;
 											break;
 										}
@@ -230,7 +228,7 @@ angular.module("controllers.orderTemp",[])
 					//拒绝了约课
 				}
 			})
-		}else if(contentItem == "我的预约"){
+		}else if(contentItem == "已预约"){
 			var confirm=$ionicPopup.confirm({
 				title:"您要取消预约该时段吗?"
 			})
@@ -247,11 +245,15 @@ angular.module("controllers.orderTemp",[])
 							if(result && result.success==true){
 								$ionicPopup.alert({
 									title:"取消预约成功"
-								});
-								if(content == "科目三可约"){
-									orderEle.count=orderEle.count-1;
-								}
-								orderEle.contentItem="";
+								}).then(function(result){
+									if(result == true){
+										if(content == "科目三可约"){
+											orderEle.count=orderEle.count-1;
+											$window.location.reload();
+										}
+										orderEle.contentItem="";
+									}
+								})
 							}else if(result && result.errorInfo){
 								var errorInfo=result.errorInfo;
 								$ionicPopup.alert({

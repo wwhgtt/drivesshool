@@ -11,17 +11,8 @@ angular.module("controllers.orderMuch",[])
 	$window
 ){
 	$scope.user={id:""};
-	// $onBroad.onBroad("13888880003","qqqqqq",function(err,result){
-	// 	if(err){
-	// 		alert("eror")
-	// 	}else{
-	// 		if (result && result.success == true) {
-	// 			$scope.user.id=result.userInfo.id;
-	// 		}else{
-	// 			alert("UNKNOW")
-	// 		}
-	// 	}
-	// })
+
+
 	$scope.getWeekDay = function(date){
 		switch(date){
 			case 1:
@@ -119,12 +110,12 @@ angular.module("controllers.orderMuch",[])
 														if(type == "sunject3"){
 															//do nothing
 														}else if(type == "record"){
-															orderEle.content="已约"+count+"人";
+															orderEle.content="不可约"+count+"人";
 															orderEle.count=count;
 														}
 													}else if(poster == "student" && $scope.user.id == studentId){
 														var orderEle = orderTemp["today"][index2];
-														orderEle.contentItem = "我的预约";
+														orderEle.contentItem = "已预约";
 														orderEle.id = orderId;
 													}
 												}
@@ -153,7 +144,7 @@ angular.module("controllers.orderMuch",[])
 	$scope.forOrder=function(order,orderEle){
 		var content=orderEle.content;
 		var contentItem=orderEle.contentItem;
-		if(contentItem !== "我的预约" && content !== "教练休息" && content !== "送考"  ){
+		if(contentItem !== "已预约" && content !== "教练休息" && content !== "送考"  ){
 			var dateTemp=order.date;
 			var dateCurrent=moment().format("YYYY-MM-DD");
 			var date=moment(dateTemp).diff(dateCurrent,"days");
@@ -187,7 +178,7 @@ angular.module("controllers.orderMuch",[])
 								for(index in timeArray){
 									var timeTemp=timeArray[index].timeTemp+"";
 									if(timePiece == timeTemp){
-										$scope.orderList[date]["today"][index].contentItem = "我的预约";
+										$scope.orderList[date]["today"][index].contentItem = "已预约";
 										$scope.orderList[date]["today"][index].id=orderID;
 										// if(type == "subject3"){
 										$scope.orderList[date]["today"][index].count=$scope.orderList[date]["today"][index].count+1;
@@ -207,7 +198,7 @@ angular.module("controllers.orderMuch",[])
 					//拒绝了约课
 				}
 			})
-		}else if(contentItem == "我的预约"){
+		}else if(contentItem == "已预约"){
 			var confirm=$ionicPopup.confirm({
 				title:"您要取消预约该时段吗?"
 			})
