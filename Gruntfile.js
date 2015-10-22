@@ -85,7 +85,3 @@ module.exports = function(grunt){
 	grunt.registerTask('fisTask',['copy:fis'])
 	grunt.registerTask('default',['cssmin','templateTask','jsConcatTask','fontTask','imgTask','indexHtmlTask','fisTask']);
 }
-
-
-
-
