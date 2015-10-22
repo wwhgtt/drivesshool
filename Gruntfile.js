@@ -56,7 +56,7 @@ module.exports = function(grunt){
 			},
 			js:{
 				files:[
-					{expand: true, src: ['js/**'], dest: 'gruntOutPut/jsTemp/',filter:'isFile',flatten:true}
+					{expand: true, cwd:"js", src: ['**'], dest: 'gruntOutPut/jsTemp/',flatten:false}
 				]
 			},
 			systemConfig:{
