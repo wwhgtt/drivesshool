@@ -4,6 +4,7 @@ angular.module("controllers.person",[])
 	$ionicPopup,
 	$location,
 	$reload,
+	$onBroad,
 	$window
 ){
 	//表明已经登录

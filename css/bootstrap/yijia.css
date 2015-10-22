@@ -432,15 +432,14 @@ a{
 	float: left;
 }
 .userImageTemp{
-	position: absolute;
-	top: 8%;
+	position: relative;
+	top: 40px;
 	left: 50%;
 	width: 120px;
 	margin-left: -60px;
 	border-radius: 60px;
-	/*margin-left: 20%;*/
-	/*margin-top: 5%;*/
-	margin-bottom: 15%
+	margin-bottom: 15%;
+	display:block;
 }
 .bindCoachTemp{
 	width:6em;
@@ -457,8 +456,9 @@ a{
 	background-color: #58c4ff;
 	border: none;
 	border-radius: 5px;
-	float: right;margin-right: 1em;
-	margin-top: 1.5em
+	float: right;
+	margin-right: 1em;
+	margin-top: 8px
 }
 .userInfoName{
 	height: 30px;

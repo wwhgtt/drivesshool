@@ -1,13 +1,12 @@
 <ion-view title="助驾帮-个人中心">
 	<ion-content>
-		<a href="/yja/fixName"><button class="bindCoachTempItem">修改姓名</button></a>
 		<div class="container">
 			<img ng-src="{{userInfo.avator.large}}" class="userImageTemp">
-			<div class="clear"></div>
-			<div class="content" style="width:100%;margin-top:40%">
+			<div class="content forPosition" style="width:100%;margin-top:100px">
 				<div class="mainBottom" style="margin-top:25px;margin-left:5%">
 					<span style="letter-spacing:2em">姓名</span>
 					<span style="padding-left:-1.5em">{{userInfo.name}}</span>
+					<span><a href="/yja/fixName"><button class="bindCoachTempItem">修改姓名</button></a></span>
 				</div>
 				<div class="mainBottom" style="margin-top:25px;margin-left:5%">
 					<span style="letter-spacing:2em">电话</span>
