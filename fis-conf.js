@@ -7,8 +7,10 @@ fis.match('*.png', {
 //   // url:"/hel$0"
 // });
 fis.match('all.js',{
-	useHash:true
+	useHash:true,
+	domain:"http://res.wx.idrv.com.cn"
 })
 fis.match('*.{css,eot,svg,ttf,woff}',{
+	domain:"http://res.wx.idrv.com.cn",
 	useHash:true
 })

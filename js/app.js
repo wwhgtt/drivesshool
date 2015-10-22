@@ -1,5 +1,5 @@
 angular.module("YJA",[
-    "templates-main",//在打包发布的时候，需要引入打包好的模板模块
+    //_TEMPLATES-MAIN_,//在打包发布的时候，需要引入打包好的模板模块
 	"ionic",
 	"controllers.yja",
 	"controllers.coachList",

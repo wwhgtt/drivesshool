@@ -26,23 +26,11 @@ module.exports = function(grunt){
 			dist:{
 				src:[
 					'lib/*.js',
-					'js/*.js',
-					'js/*/*.js',
+					'gruntOutPut/jsTemp/*.js',
+					'gruntOutPut/jsTemp/*/*.js',
 					'gruntOutPut/template/templates.js'
 				],
 				dest:'gruntOutPut/js/all.js'
-			}
-		},
-		uglify:{
-			main:{
-				options:{
-					compress:{
-						drop_console:true
-					}
-				},
-				files:{
-					"gruntOutPut/js/all.min.js":["gruntOutPut/js/all.js"]
-				}
 			}
 		},
 		copy:{
@@ -65,6 +53,40 @@ module.exports = function(grunt){
 				files:[
 					{expand: false, src: ['fis-conf.js'], dest: 'gruntOutPut/fis-conf.js',filter: 'isFile',flatten:true}
 				]
+			},
+			js:{
+				files:[
+					{expand: true, cwd:"js", src: ['**'], dest: 'gruntOutPut/jsTemp/',flatten:false}
+				]
+			},
+			systemConfig:{
+				files:[
+					{expand: false, src: ['systemConfigRelease.js'], dest: 'gruntOutPut/jsTemp/systemConfig.js',filter: 'isFile',flatten:true}
+				]
+			},
+			release:{
+				files:[
+					{expand: true, cwd:"gruntOutPut/production/", src: ['css/**'], dest: 'production/',flatten:false},
+					{expand: true, cwd:"gruntOutPut/production/", src: ['img/**'], dest: 'production/',flatten:false},
+					{expand: true, src: ['gruntOutPut/production/js/all_*.js'], dest: 'production/js/',flatten:true},
+					{expand: true, cwd:"gruntOutPut/production/", src: ['index.html'], dest: 'production/',flatten:false}
+				]
+			}
+		},
+		replace:{
+			appJs:{
+				options:{
+					patterns:[
+						{
+							match:"//_TEMPLATES-MAIN_",
+							replacement:'"templates-main"'
+						}
+					],
+					prefix:""
+				},
+				files: [
+					{src: ['js/app.js'], dest: 'gruntOutPut/jsTemp/app.js',expand: false, flatten: true}
+			    ]
 			}
 		}
 	})
@@ -74,6 +96,7 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-rename');
+	grunt.loadNpmTasks('grunt-replace');
 
 	grunt.registerTask('templateTask',['html2js:main']);
 	grunt.registerTask('cssTask',['cssmin']);
@@ -82,6 +105,20 @@ module.exports = function(grunt){
 	grunt.registerTask('fontTask',['copy:font']);
 	grunt.registerTask('imgTask',['copy:img']);
 	grunt.registerTask('indexHtmlTask',['copy:index']);
+<<<<<<< HEAD
 	grunt.registerTask('fisTask',['copy:fis'])
 	grunt.registerTask('default',['cssmin','templateTask','jsConcatTask','fontTask','imgTask','indexHtmlTask','fisTask']);
 }
+=======
+	grunt.registerTask('fisTask',['copy:fis']);
+	grunt.registerTask('appJsTask',['replace:appJs']);//替换app.js里的部分代码
+	grunt.registerTask('jsTask',['copy:js','copy:systemConfig']);
+	grunt.registerTask('default',['cssmin','templateTask','jsTask','appJsTask','jsConcatTask','fontTask','imgTask','indexHtmlTask','fisTask']);
+
+	grunt.registerTask('copyRelease',['copy:release']);
+}
+
+
+
+
+>>>>>>> origin/master
