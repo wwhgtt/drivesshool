@@ -110,7 +110,7 @@ angular.module("controllers.orderMuch",[])
 														if(type == "sunject3"){
 															//do nothing
 														}else if(type == "record"){
-															orderEle.content="不可约"+count+"人";
+															orderEle.content="已约"+count+"人";
 															orderEle.count=count;
 														}
 													}else if(poster == "student" && $scope.user.id == studentId){
