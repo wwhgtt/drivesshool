@@ -9,13 +9,13 @@ module.exports = function(grunt){
 			},
 			main:{
 				src:['template/*.html'],
-				dest:'gruntoutput/template/templates.js'
+				dest:'gruntOutPut/template/templates.js'
 			}
 		},
 		cssmin:{
 			combine:{
 				files:{
-					'gruntoutput/css/all.min.css':[
+					'gruntOutPut/css/bootstrap/all.min.css':[
 						"css/*.css",
 						"css/*/*.css"
 					]
@@ -28,9 +28,9 @@ module.exports = function(grunt){
 					'lib/*.js',
 					'js/*.js',
 					'js/*/*.js',
-					'gruntoutput/template/templates.js'
+					'gruntOutPut/template/templates.js'
 				],
-				dest:'gruntoutput/js/all.js'
+				dest:'gruntOutPut/js/all.js'
 			}
 		},
 		uglify:{
@@ -41,15 +41,29 @@ module.exports = function(grunt){
 					}
 				},
 				files:{
-					"gruntoutput/js/all.min.js":["gruntoutput/js/all.js"]
+					"gruntOutPut/js/all.min.js":["gruntOutPut/js/all.js"]
 				}
 			}
 		},
 		copy:{
-			main:{
+			font:{
 				files:[
-					{expand: false, src: ['www/js/all.min.js'], dest: '/Users/apple/Desktop/rishiqingAppUpdateServer/res/js/all.min.js',filter: 'isFile'},
-					{expand: false, src: ['www/css/all.min.css'], dest:'/Users/apple/Desktop/rishiqingAppUpdateServer/res/css/all.min.css',filter:'isFile'}
+					{expand: true, src: ['css/fonts/*'], dest: 'gruntOutPut/css/fonts/',filter: 'isFile',flatten:true}
+				]
+			},
+			img:{
+				files:[
+					{expand: true, src: ['img/**'], dest: 'gruntOutPut/img/',filter: 'isFile',flatten:true}
+				]
+			},
+			index:{
+				files:[
+					{expand: false, src: ['indexRelease.html'], dest: 'gruntOutPut/index.html',filter: 'isFile',flatten:true}
+				]
+			},
+			fis:{
+				files:[
+					{expand: false, src: ['fis-conf.js'], dest: 'gruntOutPut/fis-conf.js',filter: 'isFile',flatten:true}
 				]
 			}
 		}
@@ -59,12 +73,17 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-rename');
 
 	grunt.registerTask('templateTask',['html2js:main']);
 	grunt.registerTask('cssTask',['cssmin']);
 	grunt.registerTask('jsConcatTask',['concat']);
-	grunt.registerTask('copyTask',['copy'])
-	grunt.registerTask('default',['cssmin','templateTask','jsConcatTask']);
+	grunt.registerTask('copyTask',['copy']);
+	grunt.registerTask('fontTask',['copy:font']);
+	grunt.registerTask('imgTask',['copy:img']);
+	grunt.registerTask('indexHtmlTask',['copy:index']);
+	grunt.registerTask('fisTask',['copy:fis'])
+	grunt.registerTask('default',['cssmin','templateTask','jsConcatTask','fontTask','imgTask','indexHtmlTask','fisTask']);
 }
 
 
