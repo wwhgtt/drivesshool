@@ -26,8 +26,8 @@ module.exports = function(grunt){
 			dist:{
 				src:[
 					'lib/*.js',
-					'js/*.js',
-					'js/*/*.js',
+					'gruntOutPut/js/*.js',
+					'gruntOutPut/js/*/*.js',
 					'gruntOutPut/template/templates.js'
 				],
 				dest:'gruntOutPut/js/all.js'
@@ -65,6 +65,40 @@ module.exports = function(grunt){
 				files:[
 					{expand: false, src: ['fis-conf.js'], dest: 'gruntOutPut/fis-conf.js',filter: 'isFile',flatten:true}
 				]
+			},
+			js:{
+				files:[
+					{expand: false, src: ['js/**'], dest: 'gruntOutPut/',flatten:true}
+				]
+			},
+			systemConfig:{
+				files:[
+					{expand: false, src: ['systemConfigRelease.js'], dest: 'gruntOutPut/js/systemConfig.js',filter: 'isFile',flatten:true}
+				]
+			},
+			release:{
+				files:[
+					{expand: true, cwd:"gruntOutPut/production/", src: ['css/**'], dest: 'production/',flatten:false},
+					{expand: true, cwd:"gruntOutPut/production/", src: ['img/**'], dest: 'production/',flatten:false},
+					{expand: true, cwd:"gruntOutPut/production/", src: ['js/all_*.js'], dest: 'production/',flatten:false},
+					{expand: true, cwd:"gruntOutPut/production/", src: ['index.html'], dest: 'production/',flatten:false}
+				]
+			}
+		},
+		replace:{
+			appJs:{
+				options:{
+					patterns:[
+						{
+							match:"//_TEMPLATES-MAIN_",
+							replacement:'"templates-main"'
+						}
+					],
+					prefix:""
+				},
+				files: [
+					{src: ['js/app.js'], dest: 'gruntOutPut/js/app.js',expand: false, flatten: true}
+			    ]
 			}
 		}
 	})
@@ -74,6 +108,7 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-rename');
+	grunt.loadNpmTasks('grunt-replace');
 
 	grunt.registerTask('templateTask',['html2js:main']);
 	grunt.registerTask('cssTask',['cssmin']);
@@ -82,8 +117,12 @@ module.exports = function(grunt){
 	grunt.registerTask('fontTask',['copy:font']);
 	grunt.registerTask('imgTask',['copy:img']);
 	grunt.registerTask('indexHtmlTask',['copy:index']);
-	grunt.registerTask('fisTask',['copy:fis'])
-	grunt.registerTask('default',['cssmin','templateTask','jsConcatTask','fontTask','imgTask','indexHtmlTask','fisTask']);
+	grunt.registerTask('fisTask',['copy:fis']);
+	grunt.registerTask('appJsTask',['replace:appJs']);//替换app.js里的部分代码
+	grunt.registerTask('jsTask',['copy:js','copy:systemConfig']);
+	grunt.registerTask('default',['cssmin','templateTask','jsTask','appJsTask','jsConcatTask','fontTask','imgTask','indexHtmlTask','fisTask']);
+
+	grunt.registerTask('copyRelease',['copy:release']);
 }
 
 
