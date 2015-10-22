@@ -2,11 +2,7 @@ angular.module("YJA",[
 	"ionic",
 	"controllers.yja",
 	"controllers.coachList",
-	"controllers.message",
     "controllers.coachDetile",
-    "controllers.imgList",
-    "controllers.siteCoach",
-    "controllers.getHospitalSite",
     "controllers.reloadr",
     "controllers.register",
     "controllers.loginTemp",
@@ -17,16 +13,9 @@ angular.module("YJA",[
     "controllers.code",
     "controllers.fixName",
     "directives.coachList",
-    "directives.getMap",
     "directives.todayOrder",
     "directives.orderMuch",
-    "directives.belongFirst",
-    "directives.belongSecond",
     "directives.orderList",
-    "directives.belongThird",
-    "directives.imgList",
-    "directives.audioList",
-    "directives.lMap",
 	"services.common"
 ])
 .config(function(
@@ -64,43 +53,6 @@ angular.module("YJA",[
                 'menuContent':{
                     templateUrl:"template/coachDetile.html",
                     controller:"coachDetile"
-                }
-            }
-        })
-        .state('yja.message',{
-            url:'/message',
-            views:{
-                'menuContent':{
-                    templateUrl:'template/message.html',
-                    controller:'message'
-                }
-            }
-        })
-        .state('yja.getHospitalSite',{
-            url:'/getHospitalSite',
-            views:{
-                'menuContent':{
-                    templateUrl:'template/getHospitalSite.html',
-                    controller:'getHospitalSite'
-                }
-            }
-        })
-        ///yja/siteCoach/
-        .state('yja.siteCoach',{
-            url:'/siteCoach/:siteId',
-            views:{
-                'menuContent':{
-                    templateUrl:'template/siteCoach.html',
-                    controller:'siteCoach'
-                }
-            }
-        })
-        .state('yja.imgList',{
-            url:'/imgList/:coachId',
-            views:{
-                'menuContent':{
-                    templateUrl:'template/imgList.html',
-                    controller:'imgList'
                 }
             }
         })
