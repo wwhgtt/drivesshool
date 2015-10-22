@@ -26,23 +26,11 @@ module.exports = function(grunt){
 			dist:{
 				src:[
 					'lib/*.js',
-					'gruntOutPut/js/*.js',
-					'gruntOutPut/js/*/*.js',
+					'gruntOutPut/jsTemp/*.js',
+					'gruntOutPut/jsTemp/*/*.js',
 					'gruntOutPut/template/templates.js'
 				],
 				dest:'gruntOutPut/js/all.js'
-			}
-		},
-		uglify:{
-			main:{
-				options:{
-					compress:{
-						drop_console:true
-					}
-				},
-				files:{
-					"gruntOutPut/js/all.min.js":["gruntOutPut/js/all.js"]
-				}
 			}
 		},
 		copy:{
@@ -68,19 +56,19 @@ module.exports = function(grunt){
 			},
 			js:{
 				files:[
-					{expand: false, src: ['js/**'], dest: 'gruntOutPut/',flatten:true}
+					{expand: true, src: ['js/**'], dest: 'gruntOutPut/jsTemp/',filter:'isFile',flatten:true}
 				]
 			},
 			systemConfig:{
 				files:[
-					{expand: false, src: ['systemConfigRelease.js'], dest: 'gruntOutPut/js/systemConfig.js',filter: 'isFile',flatten:true}
+					{expand: false, src: ['systemConfigRelease.js'], dest: 'gruntOutPut/jsTemp/systemConfig.js',filter: 'isFile',flatten:true}
 				]
 			},
 			release:{
 				files:[
 					{expand: true, cwd:"gruntOutPut/production/", src: ['css/**'], dest: 'production/',flatten:false},
 					{expand: true, cwd:"gruntOutPut/production/", src: ['img/**'], dest: 'production/',flatten:false},
-					{expand: true, cwd:"gruntOutPut/production/", src: ['js/all_*.js'], dest: 'production/',flatten:false},
+					{expand: true, src: ['gruntOutPut/production/js/all_*.js'], dest: 'production/js/',flatten:true},
 					{expand: true, cwd:"gruntOutPut/production/", src: ['index.html'], dest: 'production/',flatten:false}
 				]
 			}
@@ -97,7 +85,7 @@ module.exports = function(grunt){
 					prefix:""
 				},
 				files: [
-					{src: ['js/app.js'], dest: 'gruntOutPut/js/app.js',expand: false, flatten: true}
+					{src: ['js/app.js'], dest: 'gruntOutPut/jsTemp/app.js',expand: false, flatten: true}
 			    ]
 			}
 		}
