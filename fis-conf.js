@@ -1,4 +1,4 @@
-fis.match('project.fileType.image', {
+fis.match('*.png', {
   optimizer: fis.plugin('png-compressor')
 });
 // fis.match('*.{png,js,css,eot,svg,ttf,woff}', {
