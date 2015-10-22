@@ -115,7 +115,7 @@ angular.module("controllers.coachDetile",[])
 				}
 				wx.config({
 				    debug: false, 
-				    appId: 'wx49a9db1095de4f65', 
+				    appId: 'wx8bbeb53d26dbe214', 
 				    timestamp:timestamp, 
 				    nonceStr: nonceStr,
 				    signature:signature,

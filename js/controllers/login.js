@@ -38,7 +38,7 @@ angular.module("controllers.loginTemp",[])
 								$window.location.href=callback;
 							}
 						}else{
-							$window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx49a9db1095de4f65&redirect_uri=http%3a%2f%2fparty.idrv.com.cn%2fyja%2fcode&response_type=code&scope=snsapi_userinfo&state=wxBind_._"+callback+"#wechat_redirect";
+							$window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx49a9db1095de4f65&redirect_uri=http%3a%2f%2fwx.idrv.com.cn%2fyja%2fcode&response_type=code&scope=snsapi_userinfo&state=wxBind_._"+callback+"#wechat_redirect";
 						}
 					}else if(result && result.errorInfo){
 						var errorInfo=result.errorInfo;

@@ -105,11 +105,6 @@ module.exports = function(grunt){
 	grunt.registerTask('fontTask',['copy:font']);
 	grunt.registerTask('imgTask',['copy:img']);
 	grunt.registerTask('indexHtmlTask',['copy:index']);
-<<<<<<< HEAD
-	grunt.registerTask('fisTask',['copy:fis'])
-	grunt.registerTask('default',['cssmin','templateTask','jsConcatTask','fontTask','imgTask','indexHtmlTask','fisTask']);
-}
-=======
 	grunt.registerTask('fisTask',['copy:fis']);
 	grunt.registerTask('appJsTask',['replace:appJs']);//替换app.js里的部分代码
 	grunt.registerTask('jsTask',['copy:js','copy:systemConfig']);
@@ -117,8 +112,3 @@ module.exports = function(grunt){
 
 	grunt.registerTask('copyRelease',['copy:release']);
 }
-
-
-
-
->>>>>>> origin/master
