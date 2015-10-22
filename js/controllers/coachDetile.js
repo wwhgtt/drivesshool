@@ -127,7 +127,7 @@ angular.module("controllers.coachDetile",[])
 				wx.ready(function(){
 					wx.onMenuShareTimeline({
 				        title: '强烈推荐我的教练', // 分享标题
-					    link: 'http://party.idrv.com.cn/coachDetaile?id='+coachId, // 分享链接
+					    link: 'http://party.idrv.com.cn/coachDetaile?id='+coachId, // 分享链接  寻找教练webview
 					    imgUrl: avator, // 分享图标
 				        success: function () { 
 				            $window.location.href="/yja/person";
