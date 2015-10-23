@@ -55,7 +55,7 @@ angular.module("controllers.orderMuch",[])
 		orderTemp.date = currentDayStr;
 		orderTemp.weekDay = $scope.getWeekDay(currentDay.isoWeekday());
 		orderTemp.today = todayArr;
-		$scope.orderList.push(orderTemp);
+		$scope.orderList.push(orderTemp); 
 	}
 	console.log("orderList",$scope.orderList);
 	$reload.reload(function(err,result){
@@ -180,9 +180,12 @@ angular.module("controllers.orderMuch",[])
 									if(timePiece == timeTemp){
 										$scope.orderList[date]["today"][index].contentItem = "已预约";
 										$scope.orderList[date]["today"][index].id=orderID;
-										// if(type == "subject3"){
-										$scope.orderList[date]["today"][index].count=$scope.orderList[date]["today"][index].count+1;
-										// }
+										if(type == "subject3"){
+											$scope.orderList[date]["today"][index].count=$scope.orderList[date]["today"][index].count+1;
+										}else{
+											var count = orderEle.count+1;
+											$scope.orderList[date]["today"][index].content="已约"+count+"人";
+										}
 										break;
 									}
 								}

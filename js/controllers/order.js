@@ -11,17 +11,6 @@ angular.module("controllers.orderTemp",[])
 	$window
 ){
 	$scope.user={id:""};
-	// $onBroad.onBroad("13888880111","qqqqqq",function(err,result){
-	// 	if(err){
-	// 		alert("eror")
-	// 	}else{
-	// 		if (result && result.success == true) {
-	// 			$scope.user.id=result.userInfo.id;
-	// 		}else{
-	// 			alert("UNKNOW")
-	// 		}
-	// 	}
-	// })
 	$scope.getWeekDay = function(date){
 		switch(date){
 			case 1:
