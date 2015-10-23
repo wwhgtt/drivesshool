@@ -23,7 +23,7 @@ angular.module("controllers.register",[])
 					    title: 'sorry，系统出错'
 					});
             	}else{
-            		if(result && result.success == true){
+            		if(result && result.exists == true){
             			$ionicPopup.alert({
 						    title: '该号码已注册,请登录'
 						});
