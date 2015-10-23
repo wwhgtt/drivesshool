@@ -41,7 +41,6 @@ angular.module("controllers.coachList",[])
 				var timestamp=result.result.timestamp,
 					nonceStr=result.result.noncestr;
 					signature=result.result.signature;
-					alert(signature);
 				wx.config({
 				    debug: false, 
 				    appId: 'wx8bbeb53d26dbe214', 
