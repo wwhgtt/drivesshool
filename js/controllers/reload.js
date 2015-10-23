@@ -27,11 +27,7 @@ angular.module("controllers.reloadr",[])
 				if(!openId){
 					$window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8bbeb53d26dbe214&redirect_uri=http%3a%2f%2fwx.idrv.com.cn%2fyja%2fcode&response_type=code&scope=snsapi_userinfo&state=wxBind_._"+callback+"#wechat_redirect";
 				}else{
-					if(callback.indexOf("order") !== -1){
-						$window.location.href="/yja/judgeMent?callback="+callback;
-					}else{
-						$window.location.href=callback;
-					}
+					$window.location.href=callback;
 				}
 			}else{
 				$window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8bbeb53d26dbe214&redirect_uri=http%3a%2f%2fwx.idrv.com.cn%2fyja%2fcode&response_type=code&scope=snsapi_base&state=wxLogin_._"+callback+"#wechat_redirect";

@@ -8,8 +8,6 @@ angular.module("controllers.code",[])
 	$wxLogin,
 	$reload
 ){
-	//系统刚进来时肯定是没有code的
-	// alert("in")
 	var getQueryStr=function(code){
 		var reg = new RegExp("(^|&)" + code + "=([^&]*)(&|$)", "i");
 	    var r = window.location.search.replace(/\?/g, "&").substr(1).match(reg);
@@ -20,7 +18,6 @@ angular.module("controllers.code",[])
 	    } 
 	}
 	var codeMax=getQueryStr("code");
-	// alert(codeMax)
 	var getQueryString=function(state){
 		var reg = new RegExp("(^|&)" + state + "=([^&]*)(&|$)", "i");
 	    var r = window.location.search.replace(/\?/g, "&").substr(1).match(reg);
@@ -33,26 +30,16 @@ angular.module("controllers.code",[])
 	var state=getQueryString("state")+"";
 	var callbackEncode=state.split("_._")[1];
 	var callback=decodeURIComponent(callbackEncode);
-	// alert(callback);
 	if(state.split("_._")[0] == "wxLogin"){
-		// alert(callback);
 		$wxLogin.wxLogin(codeMax,function(err,result){
-			// alert("IN")
 			if(err){
 				$ionicPopup.alert({
 					title:"sorry,系统出错"
 				})
 			}else{
 				if(result && result.success == true){
-					//表明可以用微信帐号登录  可以开始预约了
-					// alert("IN");
-					if(callback.indexOf("order") !== -1){
-						$window.location.href="/yja/judgeMent?callback="+callback;
-					}else{
-						$window.location.href=callback;
-					}
+					$window.location.href=callback;
 				}else if(result && result.success == false){ //code只能用一次
-					// alert(callback);
 					$window.location.href="/yja/register?callback="+callback;
 				}
 			}
@@ -64,16 +51,9 @@ angular.module("controllers.code",[])
 					title:"sorry,系统出错"
 				})
 			}else{
-				// alert(callback);
 				if(result && result.success == true){
-					//绑定成功
-					if(callback.indexOf("order") !== -1){
-						$window.location.href="/yja/judgeMent?callback="+callback;
-					}else{
-						$window.location.href=callback;
-					}
+					$window.location.href=callback;
 				}else if(result && result.success == false){ //code只能用一次
-					// alert("callback")
 					$ionicPopup.alert({
 						title:"绑定出错，请退出重试"
 					})

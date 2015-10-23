@@ -26,7 +26,9 @@ angular.module("controllers.person",[])
 				var errorInfo=result.errorInfo;
 				if(errorInfo == "是学员身份，但找不到绑定的教练"){
 					$ionicPopup.confirm({
-						title:"您是学员身份，但未绑定教练，现在去绑定教练吗"
+						title:"您是学员身份，但未绑定教练，现在去绑定教练吗",
+						cancelText: '取消',
+						okText: '确定'
 					}).then(function(result){
 						if(result == true){
 							$window.location.href="/yja/coachList";

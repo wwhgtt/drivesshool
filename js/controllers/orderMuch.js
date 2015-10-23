@@ -57,6 +57,15 @@ angular.module("controllers.orderMuch",[])
 		orderTemp.today = todayArr;
 		$scope.orderList.push(orderTemp); 
 	}
+	$scope.changeLan=function(lan){
+		if(lan == "Morning"){
+			return "上午"
+		}else if(lan == "Afternoon"){
+			return "下午"
+		}else {
+			return "晚上"
+		}
+	}
 	console.log("orderList",$scope.orderList);
 	$reload.reload(function(err,result){
 		if(err){
@@ -158,7 +167,9 @@ angular.module("controllers.orderMuch",[])
 				time=20;
 			}
 			var confirm=$ionicPopup.confirm({
-				title:"您确定要预约该时段吗?"
+				title:"您确定要预约该时段吗?",
+				cancelText: '取消',
+				okText: '确定'
 			})
 			confirm.then(function(result){
 				if(result == true){
@@ -203,7 +214,9 @@ angular.module("controllers.orderMuch",[])
 			})
 		}else if(contentItem == "已预约"){
 			var confirm=$ionicPopup.confirm({
-				title:"您要取消预约该时段吗?"
+				title:"您要取消预约该时段吗?",
+				cancelText: '取消',
+				okText: '确定'
 			})
 			confirm.then(function(result){
 				if(result == true){

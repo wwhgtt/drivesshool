@@ -166,7 +166,9 @@ angular.module("controllers.orderTemp",[])
 			}
 			// var time=html.substr(0,2);
 			var confirm=$ionicPopup.confirm({
-				title:"您确定要预约该时段吗?"
+				title:"您确定要预约该时段吗?",
+				cancelText: '取消',
+				okText: '确定'
 			})
 			confirm.then(function(result){
 				if(result == true){
@@ -219,7 +221,9 @@ angular.module("controllers.orderTemp",[])
 			})
 		}else if(contentItem == "已预约"){
 			var confirm=$ionicPopup.confirm({
-				title:"您要取消预约该时段吗?"
+				title:"您要取消预约该时段吗?",
+				cancelText: '取消',
+				okText: '确定'
 			})
 			confirm.then(function(result){
 				if(result == true){
