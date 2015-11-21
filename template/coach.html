@@ -1,8 +1,15 @@
-<a class="item item-avatar coachItem"  ng-href="/yja/coachDetile/{{coach.id}}">
-	<img ng-src="{{checkCoachAvator(coach)}}" style="margin-top:0px;"></p>
-	<h2 >{{coach.name}}</h2> 
-	<!-- <div class="clear"></div> -->
-	<p ><i style="color:#00BFFF;margin-left:1em">{{coach.phone}}</i></p>
-	<!-- <img src="./img/more.png" id="coachMoreImg" /> -->
-	<p >{{coach.site.name}}</p>
+<a class="item item-avatar coachItem" ng-click="transition(coach.Id)">
+	<img ng-src="{{coach.Avator + '_large'}}" class="avator-line" style="max-width: 60px;max-height: 60px">
+	<div class="myLineTest" style="margin-left:60px">
+		<p class="header-line" style="width:250px">
+			<span>{{coach.Name}}</span>
+			<span style="margin-left:8px"><img ng-src="{{coachItem.sexImg}}" style="width:10px" /></span>
+			<span style="float:right;color:#a876bf">￥{{coach.Price}}</span>
+		</p>
+		<p class="descirbe" style="margin-top:5px;margin-bottom:5px;padding-left:0.5em">{{coach.Introduction}}</p>
+		<p class="distance-line">
+			<span ng-hide="!coach.TeachSite"><img src="./img/icon_local.png"></span>
+			<span style="margin-left:8px">{{coach.TeachSite}}</span>
+		</p>
+	</div>
 </a>

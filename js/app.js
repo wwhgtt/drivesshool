@@ -2,27 +2,19 @@ angular.module("YJA",[
     //_TEMPLATES-MAIN_,//在打包发布的时候，需要引入打包好的模板模块
 	"ionic",
 	"controllers.yja",
-	"controllers.coachList",
     "controllers.coachDetile",
     "controllers.reloadr",
     "controllers.register",
-    "controllers.loginTemp",
-    "controllers.orderTemp",
-    "controllers.person",
-    "controllers.judgeMent",
-    "controllers.orderMuch",
-    "controllers.code",
-    "controllers.fixName",
+    "controllers.searchCoach",
     "directives.coachList",
-    "directives.todayOrder",
-    "directives.orderMuch",
-    "directives.orderList",
 	"services.common"
 ])
 .config(function(
 	$stateProvider,
 	$locationProvider,
-	$urlRouterProvider
+	$urlRouterProvider,
+    $httpProvider,
+    $rootScopeProvider
 ){   
 	$stateProvider
 		.state('yja',{
@@ -30,15 +22,6 @@ angular.module("YJA",[
 			templateUrl:"template/menu.html",
 			controller:"yja"
 		})
-		.state('yja.coachList',{
-            url:"/coachList",
-            views:{
-                'menuContent':{
-                    templateUrl:"template/coachList.html",
-                    controller:"coachList"
-                }
-            }
-        })
         .state('yja.reload',{
             url:"/reload",
             views:{
@@ -57,6 +40,15 @@ angular.module("YJA",[
                 }
             }
         })
+        .state('yja.searchCoach',{
+            url:"/searchCoach",
+            views:{
+                'menuContent':{
+                    templateUrl:"template/searchCoach.html",
+                    controller:"searchCoach"
+                }
+            }
+        })
         .state('yja.register',{
             url:'/register',
             views:{
@@ -66,69 +58,49 @@ angular.module("YJA",[
                 }
             }
         })
-         .state('yja.login',{
-            url:'/login',
-            views:{
-                'menuContent':{
-                    templateUrl:'template/login.html',
-                    controller:'loginTemp'
-                }
-            }
-        })
-        .state('yja.order',{
-            url:'/order',
-            views:{
-                'menuContent':{
-                    templateUrl:'template/orderTemp.html',
-                    controller:'orderTemp'
-                }
-            }
-        })
-        .state('yja.person',{
-            url:'/person',
-            views:{
-                'menuContent':{
-                    templateUrl:'template/person.html',
-                    controller:'person'
-                }
-            }
-        })
-        .state('yja.fixName',{
-            url:'/fixName',
-            views:{
-                'menuContent':{
-                    templateUrl:'template/fixName.html',
-                    controller:'fixName'
-                }
-            }
-        })
-        .state('yja.code',{
-            url:'/code',
-            views:{
-                'menuContent':{
-                    templateUrl:'template/code.html',
-                    controller:'code'
-                }
-            }
-        })
-        .state('yja.judgeMent',{
-            url:'/judgeMent',
-            views:{
-                'menuContent':{
-                    templateUrl:'template/judgeMent.html',
-                    controller:'judgeMent'
-                }
-            }
-        })
-        .state('yja.orderMuch',{
-            url:'/orderMuch',
-            views:{
-                'menuContent':{
-                    templateUrl:'template/orderMuch.html',
-                    controller:'orderMuch'
-                }
-            }
-        })
 		// $urlRouterProvider.otherwise("/yja/homePage");
 		$locationProvider.html5Mode(true);
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+
+
+    /**
+     * The workhorse; converts an object to x-www-form-urlencoded serialization.
+     * @param {Object} obj
+     * @return {String}
+     */
+    var param = function (obj) {
+        var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
+
+        for (name in obj) {
+            value = obj[name];
+
+            if (value instanceof Array) {
+                for (i = 0; i < value.length; ++i) {
+                    subValue = value[i];
+                    fullSubName = name + '[' + i + ']';
+                    innerObj = {};
+                    innerObj[fullSubName] = subValue;
+                    query += param(innerObj) + '&';
+                }
+            }
+            else if (value instanceof Object) {
+                for (subName in value) {
+                    subValue = value[subName];
+                    fullSubName = name + '[' + subName + ']';
+                    innerObj = {};
+                    innerObj[fullSubName] = subValue;
+                    query += param(innerObj) + '&';
+                }
+            }
+            else if (value !== undefined && value !== null)
+                query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
+        }
+
+        return query.length ? query.substr(0, query.length - 1) : query;
+    };
+
+    // Override $http service's default transformRequest
+    $httpProvider.defaults.transformRequest = [function (data) {
+        return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
+    }];
 }) 

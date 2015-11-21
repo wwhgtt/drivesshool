@@ -69,10 +69,8 @@ angular.module("services.common",[])
 ){
 	return{
 		getDetile:function(coachId,callback){
-			$http.get(BASE_URL + "/basic/search/coach/byId",{
-				params:{
-					coachId:coachId
-				}
+			$http.post(BASE_URL + "/getcoach/",{
+				coachid:coachId
 			})
 			.success(function(data){
 				if(callback)callback(null,data);
@@ -223,9 +221,10 @@ angular.module("services.common",[])
 	$http
 ){
 	return {
-		bindCoach:function(coachId,callback){
-			$http.post(BASE_URL + "/basic/coach/bind",{
-				coachId:coachId
+		bindCoach:function(studentid,coachId,callback){
+			$http.post(BASE_URL + "/bindcoach/",{
+				studentid:studentid,
+				coachid:coachId
 			})
 			.success(function(data){
 				if(callback)callback(null,data);  
@@ -242,10 +241,8 @@ angular.module("services.common",[])
 ){
 	return {
 		loginCode:function(phoneNumber,callback){
-			$http.get(BASE_URL + "/basic/register/code",{
-				params:{
-					phone:phoneNumber
-				}
+			$http.post(BASE_URL + "/setmsgcode/",{
+				phone:phoneNumber
 			})
 			.success(function(data){
 				if(callback)callback(null,data);  
@@ -261,11 +258,10 @@ angular.module("services.common",[])
 	$http
 ){
 	return {
-		register:function(code,password,extra,callback){
-			$http.post(BASE_URL + "/basic/register/addUser",{
-				code:code,
-				pwd:password,
-				extra:extra
+		register:function(code,phoneNumber,callback){
+			$http.post(BASE_URL + "/loginin/",{
+				verifyCode:code,
+				phone:phoneNumber
 			})
 			.success(function(data){
 				if(callback)callback(null,data);  
@@ -319,7 +315,7 @@ angular.module("services.common",[])
 ){
 	return {
 		reload:function(callback){
-			$http.get(BASE_URL + "/basic/user/reload",{
+			$http.post(BASE_URL + "/tryloginon/",{
 				
 			})
 			.success(function(data){
@@ -430,6 +426,45 @@ angular.module("services.common",[])
 				params:{
 					phone:phoneNumber
 				}
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
+//获取openID
+.service("$getOpenID",function(
+	$http
+){
+	return {
+		getOpenID:function(code,state,callback){
+			$http.post(BASE_URL + "/bindopenId/",{
+				wxcode:code,
+				userid:state
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
+//获取教练
+.service("$getcoachList",function(
+	$http
+){
+	return {
+		getcoachList:function(coachName,callback){
+			$http.post(BASE_URL + "/getcoachlist/",{
+				// params:{
+					keyvalue:coachName
+				// }
 			})
 			.success(function(data){
 				if(callback)callback(null,data);  

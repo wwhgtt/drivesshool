@@ -1,0 +1,22 @@
+<ion-view title="助驾帮-教练">
+	<ion-content>
+		<div class="header">
+			<label class="item item-input anoSearch" >
+			   <i class="icon ion-search placeholder-icon "></i>
+			   <input type="text" placeholder="请输入教练名字" ng-model="coach.key" class="coachType">
+			</label>
+			<button class="anosearchButton">搜索</button>
+		</div>
+		<div class="list" ng-show="coachShow" style="border:1px solid #f2f2f4;width:100%">
+			<coach-list ng-repeat="(key,coach) in coachList" style="width:100%"></coach-list>
+		</div>
+		<div class="container searchCoach">
+			<label class="item item-input coachSearch" >
+			   <i class="icon ion-search placeholder-icon"></i>
+			   <input type="text" placeholder="请输入教练名字" ng-model="coach.key" class="coachInput">
+			</label>
+			<br>
+			<button class="serchButton">搜索</button>
+		</div>
+	</ion-content>
+</ion-view>
