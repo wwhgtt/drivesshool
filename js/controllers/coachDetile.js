@@ -115,7 +115,7 @@ angular.module("controllers.coachDetile",[])
 				}
 			})
 		}else{
-			$window.location.href="www.baidu.com";
+			$(this).attr("href","www.baidu.com");
 		}
 	}
 	// var sUserAgent = navigator.userAgent.toLowerCase();

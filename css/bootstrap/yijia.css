@@ -321,6 +321,8 @@ a{
 }
 .footButton{
 	height: 50px;
+	line-height: 50px;
+	text-align: center;
 	position: fixed;
 	bottom: 5px;
 	width: 90%;
