@@ -85,12 +85,12 @@ angular.module("controllers.coachDetile",[])
 	}
 	var studentid=getQueryStr("studentid");
 	if(studentid == "null" || studentid == ""){
-		$(".forHideEvent").html("我要制作");
+		$(".footButton").html("我要制作");
 	}else{
 		//do nothing
 	}
 	$scope.bindCoach=function(){
-		var html=$(".forHideEvent").html();
+		var html=$(".footButton").html();
 		if(html == "绑定教练"){
 			$bindCoach.bindCoach(studentid,coachId,function(err,result){
 				if (err){
