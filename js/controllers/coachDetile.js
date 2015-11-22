@@ -99,7 +99,7 @@ angular.module("controllers.coachDetile",[])
 			}else{
 				if(result && result.result == true){
 					$ionicPopup.alert({
-					    title: "申请成功,请等待教练同意"
+					    title: "绑定成功"
 					}).then(function(result){
 						if(result == true){
 							// $window.location.href="/yja/person";
