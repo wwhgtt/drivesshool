@@ -85,34 +85,38 @@ angular.module("controllers.coachDetile",[])
 	}
 	var studentid=getQueryStr("studentid");
 	if(studentid == "null" || studentid == ""){
-		$scope.studentHaveId = false;
-		$(".forHideEvent").css("margin-bottom","0px");
+		$(".forHideEvent").html("我要制作");
 	}else{
-		$scope.studentHaveId = true;
+		//do nothing
 	}
 	$scope.bindCoach=function(){
-		$bindCoach.bindCoach(studentid,coachId,function(err,result){
-			if (err){
-				$ionicPopup.alert({
-				    title: "sorry,访问出错"
-				});
-			}else{
-				if(result && result.result == true){
+		var html=$(".forHideEvent").html();
+		if(html == "绑定教练"){
+			$bindCoach.bindCoach(studentid,coachId,function(err,result){
+				if (err){
 					$ionicPopup.alert({
-					    title: "绑定成功"
-					}).then(function(result){
-						if(result == true){
-							// $window.location.href="/yja/person";
-						}
-					})
-				}else if(result && result.msg){
-					var msg=result.msg;
-					$ionicPopup.alert({
-					    title:msg
+					    title: "sorry,访问出错"
 					});
+				}else{
+					if(result && result.result == true){
+						$ionicPopup.alert({
+						    title: "绑定成功"
+						}).then(function(result){
+							if(result == true){
+								// $window.location.href="/yja/person";
+							}
+						})
+					}else if(result && result.msg){
+						var msg=result.msg;
+						$ionicPopup.alert({
+						    title:msg
+						});
+					}
 				}
-			}
-		})
+			})
+		}else{
+			$window.location.href="www.baidu.com";
+		}
 	}
 	// var sUserAgent = navigator.userAgent.toLowerCase();
 	// if(sUserAgent.indexOf("ipad") !== -1 ||sUserAgent.indexOf("iphone") !== -1){
