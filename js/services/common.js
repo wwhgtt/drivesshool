@@ -69,7 +69,7 @@ angular.module("services.common",[])
 ){
 	return{
 		getDetile:function(coachId,callback){
-			$http.post(BASE_URL + "/getcoach/",{
+			$http.post(BASE_URL + "/helpdrv/getcoach/",{
 				coachid:coachId
 			})
 			.success(function(data){
@@ -222,7 +222,7 @@ angular.module("services.common",[])
 ){
 	return {
 		bindCoach:function(studentid,coachId,callback){
-			$http.post(BASE_URL + "/bindcoach/",{
+			$http.post(BASE_URL + "/helpdrv/bindcoach/",{
 				studentid:studentid,
 				coachid:coachId
 			})
@@ -241,7 +241,7 @@ angular.module("services.common",[])
 ){
 	return {
 		loginCode:function(phoneNumber,callback){
-			$http.post(BASE_URL + "/setmsgcode/",{
+			$http.post(BASE_URL + "/helpdrv/setmsgcode/",{
 				phone:phoneNumber
 			})
 			.success(function(data){
@@ -259,7 +259,7 @@ angular.module("services.common",[])
 ){
 	return {
 		register:function(code,phoneNumber,callback){
-			$http.post(BASE_URL + "/loginin/",{
+			$http.post(BASE_URL + "/helpdrv/loginin/",{
 				verifyCode:code,
 				phone:phoneNumber
 			})
@@ -315,7 +315,7 @@ angular.module("services.common",[])
 ){
 	return {
 		reload:function(callback){
-			$http.post(BASE_URL + "/tryloginon/",{
+			$http.post(BASE_URL + "/helpdrv/tryloginon/",{
 				
 			})
 			.success(function(data){
@@ -417,32 +417,13 @@ angular.module("services.common",[])
 		}
 	}
 })
-.service("$searchPhone",function(
-	$http
-){
-	return {
-		searchPhone:function(phoneNumber,callback){
-			$http.get(BASE_URL + "/basic/register/checkPhone",{
-				params:{
-					phone:phoneNumber
-				}
-			})
-			.success(function(data){
-				if(callback)callback(null,data);  
-			})
-			.error(function(err){
-				if(callback)callback(err);
-			})
-		}
-	}
-})
 //获取openID
 .service("$getOpenID",function(
 	$http
 ){
 	return {
 		getOpenID:function(code,state,callback){
-			$http.post(BASE_URL + "/bindopenId/",{
+			$http.post(BASE_URL + "/helpdrv/bindopenId/",{
 				wxcode:code,
 				userid:state
 			})
@@ -461,7 +442,7 @@ angular.module("services.common",[])
 ){
 	return {
 		getcoachList:function(coachName,callback){
-			$http.post(BASE_URL + "/getcoachlist/",{
+			$http.post(BASE_URL + "/helpdrv/getcoachlist/",{
 				// params:{
 					keyvalue:coachName
 				// }
