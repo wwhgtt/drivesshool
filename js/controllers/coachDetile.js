@@ -84,10 +84,11 @@ angular.module("controllers.coachDetile",[])
 	    } 
 	}
 	var studentid=getQueryStr("studentid");
-	if(studentid == "null" || studentid == ""){
+	if(studentid == "null" || studentid == "" || studentid == null){
 		$(".footButton").html("我要制作");
-	}else{
-		//do nothing
+	}else if(studentid == "only"){
+		$scope.onlyStudent = true;
+		$(".forHideEvent").css("margin-bottom","0px");
 	}
 	$scope.bindCoach=function(){
 		var html=$(".footButton").html();

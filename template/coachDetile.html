@@ -43,7 +43,7 @@
 			<span>个人简介</span><span style="padding-left:24px;overflow:hidden" ><strong>{{coach.Introduction}}</strong></span>
 		</div>
 	</ion-content>
-	<div class="footerr">
+	<div class="footerr" ng-hide="onlyStudent">
 	</div>
-	<button class="footButton" ng-click="bindCoach()" >绑定教练</button>
+	<button class="footButton" ng-click="bindCoach()" ng-hide="onlyStudent">绑定教练</button>
 </ion-view>

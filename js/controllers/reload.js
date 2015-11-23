@@ -30,7 +30,7 @@ angular.module("controllers.reloadr",[])
 					var CoachId=student.CoachId;
 					var studentId=student.Id;
 					if(CoachId !== "" && CoachId !== 0){
-						$window.location.href="/yja/coachDetile/"+CoachId;
+						$window.location.href="/yja/coachDetile/"+CoachId+"?studentid=only";
 					}else{
 						$window.location.href="/yja/searchCoach?studentId="+studentId;
 					}
@@ -63,9 +63,9 @@ angular.module("controllers.reloadr",[])
 					var coachId=student.CoachId;
 					var studentId=student.Id;
 					if(!coachId && coachId !== "0"){
-						$window.location.href="/yja/searchCoach?studentId="+studentId;;
+						$window.location.href="/yja/searchCoach?studentId="+studentId;
 					}else{
-						$window.location.href="/yja/coachDetile/coachId";
+						$window.location.href="/yja/coachDetile/"+coachId+"?studentid=only";
 					}
 				}else if(result && result.msg){
 					var msg=result.msg;
