@@ -4,7 +4,6 @@ angular.module("controllers.register",[])
 	$loginCode,
 	$ionicPopup,
 	$register,
-	$searchPhone,
 	$window
 ){
 	// console.log("$scope",$scope)
