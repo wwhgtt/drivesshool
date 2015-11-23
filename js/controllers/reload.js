@@ -56,31 +56,17 @@ angular.module("controllers.reloadr",[])
 					title:"sorry,系统出错"
 				})
 			}else{
-				if(result && result.openid !== ""){
+				if(result && result.result == true){
 					//获取openid成功
 					//查看用户信息里面是否有教练字段，防止隔几天登陆时信息缺失
-					$reload.reload(function(err,result){
-						if(err){
-							$ionicPopup.alert({
-								title:"sorry,系统出错"
-							})
-						}else{
-							if(result && result.result == true){
-								//接下来查看用户是否有openid,以及教练字段
-								//有教练字段 直接查看教练，没有教练字段，跳转到/yja/searchCoach,有教练字段，拿到教练ID 跳转到/yja/coachDetile/:coachId
-								var student=result.student;
-								var coachId=student.CoachId;
-								var studentId=student.Id;
-								if(!coachId && coachId !== "0"){
-									$window.location.href="/yja/searchCoach?studentId="+studentId;;
-								}else{
-									$window.location.href="/yja/coachDetile/coachId";
-								}
-							}else{//code == -2 表示没有登录状态
-								$window.location.href="/yja/register"
-							}
-						}
-					})
+					var student=result.student;
+					var coachId=student.CoachId;
+					var studentId=student.Id;
+					if(!coachId && coachId !== "0"){
+						$window.location.href="/yja/searchCoach?studentId="+studentId;;
+					}else{
+						$window.location.href="/yja/coachDetile/coachId";
+					}
 				}else if(result && result.msg){
 					var msg=result.msg;
 					$ionicPopup.alert({
