@@ -138,7 +138,7 @@ angular.module("controllers.coachDetile",[])
 					nonceStr=result.noncestr;
 					signature=result.signature;
 				wx.config({
-				    debug: true, 
+				    debug: false, 
 				    appId: 'wx8bbeb53d26dbe214', 
 				    timestamp:timestamp, 
 				    nonceStr: nonceStr,
