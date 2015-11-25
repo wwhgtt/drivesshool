@@ -96,7 +96,7 @@ a{
 	position: absolute;
 	top:33%;
 	left:7%;
-	border-radius: 10px; 
+	border-radius: 4px; 
 }
 .coachSubmit{
 	width:23%;
@@ -615,22 +615,15 @@ a{
 .serchButton{
 	width: 50%;
 	position: absolute;
-	top: 45%;
+	top: 48%;
 	left: 25%;
 	height: 50px;
-	border: 2px solid white;
-	border-radius: 10px;
-	opacity: 0.3;
-	color: #2c2544;
-	font-weight:800;
-	letter-spacing: 1em;
-	padding-left: 1em
 }
 .anoSearch{
-	width: 76%;
+	width: 74%;
 	margin-left: 2%;
 	padding-top: 10px;
-	border-radius: 8px;
+	border-radius: 4px;
 	float: left;
 }
 .header{
@@ -644,11 +637,12 @@ a{
 	width: 20%;
 	color: white;
 	height: 50px;
-	line-height: 50px;
-	border: 2px solid white;
-	border-radius: 8px;
+	font-size: 16px;
+	/*line-height: 50px;*/
+	border: 1px solid white;
+	border-radius: 4px;
 	background-color: #a876bf;
-	margin-left: 1%;
+	margin-left: 2%;
 }
 .header-line span{
 	font-size: 18px;
