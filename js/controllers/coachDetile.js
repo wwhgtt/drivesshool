@@ -6,11 +6,12 @@ angular.module("controllers.coachDetile",[])
 	$getDetile,
 	$sce,
 	$bindCoach,
-	$window
-	// $getSignal
+	$window,
+	$getSignal
 ){
 	var coachId=$state.params.coachId;
 	$scope.coach={url:""};
+	$scope.model={img:""};
 	$scope.coachItem={sexImg:"",checkImg:"",first:"",second:"",third:"",firstIMG:"",secondIMG:"",thirdIMG:"",fourthIMG:"",
 	firstimg:"",secondimg:"",thirdimg:"",fourthimg:""};
 	$getDetile.getDetile(coachId,function(err,result){
@@ -29,7 +30,7 @@ angular.module("controllers.coachDetile",[])
 				}
 				var status=result.coach.Status;
 				if(status == 2){
-					$scope.coachItem.checkImg="http://party.idrv.com.cn/coachDetaile/img/renzheng.png.png";
+					$scope.coachItem.checkImg="http://party.idrv.com.cn/coachDetaile/img/renzheng.png";
 				}else{
 					$scope.coachItem.checkImg="";
 				}
@@ -119,72 +120,84 @@ angular.module("controllers.coachDetile",[])
 			$window.location.href="http://viewer.maka.im/k/IQLAURKV";
 		}
 	}
-	// var sUserAgent = navigator.userAgent.toLowerCase();
-	// if(sUserAgent.indexOf("ipad") !== -1 ||sUserAgent.indexOf("iphone") !== -1){
-	// 	$scope.coach.url = location.href.split("#")[0];
-	// }else{
-	// 	$scope.coach.url=location.href.split("#")[0];
-	// }
-	// var url=$scope.coach.url;
-	// $getSignal.getSignal(url,function(err,result){
-	// 	if (err){
-	// 		$ionicPopup.alert({
-	// 		    title: "sorry,系统报错"
-	// 		});
-	// 	}else{
-	// 		if(result && result.success == true ){
-	// 			var timestamp=result.result.timestamp,
-	// 				nonceStr=result.result.noncestr;
-	// 				signature=result.result.signature;
-	// 			var avator=$scope.coach.avator;
-	// 			if(!avator){
-
-	// 			}else{
-	// 				avator="http://7xjnv4.com2.z0.glb.qiniucdn.com/default_avator.png_large";
-	// 			}
-	// 			wx.config({
-	// 			    debug: false, 
-	// 			    appId: 'wx8bbeb53d26dbe214', 
-	// 			    timestamp:timestamp, 
-	// 			    nonceStr: nonceStr,
-	// 			    signature:signature,
-	// 			    jsApiList: [
-	// 			    	"onMenuShareTimeline",
-	// 			    	"onMenuShareAppMessage"
-	// 			    ] 
-	// 			});
-	// 			wx.ready(function(){
-	// 				wx.onMenuShareTimeline({
-	// 			        title: '强烈推荐我的教练', // 分享标题
-	// 				    link: 'http://party.idrv.com.cn/coachDetaile?id='+coachId, // 分享链接  寻找教练webview
-	// 				    imgUrl: avator, // 分享图标
-	// 			        success: function () { 
-	// 			            $window.location.href="/yja/person";
-	// 			        },
-	// 			        cancel: function () { 
-	// 			            // 用户取消分享后执行的回调函数
-	// 			        }
-	// 			    });
-	// 			    wx.onMenuShareAppMessage({
-	// 			        title: '强烈推荐我的教练', // 分享标题
-	// 				    link: 'http://party.idrv.com.cn/coachDetaile?id='+coachId, // 分享链接
-	// 				    imgUrl: avator, // 分享图标
-	// 			        type: '', // 分享类型,music、video或link，不填默认为link
-	// 			        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-	// 			        success: function (){ 
-	// 			            $window.location.href="/yja/person";
-	// 			        },
-	// 			        cancel: function (){ 
-	// 			            // 用户取消分享后执行的回调函数
-	// 			        }
-	// 			    });
-	// 			})
-	// 		}else if(result && result.errorInfo){
-	// 			var errorInfo=result.errorInfo;
-	//  			$ionicPopup.alert({
-	// 			    title: errorInfo
-	// 			});
-	//  		}
-	// 	};
+	var sUserAgent = navigator.userAgent.toLowerCase();
+	if(sUserAgent.indexOf("ipad") !== -1 ||sUserAgent.indexOf("iphone") !== -1){
+		$scope.coach.url = location.href.split("#")[0];
+	}else{
+		$scope.coach.url=location.href.split("#")[0];
+	}
+	var url=$scope.coach.url;
+	$getSignal.getSignal(url,function(err,result){
+		if (err){
+			$ionicPopup.alert({
+			    title: "sorry,系统报错"
+			});
+		}else{
+			if(result && result.result == true ){
+				var timestamp=result.timestamp,
+					nonceStr=result.noncestr;
+					signature=result.signature;
+				wx.config({
+				    debug: true, 
+				    appId: 'wx8bbeb53d26dbe214', 
+				    timestamp:timestamp, 
+				    nonceStr: nonceStr,
+				    signature:signature,
+				    jsApiList: [
+				    	"onMenuShareTimeline",
+				    	"onMenuShareAppMessage"
+				    ] 
+				});
+				wx.ready(function(){
+					wx.onMenuShareTimeline({
+				        title: '强烈推荐我的教练', // 分享标题
+					    link: 'http://party.idrv.com.cn/coachDetaile?id='+coachId, // 分享链接  寻找教练webview
+					    imgUrl: '', // 分享图标
+				        success: function () { 
+				            // $window.location.href="/yja/person";
+				        },
+				        cancel: function () { 
+				            // 用户取消分享后执行的回调函数
+				        }
+				    });
+				    wx.onMenuShareAppMessage({
+				        title: '强烈推荐我的教练', // 分享标题
+					    link: 'http://party.idrv.com.cn/coachDetaile?id='+coachId, // 分享链接
+					    imgUrl: '', // 分享图标
+				        type: '', // 分享类型,music、video或link，不填默认为link
+				        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+				        success: function (){ 
+				            // $window.location.href="/yja/person";
+				        },
+				        cancel: function (){ 
+				            // 用户取消分享后执行的回调函数
+				        }
+				    });
+				})
+			}else if(result && result.msg){
+				var errorInfo=result.msg;
+	 			$ionicPopup.alert({
+				    title: errorInfo
+				});
+	 		}
+		};
+	})
+	// $(".forCarIMG img").on("click",function(){
+	// 	var image=$(this).attr("ng-src");
+	// 	if(image !== "" && image !== null && image !== undefined){ //证明存在照片
+	// 		$(".forHideEvent").css("display","none");
+	// 		$scope.onlyStudent = true;
+	// 		$scope.haveImage = true;
+	// 		console.log(image);
+	// 		$scope.model.img = image;
+	// 	}else{//证明不存在照片
+			
+	// 	}
+	// })
+	// $(".container-model").on("click",function(){
+	// 	$(".container-model").css("display","none");
+	// 	$(".forHideEvent").css("display","block");
+	// 	$scope.onlyStudent = false;
+	// 	console.log($scope.onlyStudent)
 	// })
 })

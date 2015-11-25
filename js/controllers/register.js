@@ -23,7 +23,7 @@ angular.module("controllers.register",[])
                         $(".submitPhone").html("验证"+"("+countDown+")s");
                         jump(countDown);
                     }else{
-                        $(".submitPhone").html('发送验证码');
+                        $(".submitPhone").html('验证');
                         $(".submitPhone").removeAttr("disabled");
                     }
                 },1000);

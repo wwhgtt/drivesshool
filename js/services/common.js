@@ -148,3 +148,21 @@ angular.module("services.common",[])
 		}
 	}
 })
+//获取signature
+.service("$getSignal",function(
+	$http
+){
+	return {
+		getSignal:function(url,callback){
+			$http.post(BASE_URL + "/helpdrv/wxgetsignature/",{
+				url:url
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
