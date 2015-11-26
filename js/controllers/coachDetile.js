@@ -85,9 +85,9 @@ angular.module("controllers.coachDetile",[])
 	    } 
 	}
 	var studentid=getQueryStr("studentid");
-	if(studentid == "null" || studentid == "" || studentid == null){
+	if( studentid == "" || studentid == null){
 		$(".footButton").html("我要制作");
-	}else if(studentid == "only"){
+	}else if( studentid == "null" || studentid == "only"){
 		$scope.onlyStudent = true;
 		$(".forHideEvent").css("margin-bottom","0px");
 	}
