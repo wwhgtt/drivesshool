@@ -2,7 +2,7 @@
 	<ion-content  style="background-color:white;margin-bottom:60px" class="forHideEvent">
 		<img src="./img/banner640.png" style="width:100%">
 		<div class="coachTemp " style="margin-top:-40px;padding-left:1.5em;padding-right:1.5em;position:absolute;width:100%">
-			<img ng-src="{{coach.Avator+'_large'}}" style="width:80px;border-radius:40px;float:left">
+			<img ng-src="{{coach.Avator+'_large'}}" ng-show="coachAvatorTemp" style="width:80px;border-radius:40px;float:left">
 			<div class="header-line" style="width:100px;margin-left:100px;padding-top:12px" >
 				<span style="color:white">{{coach.Name}}</span>
 				<span style="margin-left:8px"><img ng-src="{{coachItem.sexImg}}" style="width:10px" /></span>
@@ -20,12 +20,12 @@
 		<div class="item item-avatar  forCarIMG" style="padding-left:5%;" >
 			<p style="margin-bottom:10px">车辆照片</p>
 			<!-- <div class="clear"></div> -->
-			<img ng-src="{{coachItem.firstIMG}}"><img ng-src="{{coachItem.secondIMG}}"><img ng-src="{{coachItem.thirdIMG}}"><img ng-src="{{coachItem.fourthIMG}}">
+			<img ng-src="{{coachItem.firstIMG}}" ng-show="firstIMG"><img ng-show="secondIMG" ng-src="{{coachItem.secondIMG}}"><img ng-src="{{coachItem.thirdIMG}}" ng-show="thirdIMG"><img ng-src="{{coachItem.fourthIMG}}" ng-show="fourthIMG">
 		</div>
 		<div class="item item-avatar forCarIMG" style="padding-left:5%;" >
 			<p style="margin-bottom:10px">场地照片</p>
 			<!-- <div class="clear"></div> -->
-			<img ng-src="{{coachItem.firstimg}}"><img ng-src="{{coachItem.secondimg}}"><img ng-src="{{coachItem.thirdimg}}"><img ng-src="{{coachItem.fourthimg}}">
+			<img ng-src="{{coachItem.firstimg}}" ng-show="firstimg"><img ng-show="secondimg" ng-src="{{coachItem.secondimg}}"><img ng-src="{{coachItem.thirdimg}}" ng-show="thirdimg"><img ng-show="fourthimg" ng-src="{{coachItem.fourthimg}}">
 		</div>
 		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;height:auto" >
 			<span>所属驾校</span><span style="padding-left:24px;"><strong>{{coach.DrivingSchool}}</strong></span>

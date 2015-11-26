@@ -22,6 +22,10 @@ angular.module("controllers.coachDetile",[])
 		}else{
 			if(result && result.result == true){
 				$scope.coach=result.coach;
+				var avator=$scope.coach.Avator;
+				if(avator !== "" &&　avator !== null && avator !== undefined){
+					$scope.coachAvatorTemp=true;
+				}
 				var sex=$scope.coach.Sex;
 				if(sex == 1){
 					$scope.coachItem.sexImg="http://party.idrv.com.cn/coachDetaile/img/icon_man.png";
@@ -74,19 +78,43 @@ angular.module("controllers.coachDetile",[])
 					$scope.coachPhone=true;
 					$scope.coach.phone= result.coach.Phone;
 				}
-				if(result.coach.Carpics){
-					var Carpics=result.coach.Carpics;
-					$scope.coachItem.firstIMG=Carpics[0];
-					$scope.coachItem.secondIMG=Carpics[1];
-					$scope.coachItem.thirdIMG=Carpics[2];
-					$scope.coachItem.fourthIMG=Carpics[3];
+				var Carpics=result.coach.Carpics;
+				if(Carpics !== "" && Carpics !== null && Carpics !== undefined){
+					if(Carpics[0]){
+						$scope.firstIMG = true;
+						$scope.coachItem.firstIMG=Carpics[0];
+					}
+					if(Carpics[1]){
+						$scope.secondIMG = true;
+						$scope.coachItem.secondIMG=Carpics[1];
+					}
+					if(Carpics[2]){
+						$scope.thirdIMG = true;
+						$scope.coachItem.thirdIMG=Carpics[2];
+					}
+					if(Carpics[3]){
+						$scope.fourthIMG = true;
+						$scope.coachItem.fourthIMG=Carpics[3];
+					}
 				}
-				if(result.coach.Sitepics){
-					var Sitepics=result.coach.Sitepics;
-					$scope.coachItem.firstimg=Sitepics[0];
-					$scope.coachItem.secondimg=Sitepics[1];
-					$scope.coachItem.thirdimg=Sitepics[2];
-					$scope.coachItem.fourthimg=Sitepics[3];
+				var Sitepics=result.coach.Sitepics;
+				if(Sitepics !== "" && Sitepics !== null && Sitepics !== undefined){
+					if(Sitepics[0]){
+						$scope.firstimg= true;
+						$scope.coachItem.firstimg=Sitepics[0];
+					}
+					if(Sitepics[1]){
+						$scope.secondimg= true;
+						$scope.coachItem.secondimg=Sitepics[1];
+					}
+					if(Sitepics[2]){
+						$scope.thirdimg= true;
+						$scope.coachItem.thirdimg=Sitepics[2];
+					}
+					if(Sitepics[3]){
+						$scope.fourthimg= true;
+						$scope.coachItem.fourthimg=Sitepics[3];
+					}
 				}
 			}else if(result && result.msg){
 				var msg=result.msg;
