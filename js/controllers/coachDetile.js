@@ -46,32 +46,26 @@ angular.module("controllers.coachDetile",[])
 				}
 				if(result.coach.TeachCharacteristics){
 					var TeachCharacteristics =result.coach.TeachCharacteristics;
-					var modelArray=["定点接送","不吸烟","一费制","分期付款","一人一车","计时收费"];
-					var realMyArray=[]
-					var index = 1 ;
+					// var modelArray=["定点接送","不吸烟","一费制","分期付款","一人一车","计时收费"];
+					var myArray=[]
+					// var index = 1 ;
 					myArray=TeachCharacteristics.split("-");
-					if(myArray.length >6){
-						$scope.length = true;
-						for(var i=1;i<7;i++){
-							if(myArray[i] == "true"){ realMyArray[index] = modelArray[i-1]; index ++;}
-						}
-					} else {
-						$scope.length = false;
-					}
-					if(!realMyArray[1]){
+					console.log(myArray)
+					if(!myArray[1]){
+						console.log(myArray[1])
 						$(".eventStudent").css("display","none");
 					}else{
-						$scope.coachItem.first=realMyArray[1];
+						$scope.coachItem.first=myArray[1];
 					}
-					if(!realMyArray[2]){
+					if(!myArray[2]){
 						$(".eventCoach").css("display","none");
 					}else{
-						$scope.coachItem.second=realMyArray[2];
+						$scope.coachItem.second=myArray[2];
 					}
-					if(!realMyArray[3]){
+					if(!myArray[3]){
 						$(".eventStyle").css("display","none");
 					}else{
-						$scope.coachItem.third=realMyArray[3];
+						$scope.coachItem.third=myArray[3];
 					}
 				}
 				if(result.coach.Phone){
