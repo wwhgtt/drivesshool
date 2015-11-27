@@ -970,11 +970,11 @@ angular.module("controllers.searchCoach",[])
 						}else{
 							$scope.coachShow=true; 
 							$scope.coachList=result.coachli;
-							var sex=$scope.coach.Sex;
+							var sex=$scope.coachList[0].Sex;
 							if(sex == 1){
 								$scope.coachItem.sexImg="http://party.idrv.com.cn/coachDetaile/img/icon_man.png";
 							}else if(sex == 2){
-								$scope.coachItem.sexImg="http://party.idrv.com.cn/coachDetaile/img/icon_woman.png"
+								$scope.coachItem.sexImg="http://party.idrv.com.cn/coachDetaile/img/icon_woman.png";
 							}
 						}
 					}else if(result && result.msg){
