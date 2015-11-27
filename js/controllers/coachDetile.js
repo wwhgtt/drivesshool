@@ -46,26 +46,47 @@ angular.module("controllers.coachDetile",[])
 				}
 				if(result.coach.TeachCharacteristics){
 					var TeachCharacteristics =result.coach.TeachCharacteristics;
-					// var modelArray=["定点接送","不吸烟","一费制","分期付款","一人一车","计时收费"];
-					var myArray=[]
-					// var index = 1 ;
+					var modelArray=["定点接送","不吸烟","一费制","分期付款","一人一车","计时收费"];
+					var myArray=[];
+					var realMyArray=[];
 					myArray=TeachCharacteristics.split("-");
-					console.log(myArray)
-					if(!myArray[1]){
-						console.log(myArray[1])
-						$(".eventStudent").css("display","none");
+					var index = 1 ;
+					if(myArray.indexOf("true") !== -1){
+						for(var i=0;i<=myArray.length;i++){
+							if(myArray[i] == "true"){ realMyArray[index] = modelArray[i-1]; index ++;}
+						}
+						if(!realMyArray[1]){
+							// console.log(myArray[1])
+							$(".eventStudent").css("display","none");
+						}else{
+							$scope.coachItem.first=realMyArray[1];
+						}
+						if(!realMyArray[2]){
+							$(".eventCoach").css("display","none");
+						}else{
+							$scope.coachItem.second=realMyArray[2];
+						}
+						if(!realMyArray[3]){
+							$(".eventStyle").css("display","none");
+						}else{
+							$scope.coachItem.third=realMyArray[3];
+						}
 					}else{
-						$scope.coachItem.first=myArray[1];
-					}
-					if(!myArray[2]){
-						$(".eventCoach").css("display","none");
-					}else{
-						$scope.coachItem.second=myArray[2];
-					}
-					if(!myArray[3]){
-						$(".eventStyle").css("display","none");
-					}else{
-						$scope.coachItem.third=myArray[3];
+						if(!myArray[1]){
+							$(".eventStudent").css("display","none");
+						}else{
+							$scope.coachItem.first=myArray[1];
+						}
+						if(!myArray[2]){
+							$(".eventCoach").css("display","none");
+						}else{
+							$scope.coachItem.second=myArray[2];
+						}
+						if(!myArray[3]){
+							$(".eventStyle").css("display","none");
+						}else{
+							$scope.coachItem.third=myArray[3];
+						}
 					}
 				}
 				if(result.coach.Phone){
