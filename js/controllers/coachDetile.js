@@ -29,7 +29,7 @@ angular.module("controllers.coachDetile",[])
 				var sex=$scope.coach.Sex;
 				if(sex == 1){
 					$scope.coachItem.sexImg="http://party.idrv.com.cn/coachDetaile/img/icon_man.png";
-				}else{
+				}else if(sex == 2){
 					$scope.coachItem.sexImg="http://party.idrv.com.cn/coachDetaile/img/icon_woman.png"
 				}
 				var status=result.coach.Status;
@@ -39,9 +39,9 @@ angular.module("controllers.coachDetile",[])
 					$scope.coachItem.checkImg="";
 				}
 				// $scope.videoList=$scope.coach.video;
-				if(result.coach.TeachType == "1"){
+				if(result.coach.TeachType == "2"){
 					$scope.coach.teachType ="一车多人";
-				}else{
+				}else if(result.coach.TeachType == "1"){
 					$scope.coach.teachType ="一车一人";
 				}
 				if(result.coach.TeachCharacteristics){
