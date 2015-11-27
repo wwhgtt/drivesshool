@@ -42,11 +42,10 @@ angular.module("controllers.searchCoach",[])
 							$scope.coachList=result.coachli;
 							var sex=$scope.coach.Sex;
 							if(sex == 1){
-								$scope.coachItem.sexImg="http://party.idrv.com.cn/coachDetaile/img/icon_woman.png";
-							}else{
-								$scope.coachItem.sexImg="http://party.idrv.com.cn/coachDetaile/img/icon_man.png"
+								$scope.coachItem.sexImg="http://party.idrv.com.cn/coachDetaile/img/icon_man.png";
+							}else if(sex == 2){
+								$scope.coachItem.sexImg="http://party.idrv.com.cn/coachDetaile/img/icon_woman.png"
 							}
-							console.log("$scope.coachItem",$scope.coachItem)
 						}
 					}else if(result && result.msg){
 						var msg=result.msg;
