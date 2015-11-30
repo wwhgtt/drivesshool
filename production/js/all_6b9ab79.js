@@ -759,6 +759,14 @@ angular.module("controllers.coachDetile",[])
 	 		}
 		};
 	})
+	$scope.bigImage = false;    //初始默认大图是隐藏的
+	$scope.showBigImage = function (imageName){
+	    $scope.model.img = imageName;                   
+	    $scope.bigImage = true;
+	};
+	$scope.hideBigImage = function () {
+	    $scope.bigImage = false;
+	};
 })
 angular.module("controllers.register",[])
 .controller("register",function(
@@ -1196,7 +1204,7 @@ angular.module('templates-main', []).run(['$templateCache', function($templateCa
     "");
   $templateCache.put("template/coachDetile.html",
     "<ion-view title=\"助驾帮-教练详情\">\n" +
-    "	<ion-content  style=\"background-color:white;margin-bottom:60px\" class=\"forHideEvent\">\n" +
+    "	<ion-content  style=\"background-color:white;margin-bottom:60px\" class=\"forHideEvent\" ng-hide=\"ionContent\">\n" +
     "		<img src=\"./img/banner640.png\" style=\"width:100%\">\n" +
     "		<div class=\"coachTemp \" style=\"margin-top:-40px;padding-left:1.5em;padding-right:1.5em;position:absolute;width:100%\">\n" +
     "			<img ng-src=\"{{coach.Avator+'_large'}}\" ng-show=\"coachAvatorTemp\" style=\"width:80px;border-radius:40px;float:left\">\n" +
@@ -1216,13 +1224,13 @@ angular.module('templates-main', []).run(['$templateCache', function($templateCa
     "		</div>\n" +
     "		<div class=\"item item-avatar  forCarIMG\" style=\"padding-left:5%;\" >\n" +
     "			<p style=\"margin-bottom:10px\">车辆照片</p>\n" +
-    "			<!-- <div class=\"clear\"></div> -->\n" +
-    "			<img ng-src=\"{{coachItem.firstIMG}}\" ng-show=\"firstIMG\"><img ng-show=\"secondIMG\" ng-src=\"{{coachItem.secondIMG}}\"><img ng-src=\"{{coachItem.thirdIMG}}\" ng-show=\"thirdIMG\"><img ng-src=\"{{coachItem.fourthIMG}}\" ng-show=\"fourthIMG\">\n" +
+    "			<!-- <div class=\"clear\"></div> --><!-- ng-src=\"{{coachItem.firstIMG}}\" --><!-- ng-show=\"firstIMG\" -->\n" +
+    "			<img ng-show=\"firstIMG\" ng-src=\"{{coachItem.firstIMG}}\" ng-click=\"showBigImage(coachItem.firstIMG)\"   ><img ng-show=\"secondIMG\" ng-src=\"{{coachItem.secondIMG}}\" ng-click=\"showBigImage(coachItem.secondIMG)\"><img ng-src=\"{{coachItem.thirdIMG}}\" ng-show=\"thirdIMG\" ng-click=\"showBigImage(coachItem.thirdIMG)\"><img ng-src=\"{{coachItem.fourthIMG}}\" ng-show=\"fourthIMG\" ng-click=\"showBigImage(coachItem.fourthIMG)\">\n" +
     "		</div>\n" +
     "		<div class=\"item item-avatar forCarIMG\" style=\"padding-left:5%;\" >\n" +
     "			<p style=\"margin-bottom:10px\">场地照片</p>\n" +
     "			<!-- <div class=\"clear\"></div> -->\n" +
-    "			<img ng-src=\"{{coachItem.firstimg}}\" ng-show=\"firstimg\"><img ng-show=\"secondimg\" ng-src=\"{{coachItem.secondimg}}\"><img ng-src=\"{{coachItem.thirdimg}}\" ng-show=\"thirdimg\"><img ng-show=\"fourthimg\" ng-src=\"{{coachItem.fourthimg}}\">\n" +
+    "			<img ng-src=\"{{coachItem.firstimg}}\" ng-show=\"firstimg\" ng-click=\"showBigImage(coachItem.firstimg)\"><img ng-show=\"secondimg\" ng-src=\"{{coachItem.secondimg}}\" ng-click=\"showBigImage(coachItem.secondimg)\"><img ng-src=\"{{coachItem.thirdimg}}\" ng-show=\"thirdimg\" ng-click=\"showBigImage(coachItem.thirdimg)\"><img ng-show=\"fourthimg\" ng-src=\"{{coachItem.fourthimg}}\" ng-click=\"showBigImage(coachItem.fourthimg)\">\n" +
     "		</div>\n" +
     "		<div class=\"item item-avatar coachItem coachIntroduce\" style=\"padding-left:5%;height:auto\" >\n" +
     "			<span>所属驾校</span><span style=\"padding-left:24px;\"><strong>{{coach.DrivingSchool}}</strong></span>\n" +
@@ -1242,9 +1250,9 @@ angular.module('templates-main', []).run(['$templateCache', function($templateCa
     "	</ion-content>\n" +
     "	<div class=\"footerr\" ng-hide=\"onlyStudent\"></div>\n" +
     "	<button class=\"footButton\" ng-click=\"bindCoach()\" ng-hide=\"onlyStudent\">绑定教练</button>\n" +
-    "	<!-- <div class=\"container-model\" ng-show=\"haveImage\">\n" +
-    "		<img ng-src=\"{{model.img}}\" title=>\n" +
-    "	</div> -->\n" +
+    "	<div class=\"container-model\" ng-if=\"bigImage\"  ng-click=\"hideBigImage()\">\n" +
+    "		<img ng-src=\"{{model.img}}\" />\n" +
+    "	</div>\n" +
     "</ion-view>\n" +
     "");
   $templateCache.put("template/menu.html",
