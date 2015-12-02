@@ -1219,16 +1219,16 @@ angular.module('templates-main', []).run(['$templateCache', function($templateCa
     "		<div class=\"clear\"></div>\n" +
     "		<div class=\"kongbai\" style=\"height:20px;background-color:#ededed;width:100%;margin-top:45px\"></div>\n" +
     "		<div class=\"item item-avatar myArrayNative\" style=\"padding-left:5%;\" >\n" +
-    "			<p style=\"margin-bottom:10px\">教学特色</p>\n" +
+    "			<p style=\"margin-bottom:10px;font-size:16px\">教学特色</p>\n" +
     "			<span class=\"eventStudent\" style=\"background-color:#3398cc\" ng-hide=\"length\">{{coachItem.first}}</span><span ng-hide=\"length\" class=\"eventCoach\" style=\"background-color:#65cc33\">{{coachItem.second}}</span><span ng-hide=\"length\" class=\"eventStyle\" style=\"background-color:#ffcc33\">{{coachItem.third}}</span>\n" +
     "		</div>\n" +
     "		<div class=\"item item-avatar  forCarIMG\" style=\"padding-left:5%;\" >\n" +
-    "			<p style=\"margin-bottom:10px\">车辆照片</p>\n" +
+    "			<p style=\"margin-bottom:10px;font-size:16px\">车辆照片</p>\n" +
     "			<!-- <div class=\"clear\"></div> --><!-- ng-src=\"{{coachItem.firstIMG}}\" --><!-- ng-show=\"firstIMG\" -->\n" +
     "			<img ng-show=\"firstIMG\" ng-src=\"{{coachItem.firstIMG}}\" ng-click=\"showBigImage(coachItem.firstIMG)\"   ><img ng-show=\"secondIMG\" ng-src=\"{{coachItem.secondIMG}}\" ng-click=\"showBigImage(coachItem.secondIMG)\"><img ng-src=\"{{coachItem.thirdIMG}}\" ng-show=\"thirdIMG\" ng-click=\"showBigImage(coachItem.thirdIMG)\"><img ng-src=\"{{coachItem.fourthIMG}}\" ng-show=\"fourthIMG\" ng-click=\"showBigImage(coachItem.fourthIMG)\">\n" +
     "		</div>\n" +
     "		<div class=\"item item-avatar forCarIMG\" style=\"padding-left:5%;\" >\n" +
-    "			<p style=\"margin-bottom:10px\">场地照片</p>\n" +
+    "			<p style=\"margin-bottom:10px;font-size:16px\">场地照片</p>\n" +
     "			<!-- <div class=\"clear\"></div> -->\n" +
     "			<img ng-src=\"{{coachItem.firstimg}}\" ng-show=\"firstimg\" ng-click=\"showBigImage(coachItem.firstimg)\"><img ng-show=\"secondimg\" ng-src=\"{{coachItem.secondimg}}\" ng-click=\"showBigImage(coachItem.secondimg)\"><img ng-src=\"{{coachItem.thirdimg}}\" ng-show=\"thirdimg\" ng-click=\"showBigImage(coachItem.thirdimg)\"><img ng-show=\"fourthimg\" ng-src=\"{{coachItem.fourthimg}}\" ng-click=\"showBigImage(coachItem.fourthimg)\">\n" +
     "		</div>\n" +
