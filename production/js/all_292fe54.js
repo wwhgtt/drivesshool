@@ -1252,8 +1252,8 @@ angular.module('templates-main', []).run(['$templateCache', function($templateCa
     "		<div class=\"item item-avatar coachItem coachIntroduce\" style=\"padding-left:5%;height:auto\" >\n" +
     "			<span>最新价格</span><span style=\"padding-left:24px;\"><strong>￥{{coach.Price}}</strong></span>\n" +
     "		</div>\n" +
-    "		<div class=\"item item-avatar coachItem coachIntroduce\" style=\"padding-left:5%;height:auto\" >\n" +
-    "			<span>个人简介</span><span style=\"padding-left:24px;overflow:hidden\" ><strong ng-show=\"coach.Introduction !== 'cdyjwlkjyxzrgs' \">{{coach.Introduction}}</strong></span>\n" +
+    "		<div class=\" coachItem coachIntroduce\" style=\"padding-left:5%;height:auto;\" >\n" +
+    "			<span>个人简介</span><span style=\"padding-left:24px;\" ><strong ng-show=\"coach.Introduction !== 'cdyjwlkjyxzrgs' \">{{coach.Introduction}}</strong></span>\n" +
     "		</div>\n" +
     "	</ion-content>\n" +
     "	<div class=\"footerr\" ng-hide=\"onlyStudent\"></div>\n" +
