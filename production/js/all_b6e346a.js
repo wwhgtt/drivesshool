@@ -691,7 +691,7 @@ angular.module("controllers.coachDetile",[])
 							        }
 							    });
 							    wx.onMenuShareAppMessage({
-							        title: '强烈推荐我的教练', // 分享标题
+							        title: '推荐我的驾校教练', // 分享标题
 								    link: 'http://party.idrv.com.cn/coachDetaile?id='+coachId, // 分享链接
 								    imgUrl: avator, // 分享图标
 							        type: '', // 分享类型,music、video或link，不填默认为link
