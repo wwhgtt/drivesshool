@@ -22,6 +22,7 @@ angular.module("controllers.coachDetile",[])
 		}else{
 			if(result && result.result == true){
 				$scope.coach=result.coach;
+				var name=result.coach.Name;
 				var avator=$scope.coach.Avator;
 				if(avator !== "" &&　avator !== null && avator !== undefined){
 					$scope.coachAvatorTemp=true;
@@ -168,7 +169,7 @@ angular.module("controllers.coachDetile",[])
 							});
 							wx.ready(function(){
 								wx.onMenuShareTimeline({
-							        title: '推荐我的驾校教练', // 分享标题
+							        title: '推荐我的驾校教练——'+name, // 分享标题
 								    link: 'http://party.idrv.com.cn/coachDetaile?id='+coachId, // 分享链接  寻找教练webview
 								    imgUrl: avator, // 分享图标
 							        success: function () { 
@@ -179,7 +180,7 @@ angular.module("controllers.coachDetile",[])
 							        }
 							    });
 							    wx.onMenuShareAppMessage({
-							        title: '推荐我的驾校教练', // 分享标题
+							        title: '推荐我的驾校教练——'+name, // 分享标题
 								    link: 'http://party.idrv.com.cn/coachDetaile?id='+coachId, // 分享链接
 								    imgUrl: avator, // 分享图标
 							        type: '', // 分享类型,music、video或link，不填默认为link
