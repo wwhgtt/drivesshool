@@ -643,6 +643,75 @@ angular.module("controllers.coachDetile",[])
 						$scope.coachItem.fourthimg=Sitepics[3];
 					}
 				}
+				var avatorTemp=result.coach.Avator;
+				var avator;
+				if(!avatorTemp){
+					avator=""
+				}else{
+					avator=avatorTemp+'_large';
+				}
+				var sUserAgent = navigator.userAgent.toLowerCase();
+				if(sUserAgent.indexOf("ipad") !== -1 ||sUserAgent.indexOf("iphone") !== -1){
+					$scope.coach.url = location.href.split("#")[0];
+				}else{
+					$scope.coach.url=location.href.split("#")[0];
+				}
+				var url=$scope.coach.url;
+				$getSignal.getSignal(url,function(err,result){
+					if (err){
+						$ionicPopup.alert({
+						    title: "sorry,系统报错"
+						});
+					}else{
+						if(result && result.result == true ){
+							var timestamp=result.timestamp,
+								nonceStr=result.noncestr;
+								signature=result.signature;
+							wx.config({
+							    debug: false, 
+							    appId: 'wx8bbeb53d26dbe214', 
+							    timestamp:timestamp, 
+							    nonceStr: nonceStr,
+							    signature:signature,
+							    jsApiList: [
+							    	"onMenuShareTimeline",
+							    	"onMenuShareAppMessage"
+							    ] 
+							});
+							wx.ready(function(){
+								wx.onMenuShareTimeline({
+							        title: '推荐我的驾校教练', // 分享标题
+								    link: 'http://party.idrv.com.cn/coachDetaile?id='+coachId, // 分享链接  寻找教练webview
+								    imgUrl: avator, // 分享图标
+							        success: function () { 
+							            // $window.location.href="/yja/person";
+							        },
+							        cancel: function () { 
+							            // 用户取消分享后执行的回调函数
+							        }
+							    });
+							    wx.onMenuShareAppMessage({
+							        title: '强烈推荐我的教练', // 分享标题
+								    link: 'http://party.idrv.com.cn/coachDetaile?id='+coachId, // 分享链接
+								    imgUrl: avator, // 分享图标
+							        type: '', // 分享类型,music、video或link，不填默认为link
+							        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+							        success: function (){ 
+							            // $window.location.href="/yja/person";
+							        },
+							        cancel: function (){ 
+							            // 用户取消分享后执行的回调函数
+							        }
+							    });
+							})
+						}else if(result && result.msg){
+							var errorInfo=result.msg;
+				 			$ionicPopup.alert({
+							    title: errorInfo
+							});
+				 		}
+					};
+				})
 			}else if(result && result.msg){
 				var msg=result.msg;
 				$ionicPopup.alert({
@@ -697,68 +766,6 @@ angular.module("controllers.coachDetile",[])
 			$window.location.href="http://viewer.maka.im/k/IQLAURKV";
 		}
 	}
-	var sUserAgent = navigator.userAgent.toLowerCase();
-	if(sUserAgent.indexOf("ipad") !== -1 ||sUserAgent.indexOf("iphone") !== -1){
-		$scope.coach.url = location.href.split("#")[0];
-	}else{
-		$scope.coach.url=location.href.split("#")[0];
-	}
-	var url=$scope.coach.url;
-	$getSignal.getSignal(url,function(err,result){
-		if (err){
-			$ionicPopup.alert({
-			    title: "sorry,系统报错"
-			});
-		}else{
-			if(result && result.result == true ){
-				var timestamp=result.timestamp,
-					nonceStr=result.noncestr;
-					signature=result.signature;
-				wx.config({
-				    debug: false, 
-				    appId: 'wx8bbeb53d26dbe214', 
-				    timestamp:timestamp, 
-				    nonceStr: nonceStr,
-				    signature:signature,
-				    jsApiList: [
-				    	"onMenuShareTimeline",
-				    	"onMenuShareAppMessage"
-				    ] 
-				});
-				wx.ready(function(){
-					wx.onMenuShareTimeline({
-				        title: '强烈推荐我的教练', // 分享标题
-					    link: 'http://party.idrv.com.cn/coachDetaile?id='+coachId, // 分享链接  寻找教练webview
-					    imgUrl: '', // 分享图标
-				        success: function () { 
-				            // $window.location.href="/yja/person";
-				        },
-				        cancel: function () { 
-				            // 用户取消分享后执行的回调函数
-				        }
-				    });
-				    wx.onMenuShareAppMessage({
-				        title: '强烈推荐我的教练', // 分享标题
-					    link: 'http://party.idrv.com.cn/coachDetaile?id='+coachId, // 分享链接
-					    imgUrl: '', // 分享图标
-				        type: '', // 分享类型,music、video或link，不填默认为link
-				        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-				        success: function (){ 
-				            // $window.location.href="/yja/person";
-				        },
-				        cancel: function (){ 
-				            // 用户取消分享后执行的回调函数
-				        }
-				    });
-				})
-			}else if(result && result.msg){
-				var errorInfo=result.msg;
-	 			$ionicPopup.alert({
-				    title: errorInfo
-				});
-	 		}
-		};
-	})
 	$scope.bigImage = false;    //初始默认大图是隐藏的
 	$scope.showBigImage = function (imageName){
 	    $scope.model.img = imageName;                   
