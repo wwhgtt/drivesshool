@@ -1242,7 +1242,7 @@ angular.module('templates-main', []).run(['$templateCache', function($templateCa
     "		</div>\n" +
     "		<div class=\"item item-avatar coachItem coachIntroduce\" style=\"padding-left:5%;height:auto\" >\n" +
     "			<span>所属驾校</span><span style=\"padding-left:24px;\"><strong>{{coach.DrivingSchool}}</strong></span>\n" +
-    "		</div>\n" +
+    "		</div>       \n" +
     "		<div class=\"item item-avatar coachItem coachIntroduce\" style=\"padding-left:5%;height:auto\" >\n" +
     "			<span>教学模式</span><span style=\"padding-left:24px;\"><strong>{{coach.teachType}}</strong></span>\n" +
     "		</div>\n" +
@@ -1253,7 +1253,7 @@ angular.module('templates-main', []).run(['$templateCache', function($templateCa
     "			<span>最新价格</span><span style=\"padding-left:24px;\"><strong>￥{{coach.Price}}</strong></span>\n" +
     "		</div>\n" +
     "		<div class=\" coachItem coachIntroduce\" style=\"padding-left:5%;height:auto;\" >\n" +
-    "			<span>个人简介</span><span style=\"padding-left:24px;\" ><strong ng-show=\"coach.Introduction !== 'cdyjwlkjyxzrgs' \">{{coach.Introduction}}</strong></span>\n" +
+    "			<span  style=\"color:#444;font-size:16px;display:inline-block\">个人简介</span><span style=\"padding-left:24px;;display:inline-block\" ><strong ng-show=\"coach.Introduction !== 'cdyjwlkjyxzrgs' \"  style=\"font-size:16px;font-weight:400\">{{coach.Introduction}}</strong></span>\n" +
     "		</div>\n" +
     "	</ion-content>\n" +
     "	<div class=\"footerr\" ng-hide=\"onlyStudent\"></div>\n" +
