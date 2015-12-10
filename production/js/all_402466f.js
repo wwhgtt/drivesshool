@@ -1215,7 +1215,9 @@ angular.module('templates-main', []).run(['$templateCache', function($templateCa
     "	<ion-content  style=\"background-color:white;margin-bottom:60px\" class=\"forHideEvent\" ng-hide=\"ionContent\">\n" +
     "		<img src=\"./img/banner640.png\" style=\"width:100%\">\n" +
     "		<div class=\"coachTemp \" style=\"margin-top:-40px;padding-left:1.5em;padding-right:1.5em;position:absolute;width:100%\">\n" +
-    "			<img ng-src=\"{{coach.Avator+'_large'}}\" ng-show=\"coachAvatorTemp\" style=\"width:80px;border-radius:40px;float:left\">\n" +
+    "			<div class=\"forBorder\" style=\"width:80px;border:2px solid white;border-radius:40px;float:left;margin-left:1.5em;\" ng-show=\"coachAvatorTemp\">\n" +
+    "				<img ng-src=\"{{coach.Avator+'_large'}}\"  style=\"width:80px;border-radius:40px;\">\n" +
+    "			</div>\n" +
     "			<div class=\"header-line\" style=\"width:100px;margin-left:100px;padding-top:12px\" >\n" +
     "				<span style=\"color:white\">{{coach.Name}}</span>\n" +
     "				<span style=\"margin-left:8px\"><img ng-src=\"{{coachItem.sexImg}}\" style=\"width:10px\" /></span>\n" +
