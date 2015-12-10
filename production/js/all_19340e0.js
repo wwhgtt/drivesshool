@@ -771,6 +771,7 @@ angular.module("controllers.coachDetile",[])
 	$scope.showBigImage = function (imageName){
 	    $scope.model.img = imageName;                   
 	    $scope.bigImage = true;
+	    $(".hideImage").css("top",($(window).height() - $(".hideImage").height())/2);
 	};
 	$scope.hideBigImage = function () {
 	    $scope.bigImage = false;
@@ -1215,7 +1216,7 @@ angular.module('templates-main', []).run(['$templateCache', function($templateCa
     "	<ion-content  style=\"background-color:white;margin-bottom:60px\" class=\"forHideEvent\" ng-hide=\"ionContent\">\n" +
     "		<img src=\"./img/banner640.png\" style=\"width:100%\">\n" +
     "		<div class=\"coachTemp \" style=\"margin-top:-40px;padding-left:1.5em;padding-right:1.5em;position:absolute;width:100%\">\n" +
-    "			<div class=\"forBorder\" style=\"width:80px;border:2px solid white;border-radius:40px;float:left;margin-left:1.5em;\" ng-show=\"coachAvatorTemp\">\n" +
+    "			<div class=\"forBorder\" style=\"width:80px;border:2px solid white;border-radius:40px;float:left;\" ng-show=\"coachAvatorTemp\">\n" +
     "				<img ng-src=\"{{coach.Avator+'_large'}}\"  style=\"width:80px;border-radius:40px;\">\n" +
     "			</div>\n" +
     "			<div class=\"header-line\" style=\"width:100px;margin-left:100px;padding-top:12px\" >\n" +
@@ -1261,7 +1262,7 @@ angular.module('templates-main', []).run(['$templateCache', function($templateCa
     "	<div class=\"footerr\" ng-hide=\"onlyStudent\"></div>\n" +
     "	<button class=\"footButton\" ng-click=\"bindCoach()\" ng-hide=\"onlyStudent\">绑定教练</button>\n" +
     "	<div class=\"container-model\" ng-if=\"bigImage\"  ng-click=\"hideBigImage()\">\n" +
-    "		<img ng-src=\"{{model.img}}\" />\n" +
+    "		<img ng-src=\"{{model.img}}\" class=\"hideImage\" />\n" +
     "	</div>\n" +
     "</ion-view>\n" +
     "");

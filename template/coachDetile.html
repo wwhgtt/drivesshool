@@ -2,7 +2,7 @@
 	<ion-content  style="background-color:white;margin-bottom:60px" class="forHideEvent" ng-hide="ionContent">
 		<img src="./img/banner640.png" style="width:100%">
 		<div class="coachTemp " style="margin-top:-40px;padding-left:1.5em;padding-right:1.5em;position:absolute;width:100%">
-			<div class="forBorder" style="width:80px;border:2px solid white;border-radius:40px;float:left;margin-left:1.5em;" ng-show="coachAvatorTemp">
+			<div class="forBorder" style="width:80px;border:2px solid white;border-radius:40px;float:left;" ng-show="coachAvatorTemp">
 				<img ng-src="{{coach.Avator+'_large'}}"  style="width:80px;border-radius:40px;">
 			</div>
 			<div class="header-line" style="width:100px;margin-left:100px;padding-top:12px" >
@@ -48,6 +48,6 @@
 	<div class="footerr" ng-hide="onlyStudent"></div>
 	<button class="footButton" ng-click="bindCoach()" ng-hide="onlyStudent">绑定教练</button>
 	<div class="container-model" ng-if="bigImage"  ng-click="hideBigImage()">
-		<img ng-src="{{model.img}}" />
+		<img ng-src="{{model.img}}" class="hideImage" />
 	</div>
 </ion-view>

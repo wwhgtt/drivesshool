@@ -259,6 +259,7 @@ angular.module("controllers.coachDetile",[])
 	$scope.showBigImage = function (imageName){
 	    $scope.model.img = imageName;                   
 	    $scope.bigImage = true;
+	    $(".hideImage").css("top",($(window).height() - $(".hideImage").height())/2);
 	};
 	$scope.hideBigImage = function () {
 	    $scope.bigImage = false;
