@@ -256,12 +256,11 @@ angular.module("controllers.coachDetile",[])
 		}
 	}
 	$scope.bigImage = false;    //初始默认大图是隐藏的
-	$scope.showBigImage = function (imageName){
+	$scope.showBigImage = function (ele,imageName){
 	    $scope.model.img = imageName;                   
 	    $scope.bigImage = true;
-	    alert($(window).height());
-	    alert($(".hideImage").height());
-	    $(".hideImage").css("top",($(window).height() - $(".hideImage").height())/2);
+	    alert($(ele).height());
+	    // $(".hideImage").css("top",($(window).height() - $(".hideImage").height())/2);
 	};
 	$scope.hideBigImage = function () {
 	    $scope.bigImage = false;
