@@ -47,7 +47,7 @@
 	</ion-content>
 	<div class="footerr" ng-hide="onlyStudent"></div>
 	<button class="footButton" ng-click="bindCoach()" ng-hide="onlyStudent">绑定教练</button>
-	<div class="container-model" ng-if="bigImage"  ng-click="hideBigImage()">
-		<img ng-src="{{model.img}}" class="hideImage"/>
+	<div class="container-model" ng-if="bigImage"  ng-click="hideBigImage()" image-height>
+		<img ng-src="{{model.img}}" class="hideImage" />
 	</div>
 </ion-view>
