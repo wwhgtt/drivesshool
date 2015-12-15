@@ -1,0 +1,17 @@
+<ion-view title="助驾帮-约课系统">
+	<ion-content style="background-color:#ededed" >
+		<div class="container">
+			<img src="./img/order.jpg" style="width:100%">
+			<div class="headerTemp">
+				<span class="header_left activeTemp" ng-click="takeOrder(moment.one)">今天<br>{{moment.today}}<br><span id="dateMercy" >{{moment.one}}</span></span>
+				<span class="header_middle" ng-click="takeOrder(moment.two)">明天<br>{{moment.second}}<br><span id="dateMercy">{{moment.two}}</span></span>
+				<span class="header_right" ng-click="takeOrder(moment.three)">后天<br>{{moment.third}}<br><span id="dateMercy">{{moment.three}}</span></span>
+			</div>
+			<div class="forconcent" style="width:96%;margin:0 auto;border-right:2px solid #cbcbcb;border-bottom:4px solid #cccccc" >
+
+				<order-much ng-repeat="(key,order) in orderList" ></order-much>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

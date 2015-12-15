@@ -27,3 +27,14 @@ angular.module("directives.coachList",[])
 		}
 	}
 })
+.directive("orderMuch",function(
+
+){
+	return {
+		restrict:"E",
+		templateUrl:"template/orderMuch.html",
+		link:function($scope,element,attr){
+			
+		}
+	}
+})

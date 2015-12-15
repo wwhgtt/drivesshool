@@ -166,3 +166,60 @@ angular.module("services.common",[])
 		}
 	}
 })
+//获取signature
+.service("$byDayCount",function(
+	$http
+){
+	return {
+		byDayCount:function(date,studentId,callback){
+			$http.post(BASE_URL + "/helpdrv/getscheduleli/",{
+				datetime:date,
+				stuid:studentId
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
+//约课
+.service("$order",function(
+	$http
+){
+	return {
+		order:function(studentId,id,callback){
+			$http.post(BASE_URL + "/helpdrv/addschorder/",{
+				stuid:studentId,
+				schid:id
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})
+//取消约课
+.service("$cancelorder",function(
+	$http
+){
+	return {
+		cancelorder:function(studentId,id,callback){
+			$http.post(BASE_URL + "/helpdrv/cancelschorder/",{
+				stuid:studentId,
+				schid:id
+			})
+			.success(function(data){
+				if(callback)callback(null,data);  
+			})
+			.error(function(err){
+				if(callback)callback(err);
+			})
+		}
+	}
+})

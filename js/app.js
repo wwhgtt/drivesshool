@@ -6,6 +6,8 @@ angular.module("YJA",[
     "controllers.reloadr",
     "controllers.register",
     "controllers.searchCoach",
+    "controllers.judgeMent",
+    "controllers.order",
     "directives.coachList",
 	"services.common"
 ])
@@ -55,6 +57,24 @@ angular.module("YJA",[
                 'menuContent':{
                     templateUrl:'template/register.html',
                     controller:'register'
+                }
+            }
+        })
+        .state('yja.judgeMent',{
+            url:'/judgeMent',
+            views:{
+                'menuContent':{
+                    templateUrl:'template/judgeMent.html',
+                    controller:'judgeMent'
+                }
+            }
+        })
+        .state('yja.order',{
+            url:'/order/:studentId',
+            views:{
+                'menuContent':{
+                    templateUrl:'template/order.html',
+                    controller:'order'
                 }
             }
         })
