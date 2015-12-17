@@ -38,3 +38,29 @@ angular.module("directives.coachList",[])
 		}
 	}
 })
+.directive("forClick",function(
+	
+){
+	return {
+		restrict:"A",
+		link:function($scope,element,attr){
+			var ele=$(element[0]).find("dd");//ele是一个数组
+			// FastClick.attach(element);
+			$(ele[0]).on("click",function(){
+				$(ele[0]).addClass("activeTemp");
+				$(ele[1]).removeClass("activeTemp");
+				$(ele[2]).removeClass("activeTemp");
+			})
+			$(ele[1]).on("click",function(){
+				$(ele[1]).addClass("activeTemp");
+				$(ele[0]).removeClass("activeTemp");
+				$(ele[2]).removeClass("activeTemp");
+			})
+			$(ele[2]).on("click",function(){
+				$(ele[2]).addClass("activeTemp");
+				$(ele[0]).removeClass("activeTemp");
+				$(ele[1]).removeClass("activeTemp");
+			})
+		}
+	}
+})

@@ -29,8 +29,11 @@ angular.module("controllers.reloadr",[])
 					var student=result.student;
 					var CoachId=student.CoachId;
 					var studentId=student.Id;
-					if(CoachId !== "" && CoachId !== 0){
+					var bindstatus=student.Bindstatus;
+					if(CoachId !== "" && CoachId !== 0 && bindstatus == 2){
 						$window.location.href="/yja/coachDetile/"+CoachId+"?studentid=only";
+					}else if(CoachId !== "" && CoachId !== 0 && bindstatus == 1){
+						$window.location.href="/yja/coachDetile/"+CoachId+"?studentid=bindstatus";
 					}else{
 						$window.location.href="/yja/searchCoach?studentId="+studentId;
 					}

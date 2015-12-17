@@ -2,8 +2,8 @@
 	<ion-content  style="background-color:white;margin-bottom:60px" class="forHideEvent" ng-hide="ionContent">
 		<img src="./img/banner640.png" style="width:100%">
 		<div class="coachTemp " style="margin-top:-40px;padding-left:1.5em;padding-right:1.5em;position:absolute;width:100%">
-			<div class="forBorder" style="width:80px;border:2px solid white;border-radius:40px;float:left;" ng-show="coachAvatorTemp">
-				<img ng-src="{{coach.Avator+'_large'}}"  style="width:80px;border-radius:40px;">
+			<div class="forBorder" style="width:80px;border:2px solid white;border-radius:40px;float:left;">
+				<img ng-src="{{coachItem.Avator}}"  style="width:80px;border-radius:40px;">
 			</div>
 			<div class="header-line" style="width:100px;margin-left:100px;padding-top:12px" >
 				<span style="color:white">{{coach.Name}}</span>
@@ -17,17 +17,20 @@
 		<div class="kongbai" style="height:20px;background-color:#ededed;width:100%;margin-top:45px"></div>
 		<div class="item item-avatar myArrayNative" style="padding-left:5%;" >
 			<p style="margin-bottom:10px;font-size:16px">教学特色</p>
-			<span class="eventStudent" style="background-color:#3398cc" ng-hide="length">{{coachItem.first}}</span><span ng-hide="length" class="eventCoach" style="background-color:#65cc33">{{coachItem.second}}</span><span ng-hide="length" class="eventStyle" style="background-color:#ffcc33">{{coachItem.third}}</span>
+			<span class="eventStudent" style="background-color:#3398cc" ng-show="lengthFirst">{{coachItem.first}}</span><span ng-show="lengthSecond" class="eventCoach" style="background-color:#65cc33">{{coachItem.second}}</span><span ng-show="lengthThird" class="eventStyle" style="background-color:#ffcc33">{{coachItem.third}}</span>
+			<p ng-show="noneSpecial" style="color:#cccccc">{{coachItem.special}}</p>
 		</div>
 		<div class="item item-avatar  forCarIMG" style="padding-left:5%;" >
 			<p style="margin-bottom:10px;font-size:16px">车辆照片</p>
 			<!-- <div class="clear"></div> --><!-- ng-src="{{coachItem.firstIMG}}" --><!-- ng-show="firstIMG" -->
 			<img ng-show="firstIMG" ng-src="{{coachItem.firstIMG}}" ng-click="showBigImage(coachItem.firstIMG)"   ><img ng-show="secondIMG" ng-src="{{coachItem.secondIMG}}" ng-click="showBigImage(coachItem.secondIMG)"><img ng-src="{{coachItem.thirdIMG}}" ng-show="thirdIMG" ng-click="showBigImage(coachItem.thirdIMG)"><img ng-src="{{coachItem.fourthIMG}}" ng-show="fourthIMG" ng-click="showBigImage(coachItem.fourthIMG)">
+			<p ng-show="nonePhoto" style="color:#cccccc">{{coachItem.noneCar}}</p>
 		</div>
 		<div class="item item-avatar forCarIMG" style="padding-left:5%;" >
 			<p style="margin-bottom:10px;font-size:16px">场地照片</p>
 			<!-- <div class="clear"></div> -->
 			<img ng-src="{{coachItem.firstimg}}" ng-show="firstimg" ng-click="showBigImage(coachItem.firstimg)"><img ng-show="secondimg" ng-src="{{coachItem.secondimg}}" ng-click="showBigImage(coachItem.secondimg)"><img ng-src="{{coachItem.thirdimg}}" ng-show="thirdimg" ng-click="showBigImage(coachItem.thirdimg)"><img ng-show="fourthimg" ng-src="{{coachItem.fourthimg}}" ng-click="showBigImage(coachItem.fourthimg)">
+			<p ng-show="noneSitePhoto" style="color:#cccccc">{{coachItem.noneSite}}</p>
 		</div>
 		<div class="item item-avatar coachItem coachIntroduce" style="padding-left:5%;height:auto" >
 			<span>所属驾校</span><span style="padding-left:24px;"><strong>{{coach.DrivingSchool}}</strong></span>
@@ -45,7 +48,9 @@
 			<span  style="color:#444;font-size:16px;display:inline-block">个人简介</span><span style="display:inline-block" ><strong ng-show="coach.Introduction !== 'cdyjwlkjyxzrgs' "  style="font-size:16px;font-weight:300;padding-left:24px;line-height:1.6em">{{coach.Introduction}}</strong></span>
 		</div>
 	</ion-content>
-	<div class="footerr" ng-hide="onlyStudent"></div>
+	<div class="footerr" ng-hide="onlyStudentfalse">
+		<p ng-show="bindstatus" style="color:#67337E;width:100%;text-align:center;line-height:60px;">您已申请过绑定该教练,请耐心等待</p>
+	</div>
 	<button class="footButton" ng-click="bindCoach()" ng-hide="onlyStudent">绑定教练</button>
 	<div class="container-model" ng-if="bigImage"  ng-click="hideBigImage()" image-height>
 		<img ng-src="{{model.img}}" class="hideImage" />

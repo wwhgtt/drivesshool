@@ -13,7 +13,7 @@ angular.module("controllers.coachDetile",[])
 	$scope.coach={url:""};
 	$scope.model={img:""};
 	$scope.coachItem={sexImg:"",checkImg:"",first:"",second:"",third:"",firstIMG:"",secondIMG:"",thirdIMG:"",fourthIMG:"",
-	firstimg:"",secondimg:"",thirdimg:"",fourthimg:""};
+	firstimg:"",secondimg:"",thirdimg:"",fourthimg:"",noneCar:"",noneSite:"",special:"",Avator:""};
 	$getDetile.getDetile(coachId,function(err,result){
 		if (err){
 			$ionicPopup.alert({
@@ -25,7 +25,9 @@ angular.module("controllers.coachDetile",[])
 				var name=result.coach.Name;
 				var avator=$scope.coach.Avator;
 				if(avator !== "" &&　avator !== null && avator !== undefined){
-					$scope.coachAvatorTemp=true;
+					$scope.coachItem.Avator=avator+"_large";
+				}else{
+					$scope.coachItem.Avator="http://party.idrv.com.cn/coachDetaile/img/no.jpg";
 				}
 				var sex=$scope.coach.Sex;
 				if(sex == 1){
@@ -35,7 +37,7 @@ angular.module("controllers.coachDetile",[])
 				}
 				var status=result.coach.Status;
 				if(status == 2){
-					$scope.coachItem.checkImg="http://party.idrv.com.cn/coachDetaile/img/renzheng.png";
+					$scope.coachItem.checkImg="http://party.idrv.com.cn/coachDetaile/img/renzheng.jpg";
 				}else{
 					$scope.coachItem.checkImg="";
 				}
@@ -58,37 +60,46 @@ angular.module("controllers.coachDetile",[])
 						}
 						if(!realMyArray[1]){
 							// console.log(myArray[1])
-							$(".eventStudent").css("display","none");
+							// $scope.lengthFirst = true;
 						}else{
+							$scope.lengthFirst = true;
 							$scope.coachItem.first=realMyArray[1];
 						}
 						if(!realMyArray[2]){
-							$(".eventCoach").css("display","none");
+							
 						}else{
+							$scope.lengthSecond = true;
 							$scope.coachItem.second=realMyArray[2];
 						}
 						if(!realMyArray[3]){
-							$(".eventStyle").css("display","none");
+							
 						}else{
+							$scope.lengthThird  = true;
 							$scope.coachItem.third=realMyArray[3];
 						}
 					}else{
 						if(!myArray[1]){
-							$(".eventStudent").css("display","none");
+							
 						}else{
+							$scope.lengthFirst = true;
 							$scope.coachItem.first=myArray[1];
 						}
 						if(!myArray[2]){
-							$(".eventCoach").css("display","none");
+							
 						}else{
+							$scope.lengthSecond = true;
 							$scope.coachItem.second=myArray[2];
 						}
 						if(!myArray[3]){
-							$(".eventStyle").css("display","none");
+							
 						}else{
+							$scope.lengthThird = true;
 							$scope.coachItem.third=myArray[3];
-						}
+						}                                                                                        
 					}
+				}else{
+					$scope.noneSpecial = true;                                                         
+					$scope.coachItem.special = "这个教练很懒,什么特色也没填"
 				}
 				if(result.coach.Phone){
 					$scope.coachPhone=true;
@@ -112,6 +123,9 @@ angular.module("controllers.coachDetile",[])
 						$scope.fourthIMG = true;
 						$scope.coachItem.fourthIMG=Carpics[3];
 					}
+				}else{
+					$scope.nonePhoto = true;
+					$scope.coachItem.noneCar ="这个教练很懒,一张车辆照片也没传"
 				}
 				var Sitepics=result.coach.Sitepics;
 				if(Sitepics !== "" && Sitepics !== null && Sitepics !== undefined){
@@ -131,6 +145,9 @@ angular.module("controllers.coachDetile",[])
 						$scope.fourthimg= true;
 						$scope.coachItem.fourthimg=Sitepics[3];
 					}
+				}else{
+					$scope.noneSitePhoto = true;
+					$scope.coachItem.noneSite ="这个教练很懒,一张场地照片也没传"
 				}
 				var avatorTemp=result.coach.Avator;
 				var avator;
@@ -224,7 +241,11 @@ angular.module("controllers.coachDetile",[])
 		$(".footButton").html("我要制作");
 	}else if( studentid == "null" || studentid == "only"){
 		$scope.onlyStudent = true;
+		$scope.onlyStudentfalse = true;
 		$(".forHideEvent").css("margin-bottom","0px");
+	}else if(studentid == "studentid"){
+		$scope.onlyStudent = true;
+		$scope.bindstatus = true;
 	}
 	$scope.bindCoach=function(){
 		var html=$(".footButton").html();
@@ -237,10 +258,11 @@ angular.module("controllers.coachDetile",[])
 				}else{
 					if(result && result.result == true){
 						$ionicPopup.alert({
-						    title: "绑定成功"
+						    title: "申请已提交,请耐心等待"
 						}).then(function(result){
 							if(result == true){
-								// $window.location.href="/yja/person";
+								$scope.onlyStudent = true;
+								$scope.bindstatus = true;
 							}
 						})
 					}else if(result && result.msg){

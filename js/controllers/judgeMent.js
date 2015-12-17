@@ -28,8 +28,17 @@ angular.module("controllers.judgeMent",[])
 					var student=result.student;
 					var CoachId=student.CoachId;
 					var studentId=student.Id;
-					if(CoachId !== "" && CoachId !== 0){
+					var bindstatus=student.Bindstatus;
+					if(CoachId !== "" && CoachId !== 0 && bindstatus == 2){
 						$window.location.href="/yja/order/"+studentId;
+					}else if(coachId && bindstatus == 1){
+						$ionicPopup.confirm({
+							title:"教练还没同意申请,点击确定前往查看"
+						}).then(function(result){
+							if(result == true){
+								$window.location.href="/yja/coachDetile/"+CoachId+"?studentid=bindstatus"
+							}
+						})
 					}else{
 						$ionicPopup.confirm({
 							title:"您还没有绑定教练,点击OK前往绑定"
@@ -65,9 +74,12 @@ angular.module("controllers.judgeMent",[])
 					var student=result.student;
 					var coachId=student.CoachId;
 					var studentId=student.Id;
-					if(!coachId && coachId !== "0"){
+					var bindstatus=student.Bindstatus;
+					if(!coachId && coachId !== "0" && bindstatus == 0){
 						$window.location.href="/yja/searchCoach?studentId="+studentId;
-					}else{
+					}else if(coachId && bindstatus == 1){
+						$window.location.href="/yja/coachDetile/"+CoachId+"?studentid=bindstatus"
+					}else if(coachId && bindstatus == 2){
 						$window.location.href="/yja/order/"+studentId;
 					}
 				}else if(result && result.msg){

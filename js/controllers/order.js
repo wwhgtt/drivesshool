@@ -9,7 +9,7 @@ angular.module("controllers.order",[])
 	$cancelorder,
 	$window
 ){
-	$scope.orderList = [{time:"7:00"},{time:"8:00"},{time:"9:00"},{time:"10:00"},
+	$scope.orderList = [{time:"07:00"},{time:"08:00"},{time:"09:00"},{time:"10:00"},
 	{time:"11:00"},{time:"12:00"},{time:"13:00"},{time:"14:00"},{time:"15:00"},{time:"16:00"},{time:"17:00"},{time:"18:00"}];
 	// console.log("orderList",$scope.orderList);
 	$scope.moment={today:moment().format("YYYY-MM"),second:moment().add(1,"days").format("YYYY-MM"),third:moment().add(2,"days").format("YYYY-MM"),
@@ -98,9 +98,7 @@ angular.module("controllers.order",[])
 							})
 						}else{
 							if(result && result.result == true){
-								$ionicPopup.alert({
-									title:"预约成功"
-								})
+								
 								order.number= order.number + 1;
 								order.Orderstatus = 1;
 							}
@@ -122,9 +120,7 @@ angular.module("controllers.order",[])
 							})
 						}else{
 							if(result && result.result == true){
-								$ionicPopup.alert({
-									title:"取消成功"
-								})
+								
 								order.number= order.number - 1;
 								order.Orderstatus = 2;
 							}
@@ -138,19 +134,14 @@ angular.module("controllers.order",[])
 		var momentTemp;
 		if(mom == moment().format("DD")){
 			momentTemp=moment().format("YYYY-MM-DD");
-			$(".header_left").addClass("activeTemp");
-			$(".header_middle").removeClass("activeTemp");
-			$(".header_right").removeClass("activeTemp");
 		}else if(mom == moment().add(1,"days").format("DD")){
 			momentTemp=moment().add(1,"days").format("YYYY-MM-DD");
-			$(".header_middle").addClass("activeTemp");
-			$(".header_left").removeClass("activeTemp");
-			$(".header_right").removeClass("activeTemp");
 		}else{
 			momentTemp=moment().add(2,"days").format("YYYY-MM-DD");
-			$(".header_right").addClass("activeTemp");
-			$(".header_middle").removeClass("activeTemp");
-			$(".header_left").removeClass("activeTemp");
+		}
+		for(var index in $scope.orderList){
+			var orderTemp = $scope.orderList[index];
+			orderTemp.content = "";
 		}
 		$byDayCount.byDayCount(momentTemp,studentId,function(err,result){
 			if(err){
